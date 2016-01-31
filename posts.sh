@@ -31,7 +31,7 @@ while [ $# -gt 0 ]; do
             s=TRUE
             ;;
         *)
-            echo -e "Invalid option: $1.\nUsage: -g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\nSee the README.md for details." >&2
+            echo -e "Invalid option: $1.\nUsage:\n-g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\nSee the README.md for details." >&2
             exit 1
     esac
     shift
