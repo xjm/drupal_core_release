@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Date of the next scheduled minor and current D8 branch; update as needed.
 MINOR="Wednesday, April 20"
