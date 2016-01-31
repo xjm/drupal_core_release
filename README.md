@@ -6,15 +6,15 @@ Usage
 
 With each command, markup for the post is printed to `stdout` and copied to the clipboard with `pbcopy`.
 
--g Generate g.d.o/core announcement.
+`-g` Generate g.d.o/core announcement.
 
--r Generate release notes.
+`-r` Generate release notes.
 
--f Generate frontpage post.
+`-f` Generate frontpage post.
 
--s Security window instead of a patch window.
+`-s` Security window instead of a patch window.
 
--d Override dates for a release window announcement.
+`-d` Override dates for a release window announcement.
 
 Release window announcements for g.d.o/core
 -------------------------------------------
