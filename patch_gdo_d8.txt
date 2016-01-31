@@ -10,7 +10,7 @@ Other upcoming core release windows after this week include:
 <ul>
 <li>NEXT_SECURITY (security release window)</li>
 <li>NEXT_PATCH (patch release window)</li>
-<li>Wednesday, April 20 (scheduled minor release)</li>
+<li>MINOR (scheduled minor release)</li>
 </ul>
 
 For more information on Drupal core release windows, see the documentation on <a href="http://drupal.org/documentation/version-info#when">release timing</a> and <a href="http://drupal.org/node/1173280">security releases</a>, as well as the <a href="https://www.drupal.org/core/release-cycle-overview">Drupal core release cycle overview</a>.
