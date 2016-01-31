@@ -17,11 +17,11 @@ Generate a post for http://groups.drupal.org/core about an upcoming patch releas
 
 The normal release window dates are used for the next upcoming patch release window. See: https://www.drupal.org/core/release-cycle-overview#dates
 
-#### `bash ./posts.sh -g -d`
+### `bash ./posts.sh -g -d`
 
 Override one or more release window dates for the upcoming post (this patch release window, the following security release window, or the following patch release window).
 
-#### `bash ./posts.sh -g -s`
+### `bash ./posts.sh -g -s`
 
 Generate a g.d.o/core post for an upcoming security release window instead of a patch release window.
 
