@@ -1,4 +1,4 @@
-Maintenance and security release of the Drupal N series.
+Maintenance and security release of the Drupal 8 series.
 
 This release fixes <strong>security vulnerabilities</strong>. Sites are <strong><a href="/node/1494290">urged to upgrade immediately</a></strong> after reading the notes below and the security announcements:
 <ul>
