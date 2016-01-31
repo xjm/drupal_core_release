@@ -42,9 +42,23 @@ if [[ (! $g && ! $f && ! $r) || ($g && $f) || ($g && $r) || ($r && $f) ]] ; then
     exit
 fi
 
-# Prompt for release numbers if is a patch release window.
+# Dates are only used in g.d.o/core announcements in advance of the window.
+if [[ $d && ($f || $r) ]] ; then
+    echo -e "The -d option is only valid with -g.\nSee the README.md for details."
+    exit
+fi
+
+# -r and -f are not supported yet.
+# @todo Remove this once the options are supported.
+if [[ $r || $f ]] ; then
+    echo -e "-r and -f aren't actually supported yet; sorry!"
+    exit
+fi
+
+# Prompt for release numbers.
+# No release numbers are needed for patch release window announcements.
 # @todo Add input validation.
-if [ ! $s ] ; then
+if [[ $f || $r ! $s ]] ; then
     echo -e "Enter the D8 release number:"
     read VERSION8
     echo -e "Enter the D7 release number (blank for none):"
