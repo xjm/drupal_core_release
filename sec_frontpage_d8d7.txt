@@ -6,7 +6,7 @@ Drupal VERSION8 and VERSION7 released
 <a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a><br />
 <a href="http://ftp.drupal.org/files/projects/drupal-VERSION7.tar.gz" class="link-button"><span>Download Drupal VERSION7</span></a></div>
 
-<p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 and 7 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in these releases. For more information about the Drupal 8.0.x release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>. More information on the Drupal 7.x release series can be found in the <a href="https://www.drupal.org/drupal-7.0">Drupal 7.0 release announcement</a>.</p>
+<p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 and 7 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in these releases. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>. More information on the Drupal 7.x release series can be found in the <a href="https://www.drupal.org/drupal-7.0">Drupal 7.0 release announcement</a>.</p>
 
 <div style="float: right; padding: 0 0 2em 1em; margin-left: 2em; width: 35%; border-left: 1px solid #cdcdcd;">
 
@@ -18,12 +18,12 @@ Drupal 8 and 7 include the built-in Update Manager module, which informs you abo
 
 <h2>Bug reports</h2>
 
-Both Drupal 8.0.x and 7.x are being maintained, so given enough <a href="https://drupal.org/project/issues/search/drupal?status[]=8&categories[]=1">bug fixes</a> (not just <a href="https://drupal.org/project/issues/search/drupal?status[]=1&categories[]=1">bug reports</a>) more maintenance releases will be made available, according to our <a href="https://www.drupal.org/documentation/version-info#when">monthly release cycle</a>.
+Both Drupal BRANCH8 and 7.x are being maintained, so given enough <a href="https://drupal.org/project/issues/search/drupal?status[]=8&categories[]=1">bug fixes</a> (not just <a href="https://drupal.org/project/issues/search/drupal?status[]=1&categories[]=1">bug reports</a>) more maintenance releases will be made available, according to our <a href="https://www.drupal.org/documentation/version-info#when">monthly release cycle</a>.
 </div>
 
 <h2>Change log</h2>
 
-Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">VERSION8 release notes</a>.  A complete list of all changes in the stable 8.0.x branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=8.0.x">the git commit log</a>.
+Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">VERSION8 release notes</a>.  A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=BRANCH8">the git commit log</a>.
 
 Drupal VERSION7 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION7-release-notes">VERSION7 release notes</a>.  A complete list of all changes in the stable 7.x branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=7.x">the git commit log</a>.
 

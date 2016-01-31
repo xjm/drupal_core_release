@@ -22,12 +22,12 @@ There are no security fixes in these releases of Drupal core.
 
 <h2>Bug reports</h2>
 
-Drupal 8.0.x and 7.x actively maintained, so more maintenance releases will be made available, according to our <a href="https://www.drupal.org/documentation/version-info#when">monthly release cycle</a>.
+Drupal BRANCH8 and 7.x actively maintained, so more maintenance releases will be made available, according to our <a href="https://www.drupal.org/documentation/version-info#when">monthly release cycle</a>.
 </div>
 
 <h2>Change log</h2>
 
-Drupal VERSION8 contains bug fixes and documentation and testing improvements only. The full list of changes between the last 8.0.x patch release and the VERSION8 release can be found by reading the <a href="/drupal-VERSION8-release-notes">VERSION8 release notes</a>. A complete list of all changes in the stable 8.0.x branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?id=refs/heads/8.0.x&nocache=VERSION8">the git commit log</a>.
+Drupal VERSION8 contains bug fixes and documentation and testing improvements only. The full list of changes between the last BRANCH8 patch release and the VERSION8 release can be found by reading the <a href="/drupal-VERSION8-release-notes">VERSION8 release notes</a>. A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?id=refs/heads/BRANCH8&nocache=VERSION8">the git commit log</a>.
 
 <h2>Update notes</h2>
 

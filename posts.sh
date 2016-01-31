@@ -1,15 +1,16 @@
 #!/bin/sh
 
-# Date of the next scheduled minor; update as needed.
+# Date of the next scheduled minor and current D8 branch; update as needed.
 MINOR="Wednesday, April 20"
+BRANCH8="8.0.x"
+
+# Get the script directory.
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Format a Y-m-d date as (e.g.) 'Wednesday, February 3' in a Mac-friendly way.
 function word_date() {
     echo "$(date -jf "%Y-%m-%d" "$1" +"%A, %B %d")"
 }
-
-# Get the current directory.
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Fetch CLI arguments.
 while [ $# -gt 0 ]; do
@@ -48,75 +49,95 @@ if [[ $d && ($f || $r) ]] ; then
     exit
 fi
 
-# -r and -f are not supported yet.
-# @todo Remove this once the options are supported.
-if [[ $r || $f ]] ; then
-    echo -e "-r and -f aren't actually supported yet; sorry!"
-    exit
-fi
-
 # Prompt for release numbers.
 # No release numbers are needed for patch release window announcements.
 # @todo Add input validation.
-if [[ $f || $r ! $s ]] ; then
+if [[ $f || $r || ! $s ]] ; then
     echo -e "Enter the D8 release number:"
     read VERSION8
-    echo -e "Enter the D7 release number (blank for none):"
-    read VERSION7
-fi
-
-# Let the user override this patch release date. (N/A for security windows.)
-if [[ $d && ! $s ]] ; then
-    echo -e "Enter the release window as yyyy-mm-dd\n(blank for the upcoming first Wednesday of the month):"
-    read date_ymd
-fi
-
-# Calculate the next upcoming patch release window if one was not provided.
-# Give up and use PHP to use strtotime, because the Mac date command sucks.
-if [ -z "$date_ymd" ] ; then
-    if [ $s ] ; then
-        date_ymd=$(date +"%Y-%m-%d")
-    else
-        date_ymd="$(php $DIR/window_dates.php 1)"
+    if [ ! $r ] ; then
+        echo -e "Enter the D7 release number (blank for none):"
+        read VERSION7
     fi
 fi
 
-# Format the upcoming patch release date and its year.
-DATE="$(word_date $date_ymd)"
-YEAR=$(date -jf "%Y-%m-%d" "$date_ymd" +"%Y")
+# Enter dates for g.d.o/core posts
+if [ $g ] ; then
+    # Let the user override this patch release date. N/A for security windows.
+    if [[ $d && ! $s ]] ; then
+        echo -e "Enter the release window as yyyy-mm-dd\n(blank for the upcoming first Wednesday of the month):"
+        read date_ymd
+    fi
 
-# Let the user override the following security and patch release window dates.
-if [ $d ] ; then
-    echo -e "Enter the upcoming security release window as yyyy-mm-dd\n(blank for the next third Wednesday after $DATE):"
-    read sec_ymd
-    echo -e "Enter the following patch release window as yyyy-mm-dd\n(blank for the next first Wednesday after $DATE):"
-    read next_patch_ymd
-fi
+    # Calculate the next upcoming patch release window if one was not provided.
+    # Give up and use PHP to use strtotime, because the Mac date command sucks.
+    if [ -z "$date_ymd" ] ; then
+        if [ $s ] ; then
+            date_ymd=$(date +"%Y-%m-%d")
+        else
+            date_ymd="$(php $DIR/window_dates.php 1)"
+        fi
+    fi
 
-# Calculate the following security and patch windows if none were provided.
-if [ -z "$next_patch_ymd" ] ; then
-  next_patch_ymd="$(php $DIR/window_dates.php 1 $date_ymd)"
-fi
-if [ -z "$sec_ymd" ] ; then
-  sec_ymd="$(php $DIR/window_dates.php 3 $date_ymd)"
-fi
+    # Format the upcoming patch release date and its year.
+    DATE="$(word_date $date_ymd)"
+    YEAR=$(date -jf "%Y-%m-%d" "$date_ymd" +"%Y")
 
-# Format those windows for display.
-NEXT_PATCH="$(word_date $next_patch_ymd)"
-NEXT_SECURITY="$(word_date $sec_ymd)"
+   # Let the user override the following release window dates as well.
+    if [ $d ] ; then
+        echo -e "Enter the upcoming security release window as yyyy-mm-dd\n(blank for the next third Wednesday after $DATE):"
+        read sec_ymd
+        echo -e "Enter the following patch release window as yyyy-mm-dd\n(blank for the next first Wednesday after $DATE):"
+        read next_patch_ymd
+    fi
+
+    # Calculate the following security and patch windows if none were provided.
+    if [ -z "$next_patch_ymd" ] ; then
+        next_patch_ymd="$(php $DIR/window_dates.php 1 $date_ymd)"
+    fi
+    if [ -z "$sec_ymd" ] ; then
+        sec_ymd="$(php $DIR/window_dates.php 3 $date_ymd)"
+    fi
+
+    # Format those windows for display.
+    NEXT_PATCH="$(word_date $next_patch_ymd)"
+    NEXT_SECURITY="$(word_date $sec_ymd)"
+fi
 
 # Import the correct post template based on the user input.
+# Files are named according to a standard pattern.
 if [ $s ] ; then
-    text=`cat sec_gdo.txt`
-elif [ ! -z "$VERSION7" ] ; then
-    text=`cat patch_gdo_d8d7.txt`
+    prefix="sec"
 else
-    text=`cat patch_gdo_d8.txt`
+    prefix="patch"
+fi
+
+if [ ! -z "$VERSION7" ] ; then
+    suffix="d8d7"
+else
+    suffix="d8"
+fi
+
+if [ $g ] ; then
+    if [ $s ] ; then
+        text=`cat sec_gdo.txt`
+    else
+        text=`cat patch_gdo_"${suffix}".txt`
+    fi
+elif [ $r ] ; then
+    if [ $s ] ; then
+        text=`cat sec_rn.txt`
+    else
+        text=`cat patch_rn_"${suffix}".txt`
+    fi
+elif [ $f ] ; then
+    text=`cat "${prefix}"_frontpage_"${suffix}".txt`
 fi
 
 # Replace the placeholders in the templates.
 # @todo This is ugly.
 output="${text//VERSION8/$VERSION8}"
+output="${output//BRANCH8/$BRANCH8}"
 output="${output//DATE/$DATE}"
 output="${output//YEAR/$YEAR}"
 output="${output//MINOR/$MINOR}"
