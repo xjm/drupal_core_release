@@ -36,6 +36,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+# Require exactly one post type.
 if [[ ! $g && ! $f && ! $r || ($g && $f) || ($g && $r) || ($r && $f) ]] ; then
     echo -e "Specify one and only one of the following: -g -r -f\nSee the README.md for details."
     exit
