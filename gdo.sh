@@ -61,7 +61,7 @@ if [ $d ] ; then
     read next_patch_ymd
 fi
 
-# Calculate the following securiy and patch windows if none were provided.
+# Calculate the following security and patch windows if none were provided.
 if [ -z "$next_patch_ymd" ] ; then
   next_patch_ymd="$(php $DIR/window_dates.php 1 $date_ymd)"
 fi
