@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Date of the next scheduled minor; update as needed.
+MINOR="Wednesday, April 20"
+
 # Format a Y-m-d date as (e.g.) 'Wednesday, February 3' in a Mac-friendly way.
 function word_date() {
     echo "$(date -jf "%Y-%m-%d" "$1" +"%A, %B %d")"
@@ -87,6 +90,7 @@ fi
 output="${text//VERSION8/$VERSION8}"
 output="${output//DATE/$DATE}"
 output="${output//YEAR/$YEAR}"
+output="${output//MINOR/$MINOR}"
 output="${output//NEXT_PATCH/$NEXT_PATCH}"
 output="${output//NEXT_SECURITY/$NEXT_SECURITY}"
 

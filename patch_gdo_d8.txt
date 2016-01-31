@@ -10,7 +10,7 @@ Other upcoming core release windows after this week include:
 <ul>
 <li>NEXT_SECURITY (security release window)</li>
 <li>NEXT_PATCH (patch release window)</li>
-<li>Wednesday, April 20 (scheduled minor release)</li>
+<li>MINOR (scheduled minor release)</li>
 </ul>
 
 <a href="https://www.drupal.org/drupal-6-eol">Drupal 6 is end-of-life</a> and will not receive further releases.

@@ -4,7 +4,7 @@ The monthly security release window for Drupal 8 and 7 core will take place on N
 
 This does not mean that a Drupal core security release will necessarily take place on that date for any of the Drupal 8 or 7 branches, only that you should watch for one (and be ready to update your Drupal sites in the event that the Drupal security team decides to make a release).
 
-There will be no bug fix or feature release on this date. The next window for a Drupal core patch (bug fix) release for all branches is NEXT_PATCH. The next scheduled minor (feature) release for Drupal 8 will be on April 20, 2016.
+There will be no bug fix or feature release on this date. The next window for a Drupal core patch (bug fix) release for all branches is NEXT_PATCH. The next scheduled minor (feature) release for Drupal 8 will be on MINOR.
 
 <a href="https://www.drupal.org/drupal-6-eol">Drupal 6 is end-of-life</a> and will not receive further security releases.
 
