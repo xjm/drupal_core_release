@@ -14,7 +14,7 @@ With each command, markup for the post is printed to `stdout` and copied to the 
 
 -s Security window instead of a patch window.
 
--d Override dates.
+-d Override dates for a release window announcement.
 
 Release window announcements for g.d.o/core
 -------------------------------------------
