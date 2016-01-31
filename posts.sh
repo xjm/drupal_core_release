@@ -14,6 +14,15 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Fetch CLI arguments.
 while [ $# -gt 0 ]; do
     case "$1" in
+        -g)
+            g=TRUE
+            ;;
+        -f)
+            f=TRUE
+            ;;
+        -r)
+            r=TRUE
+            ;;
         -d)
             d=TRUE
             ;;
@@ -21,11 +30,16 @@ while [ $# -gt 0 ]; do
             s=TRUE
             ;;
         *)
-            echo -e "Invalid option: $1.\nUsage: -d to override dates. -s for security window instead of a patch window. See the README.md for details." >&2
+            echo -e "Invalid option: $1.\nUsage: -g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\nSee the README.md for details." >&2
             exit 1
     esac
     shift
 done
+
+if [[ ! $g && ! $f && ! $r || ($g && $f) || ($g && $r) || ($r && $f) ]] ; then
+    echo -e "Specify one and only one of the following: -g -r -f\nSee the README.md for details."
+    exit
+fi
 
 # Prompt for release numbers if is a patch release window.
 # @todo Add input validation.
