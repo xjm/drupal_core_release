@@ -19,6 +19,7 @@ Drupal 8 and 7 include the built-in Update Manager module, which informs you abo
 <h2>Bug reports</h2>
 
 Both Drupal BRANCH8 and 7.x are being maintained, so given enough <a href="https://drupal.org/project/issues/search/drupal?status[]=8&categories[]=1">bug fixes</a> (not just <a href="https://drupal.org/project/issues/search/drupal?status[]=1&categories[]=1">bug reports</a>) more maintenance releases will be made available, according to our <a href="https://www.drupal.org/documentation/version-info#when">monthly release cycle</a>.
+
 </div>
 
 <h2>Change log</h2>

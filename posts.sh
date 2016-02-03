@@ -156,7 +156,7 @@ output="${output//NEXT_SECURITY/$NEXT_SECURITY}"
 
 # If a Drupal 7 version is included, replace that placeholder too.
 if [ ! -z "$VERSION7" ] ; then
-    output="${output/VERSION7/$VERSION7}"
+    output="${output//VERSION7/$VERSION7}"
 fi
 
 # Echo with quotes to display newlines.
