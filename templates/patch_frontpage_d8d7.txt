@@ -32,7 +32,7 @@ Drupal VERSION7 contains bug fixes and minor new features. The full list of chan
 
 <h2>Update notes</h2>
 
-See the <a href="/drupal-VERSION8-release-notes">VERSION8 release notes</a> and <a href="/drupal-VERSION7-release-notes">VERSION7 release notes</a> for details on important changes in these release.
+See the <a href="/drupal-VERSION8-release-notes">VERSION8 release notes</a> and <a href="/drupal-VERSION7-release-notes">VERSION7 release notes</a> for details on important changes in these releases.
 
 <h2>Known issues</h2>
 
