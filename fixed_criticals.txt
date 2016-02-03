@@ -1,0 +1,30 @@
+
+
+select distinct n.nid,
+replace(n.title, '"', '') as title
+from node n
+
+inner join field_data_field_project project on project.entity_id = n.nid
+inner join field_data_field_issue_version version on version.entity_id = n.nid
+inner join field_data_field_issue_priority p on p.entity_id = n.nid
+inner join field_data_field_issue_category c on c.entity_id = n.nid
+inner join field_data_field_issue_status s on s.entity_id = n.nid
+
+
+inner join field_data_field_issue_changes fixed_fc on fixed_fc.field_issue_changes_nid = n.nid
+inner join comment fixed_c on fixed_c.cid = fixed_fc.entity_id
+
+
+where n.status = 1
+ and (project.field_project_target_id  in ('3060'))
+ and (version.field_issue_version_value  in ('BRANCH8-dev'))
+ and (p.field_issue_priority_value  in ('400'))
+ and (c.field_issue_category_value  in ('1', '2', '5'))
+ and (s.field_issue_status_value  in ('2', '7'))
+
+ and ( (fixed_fc.field_issue_changes_field_name = 'field_issue_status'  and fixed_fc.field_issue_changes_new_value  in ('a:1:{i:0;a:1:{s:5:"value";s:1:"2";}}')) and fixed_c.changed > unix_timestamp('2016-01-06 00:00:00'))
+
+
+order by n.nid
+;
+
