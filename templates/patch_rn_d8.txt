@@ -12,7 +12,7 @@ The following important issues are resolved in VERSION8 (in addition to the doze
 
 <h3>Known issues</h3>
 
-See the list of the <a href="https://www.drupal.org/project/issues/drupal?version=BRANCH8-dev">known issues for the BRANCH8 branch</a>. There are no known regressions in this release.
+There are no known regressions in this release.
 
 The following issues may affect people running Drupal VERSION8 on specific hosting environments:
 
