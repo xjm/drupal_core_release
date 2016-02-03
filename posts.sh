@@ -7,6 +7,11 @@ BRANCH8="8.0.x"
 # Get the script directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Get the prepopulated list of issues, if any.
+if [ -a rn_issues.txt ] ; then
+    AUTO_ISSUES=`cat rn_issues.txt`
+fi
+
 # Format a Y-m-d date as (e.g.) 'Wednesday, February 3' in a Mac-friendly way.
 function word_date() {
     echo "$(date -jf "%Y-%m-%d" "$1" +"%A, %B %d")"
@@ -128,7 +133,11 @@ elif [ $r ] ; then
     if [ $s ] ; then
         text=`cat templates/sec_rn.txt`
     else
-        text=`cat templates/patch_rn_"${suffix}".txt`
+        if [ -z" $AUTO_ISSUES" ] ; then
+            text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
+        else
+            text=`cat templates/patch_rn_"${suffix}".txt`
+        fi
     fi
 elif [ $f ] ; then
     text=`cat templates/"${prefix}"_frontpage_"${suffix}".txt`
@@ -136,7 +145,8 @@ fi
 
 # Replace the placeholders in the templates.
 # @todo This is ugly.
-output="${text//VERSION8/$VERSION8}"
+output="${text//AUTO_ISSUES/$AUTO_ISSUES}"
+output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
 output="${output//DATE/$DATE}"
 output="${output//YEAR/$YEAR}"

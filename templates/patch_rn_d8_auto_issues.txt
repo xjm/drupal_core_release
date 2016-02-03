@@ -1,0 +1,23 @@
+This is a <strong>patch release of Drupal 8</strong> and is ready for use on production sites. See the <a href="http://cgit.drupalcode.org/drupal/plain/core/CHANGELOG.txt">CHANGELOG.txt</a> for an extensive summary of changes and improvements since Drupal 7! <a href="https://www.drupal.org/8">Learn more about Drupal 8</a>.
+
+<!--break-->
+
+This release only contains bug fixes, along with documentation and testing improvements. AUTO_ISSUES
+
+<h3>Known issues</h3>
+
+See the list of the <a href="https://www.drupal.org/project/issues/drupal?version=BRANCH8-dev">known issues for the BRANCH8 branch</a>. There are no known regressions in this release.
+
+The following issues may affect people running Drupal VERSION8 on specific hosting environments:
+
+<ul>
+<li>Installs on php-fpm environments may see fatal errors on enabling modules, due to <a href="/node/2572293">#2572293: Do not rebuild router in kernel.terminate</a>.</li>
+<li>There is not yet per-commit testing for MySQL 5.7.9 or MariaDB 10.1.8 (both released October 2015), but there are no known issues with them. We intend to add per-commit testing on one of these databases soon.</li>
+<li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="/node/2619250">#2619250: Disabling -MultiViews in .htaccess can cause 500 errors
+</a></li>
+</ul>
+
+<a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
+
+<h3>All changes since the last patch release</h3>
+

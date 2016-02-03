@@ -1,0 +1,11 @@
+
+
+The following important issues are resolved in VERSION8 (in addition to the dozens of other fixes listed at the end of this post):
+
+<ul>
+<li><a href="https://www.drupal.org/node/2625258">#2625258: LocaleConfigManager::updateConfigTranslations() deletes translations if a config object's name happens to match that of a shipped configuration object</a></li>
+<li><a href="https://www.drupal.org/node/2639352">#2639352: File records, files themselves lost in translation</a></li>
+<li><a href="https://www.drupal.org/node/2646100">#2646100: Exception on php7 + APCu without backwards compatibilty enabled</a></li>
+<li><a href="https://www.drupal.org/node/2606548">#2606548: \\Drupal\\rest\\Plugin\\views\\row\\DataFieldRow::render should take into account the 'exclude' flag</a></li>
+</ul>
+
