@@ -4,19 +4,15 @@ This is a <strong>patch release of Drupal 8</strong> and is ready for use on pro
 
 This release only contains bug fixes, along with documentation and testing improvements. Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">minor string changes since the last patch release</a>.
 
-The following critical issues are resolved in VERSION8 (in addition to the dozens of major and minor fixes listed at the end of this post):
+The following important issues are resolved in VERSION8 (in addition to the dozens of other fixes listed at the end of this post):
 <ul>
-<li><a href="/node/2639352">#2639352: File records, files themselves lost in translation</a></li>
+<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=BRANCH8-dev.</li>
+<li>@todo List any issues in: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=VERSION8+release+notes</li>
 </ul>
 
 <h3>Known issues</h3>
 
-Several outstanding critical issues have been discovered after the 8.0.0 release but have not been fixed yet. Fixes for these issues will be targeted for a future patch release:
-<ul>
-<li><a href="/node/2628004">#2628004: Create an upgrade path to determine if default_config_hash should be added (2625258)</a>. This affects all sites created before VERSION8 that have locale or an additional language installed (or that will install them in the future). Until this issue is fixed, sites will need to use the core Configuration Translation module to create their own translations for default configuration of currently installed modules, rather than automatically downloading them from <a href="https://localize.drupal.org/">localize.drupal.org</a>.</li>
-<li><a href="/node/2616164">#2616164: /update.php/run URL is generated with language prefix and returns 404 error</a></li>
-<li><a href="/node/2635728">#2635728: Uninstalling a module providing display extenders causes fatal errors</a></li>
-</ul>
+See the list of the <a href="https://www.drupal.org/project/issues/drupal?version=BRANCH8-dev">known issues for the BRANCH8 branch</a>. There are no known regressions in this release.
 
 The following issues may affect people running Drupal VERSION8 on specific hosting environments:
 
