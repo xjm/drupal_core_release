@@ -12,9 +12,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo -e "Enter the D8 release number:"
 read VERSION8
 
-criticals=`cat fixed_criticals.txt`
-rn=`cat rn_mention.txt`
-string=`cat string_change.txt`
+criticals=`cat queries/fixed_criticals.txt`
+rn=`cat queries/rn_mention.txt`
+string=`cat queries/string_change.txt`
 
 output="\n\n------- CRITICALS -------- $criticals \n\n------- RELEASE NOTES -------- $rn \n\n------- STRING CHANGE -------- $string";
 

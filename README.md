@@ -63,7 +63,7 @@ Generate a frontpage announcement for https://www.drupal.org about the patch rel
 
 Generate a frontpage announcement for https://www.drupal.org about the security release. You will be promped to enter the release number for Drupal 8 (required) and Drupal 7 (optional).
 
-Release note query generation script: `queries.sh`
+Release note query generation script: `generate_queries.sh`
 ------------------------------------------------
 
 This script generates SQL queries against the Drupal.org database to fetch lists of issues for the release notes. You will be prompted to enter the D8 version number. The generated queries are printed to `stdout` and copied to the clipboard.

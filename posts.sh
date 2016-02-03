@@ -120,18 +120,18 @@ fi
 
 if [ $g ] ; then
     if [ $s ] ; then
-        text=`cat sec_gdo.txt`
+        text=`cat templates/sec_gdo.txt`
     else
-        text=`cat patch_gdo_"${suffix}".txt`
+        text=`cat templates/patch_gdo_"${suffix}".txt`
     fi
 elif [ $r ] ; then
     if [ $s ] ; then
-        text=`cat sec_rn.txt`
+        text=`cat templates/sec_rn.txt`
     else
-        text=`cat patch_rn_"${suffix}".txt`
+        text=`cat templates/patch_rn_"${suffix}".txt`
     fi
 elif [ $f ] ; then
-    text=`cat "${prefix}"_frontpage_"${suffix}".txt`
+    text=`cat templates/"${prefix}"_frontpage_"${suffix}".txt`
 fi
 
 # Replace the placeholders in the templates.
