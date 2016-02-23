@@ -2,7 +2,7 @@ Maintenance and security release of the Drupal 8 series.
 
 This release fixes <strong>security vulnerabilities</strong>. Sites are <strong><a href="/node/1494290">urged to upgrade immediately</a></strong> after reading the notes below and the security announcements:
 <ul>
-<li>@todo List SAs.</li>
+<li><a href="/SA-CORE-SA_NUMBER">Drupal Core - Critical - Multiple Vulnerabilities - SA-CORE-SA_NUMBER</a></li>
 </ul>
 
 No other fixes are included.

@@ -66,6 +66,12 @@ if [[ $f || $r || ! $s ]] ; then
     fi
 fi
 
+# Prompt for the SA number.
+if [[ $s && ($f || $r) ]] ; then
+    echo -e "Enter the number for the SA (e.g. 2016-001):"
+    read SA_NUMBER
+fi
+
 # Enter dates for g.d.o/core posts
 if [ $g ] ; then
     # Let the user override this patch release date. N/A for security windows.
@@ -153,6 +159,7 @@ output="${output//YEAR/$YEAR}"
 output="${output//MINOR/$MINOR}"
 output="${output//NEXT_PATCH/$NEXT_PATCH}"
 output="${output//NEXT_SECURITY/$NEXT_SECURITY}"
+output="${output//SA_NUMBER/$SA_NUMBER}"
 
 # If a Drupal 7 version is included, replace that placeholder too.
 if [ ! -z "$VERSION7" ] ; then
