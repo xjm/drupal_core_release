@@ -33,7 +33,7 @@ Drupal VERSION7 is a security release only. For more details, see the <a href="h
 Drupal VERSION8 and VERSION7 were released in response to the discovery of security vulnerabilities. Details can be found in the official security advisories:
 
 <ul>
-
+<li><a href="/SA-CORE-SA_NUMBER">Drupal Core - Critical - Multiple Vulnerabilities - SA-CORE-SA_NUMBER</a></li>
 </ul>
 
 To fix the security problem, please upgrade to either Drupal VERSION8 or Drupal VERSION7.
