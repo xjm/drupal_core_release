@@ -4,7 +4,7 @@ This is a <strong>beta release for the next feature release of Drupal 8</strong>
 
 This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies.
 
-Translators should take note of the <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>.
+Translators should take note of the <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>. Developers can review the <a href="https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8&version=&created_op=%3E%3D&created%5Bvalue%5D=&created%5Bmin%5D=&created%5Bmax%5D=">change records for this release</a>.
 
 The following important issues are also resolved in VERSION8 (in addition to the dozens of other changes listed at the end of this post):
 <ul>
