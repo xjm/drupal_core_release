@@ -1,0 +1,49 @@
+This is a <strong>beta release for the next feature release of Drupal 8</strong>. Betas are good testing targets for developers and site builders who are comfortable reporting (and where possible, fixing) their own bugs. Beta releases are not recommended for non-technical users, nor for production websites. <a href="https://www.drupal.org/core/d8-allowed-changes#beta">More information on beta releases</a>.
+
+<!--break-->
+
+This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>.
+
+The following important issues are also resolved in VERSION8 (in addition to the dozens of other changes listed at the end of this post):
+<ul>
+<li>@todo Resolved criticals in 8.1.x only?</li>
+<li>@todo 8.1.0 release notes issues</li>
+</ul>
+
+<h3>New stable features</h3>
+
+<h3>Experimental modules</h3>
+
+The following modules are considerd experimental for this release. <a href="https://www.drupal.org/core/experimental">Experimental modules</a> are provided with Drupal core for testing purposes, but are not yet fully supported.
+
+<h4>Migrate, Migrate Drupal, and Migrate Upgrade (<a href="">alpha stability</a>)</h4>
+
+This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Be sure to take note of these outstanding issues:
+
+<ul>
+<li>D7 migration incompleteness</li>
+<li>Plugins issue</li>
+<li>Etc.</li>
+</ul>
+
+<h4>Big Pipe</h4>
+
+<h4>Inline Form Errors</h4>
+
+<h3>Known issues</h3>
+
+There are no known regressions in this release.
+
+The following issues may affect people running Drupal VERSION8 on specific hosting environments:
+
+<ul>
+<li>Installs on php-fpm environments may see fatal errors on enabling modules, due to <a href="/node/2572293">#2572293: Do not rebuild router in kernel.terminate</a>.</li>
+<li>There is not yet per-commit testing for MySQL 5.7.9 or MariaDB 10.1.8 (both released October 2015), but there are no known issues with them. We intend to add per-commit testing on one of these databases soon.</li>
+<li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="/node/2619250">#2619250: Disabling -MultiViews in .htaccess can cause 500 errors
+</a></li>
+</ul>
+
+<a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
+
+<h3>All changes since the last patch release</h3>
+
