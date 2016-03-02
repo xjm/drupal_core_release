@@ -10,10 +10,17 @@ The following important issues are also resolved in VERSION8 (in addition to the
 <ul>
 <li><a href="https://www.drupal.org/node/2614682">#2614682: Update JS lib: Modernizr to 3.3.1</a></li>
 <li><a href="https://www.drupal.org/node/2674780">#2674780: Unexpected API change in UrlGenerator::generate()</a></li>
+<li>https://www.drupal.org/node/2611816</li>
 </ul>
 
 <h3>New stable features and API improvements</h3>
 https://www.drupal.org/node/1993928
+https://www.drupal.org/node/2307141
+https://www.drupal.org/node/1740540
+https://www.drupal.org/node/2632068
+https://www.drupal.org/node/2357119
+https://www.drupal.org/node/2304849
+https://www.drupal.org/node/1386394
 https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&categories%5B%5D=3&version%5B%5D=BRANCH8-dev&issue_tags_op=%3D
 
 <h3>Experimental modules</h3>
