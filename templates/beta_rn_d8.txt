@@ -9,6 +9,7 @@ Translators should take note of the <a href="https://www.drupal.org/project/issu
 The following important issues are also resolved in VERSION8 (in addition to the dozens of other changes listed at the end of this post):
 <ul>
 <li><a href="https://www.drupal.org/node/2614682">#2614682: Update JS lib: Modernizr to 3.3.1</a></li>
+<li><a href="https://www.drupal.org/node/2674780">#2674780: Unexpected API change in UrlGenerator::generate()</a></li>
 </ul>
 
 <h3>New stable features and API improvements</h3>
