@@ -8,8 +8,7 @@ Translators should take note of the <a href="https://www.drupal.org/project/issu
 
 The following important issues are also resolved in VERSION8 (in addition to the dozens of other changes listed at the end of this post):
 <ul>
-<li>@todo Resolved criticals in 8.1.x only?</li>
-<li>@todo 8.1.0 release notes issues</li>
+<li><a href="https://www.drupal.org/node/2614682">#2614682: Update JS lib: Modernizr to 3.3.1</a></li>
 </ul>
 
 <h3>New stable features and API improvements</h3>
