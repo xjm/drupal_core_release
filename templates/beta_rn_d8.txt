@@ -22,7 +22,9 @@ The following modules are considered experimental for this release. <a href="htt
 <dl>
 <dt>Migrate, Migrate Drupal, and Migrate Upgrade UI (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dd>
 <dd>
-This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Always back up your data before performing a migration, and be sure to take note of these outstanding issues:
+This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. See the <a href="https://www.drupal.org/upgrade/migrate">user guide on upgrading from Drupal 6 or 7 to Drupal 8</a> for more information.
+
+Always back up your data before performing a migration, and be sure to take note of these outstanding issues:
 
 <ul>
 <li>The Drupal 6 to Drupal 8 migration should be considered alpha stability, but may be suitable for upgrading many existing Drupal 6 sites with careful testing.</li>
@@ -34,7 +36,9 @@ This release now provides an alpha-stability user interface for Drupal core migr
 </dd>
 
 <dt>BigPipe (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
-<dd>Provides an advanced implementation of Facebook's BigPipe page rendering strategy, leading to greatly improved perceived performance for pages with dynamic, personalized, or uncacheable content (<a href="https://www.youtube.com/watch?v=JwzX0Qv6u3A">video demonstration</a>). <strong>If you previously installed the <a href="https://www.drupal.org/project/big_pipe>BigPipe contributed module</a>, you must uninstall and remove it before upgrading from Drupal 8.0.x to 8.1.x</strong>.</dd>
+<dd>Provides an advanced implementation of Facebook's BigPipe page rendering strategy, leading to greatly improved perceived performance for pages with dynamic, personalized, or uncacheable content. See the <a href="https://www.drupal.org/documentation/modules/big_pipe">BigPipe handbook page.</li>
+
+<strong>If you previously installed the <a href="https://www.drupal.org/project/big_pipe>BigPipe contributed module</a>, you must uninstall and remove it before upgrading from Drupal 8.0.x to 8.1.x</strong>.</dd>
 
 <dt>Inline Form Errors (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
 <dd>
