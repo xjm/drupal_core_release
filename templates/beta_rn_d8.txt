@@ -2,9 +2,9 @@ This is a <strong>beta release for the next feature release of Drupal 8</strong>
 
 <!--break-->
 
-This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href"https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental modules</a> policies.
+This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies.
 
-Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>.
+Translators should take note of the <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>.
 
 The following important issues are also resolved in VERSION8 (in addition to the dozens of other changes listed at the end of this post):
 <ul>
@@ -20,23 +20,24 @@ https://www.drupal.org/node/1993928
 The following modules are considered experimental for this release. <a href="https://www.drupal.org/core/experimental">Experimental modules</a> are provided with Drupal core for testing purposes, but are not yet fully supported.
 
 <dl>
-<dt>Migrate, Migrate Drupal, and Migrate Upgrade (<a href="">alpha stability</a>)</dd>
+<dt>Migrate, Migrate Drupal, and Migrate Upgrade UI (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dd>
 <dd>
 This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Be sure to take note of these outstanding issues:
 
 <ul>
-<li>The Drupal 6 to Drupal 8 migration should be considered alpha stability, but is suitable for testing on sites</li>
-<li>The Drupal 7 to Drupal 8 migration is incomplete, but is suitable for developers who would like to help improve the migration</li>
+<li>The Drupal 6 to Drupal 8 migration should be considered alpha stability, but may be suitable for upgrading many existing Drupal 6 sites with careful testing.</li>
+<li>The Drupal 7 to Drupal 8 migration is incomplete, but is suitable for developers who would like to help improve the migration, and can be used to test upgrades especially for simple Drupal 7 sites.</li>
 <li>There are <a href="/node/2625696"planned improvements</a> to the migration API which may be committed during the beta release to improve long-term stability. This may affect developers of custom migrations.</li>
 <li>Etc.</li>
 </ul>
 </dd>
-<dt>Big Pipe</dt>
-<dd>Provides an advanced implementation of Facebook's Big Pipe page rendering strategy, leading to greatly improved perceived performance for pages with customized content.</dd>
 
-<dt>Inline Form Errors</dt>
+<dt>Big Pipe (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
+<dd>Provides an advanced implementation of Facebook's Big Pipe page rendering strategy, leading to greatly improved perceived performance for pages with customized content. <strong>If you previously installed the <a href="https://www.drupal.org/project/big_pipe>BigPipe contributed module</a>, you must uninstall and remove it before upgrading from Drupal 8.0.x to 8.1.x.</strong></dd>
+
+<dt>Inline Form Errors (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
 <dd>
-This provides a proof of concept for showing form errors inline.
+This provides a proof-of-concept for showing form errors inline. It has not changed significantly from 8.0.0. Be aware that this module has <a href="https://www.drupal.org/node/2504847">outstanding issues</a>, some of which are significant.
 </dd>
 
 <h3>Known issues</h3>
