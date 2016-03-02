@@ -22,13 +22,13 @@ The following modules are considered experimental for this release. <a href="htt
 <dl>
 <dt>Migrate, Migrate Drupal, and Migrate Upgrade UI (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dd>
 <dd>
-This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Be sure to take note of these outstanding issues:
+This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Always back up your data before performing a migration, and be sure to take note of these outstanding issues:
 
 <ul>
 <li>The Drupal 6 to Drupal 8 migration should be considered alpha stability, but may be suitable for upgrading many existing Drupal 6 sites with careful testing.</li>
 <li>The Drupal 7 to Drupal 8 migration is incomplete, but is suitable for developers who would like to help improve the migration, and can be used to test upgrades especially for simple Drupal 7 sites.</li>
 <li>There are <a href="/node/2625696"planned improvements</a> to the migration API which may be committed during the beta release to improve long-term stability. This may affect developers of custom migrations.</li>
-<li>Etc.</li>
+<li>Issues tagged <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D&issue_tags=Migrate+critical">Migrate critical</a> are blockers for these modules being considered stable.</li>
 </ul>
 </dd>
 
