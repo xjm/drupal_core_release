@@ -14,6 +14,7 @@ The following important issues are also resolved in VERSION8 (in addition to the
 
 <h3>New stable features and API improvements</h3>
 https://www.drupal.org/node/1993928
+https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&categories%5B%5D=3&version%5B%5D=BRANCH8-dev&issue_tags_op=%3D
 
 <h3>Experimental modules</h3>
 
