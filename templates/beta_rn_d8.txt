@@ -2,7 +2,7 @@ This is a <strong>beta release for the next feature release of Drupal 8</strong>
 
 <!--break-->
 
-This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updating contributed and custom modules and themes per <a href"https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental modules</a> policies.
+This beta release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href"https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental modules</a> policies.
 
 Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">string changes since the last minor release</a>.
 
@@ -13,6 +13,7 @@ The following important issues are also resolved in VERSION8 (in addition to the
 </ul>
 
 <h3>New stable features</h3>
+Errr. Are there any? Some nice API things..
 
 <h3>Experimental modules</h3>
 
@@ -24,8 +25,9 @@ The following modules are considered experimental for this release. <a href="htt
 This release now provides an alpha-stability user interface for Drupal core migrations! Use these modules to migrate Drupal 6 or 7 sites onto Drupal 8. Be sure to take note of these outstanding issues:
 
 <ul>
-<li>D7 migration incompleteness</li>
-<li>Plugins issue</li>
+<li>The Drupal 6 to Drupal 8 migration should be considered alpha stability, but is suitable for testing on sites</li>
+<li>The Drupal 7 to Drupal 8 migration is incomplete, but is suitable for developers who would like to help improve the migration</li>
+<li>There are <a href="/node/2625696"planned improvements</a> to the migration API which may be committed during the beta release to improve long-term stability. This may affect developers of custom migrations.</li>
 <li>Etc.</li>
 </ul>
 </dd>
