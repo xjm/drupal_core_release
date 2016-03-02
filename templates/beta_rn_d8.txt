@@ -32,8 +32,8 @@ This release now provides an alpha-stability user interface for Drupal core migr
 </ul>
 </dd>
 
-<dt>Big Pipe (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
-<dd>Provides an advanced implementation of Facebook's Big Pipe page rendering strategy, leading to greatly improved perceived performance for pages with customized content. <strong>If you previously installed the <a href="https://www.drupal.org/project/big_pipe>BigPipe contributed module</a>, you must uninstall and remove it before upgrading from Drupal 8.0.x to 8.1.x.</strong></dd>
+<dt>BigPipe (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
+<dd>Provides an advanced implementation of Facebook's BigPipe page rendering strategy, leading to greatly improved perceived performance for pages with dynamic, personalized, or uncacheable content. <strong>If you previously installed the <a href="https://www.drupal.org/project/big_pipe>BigPipe contributed module</a>, you must uninstall and remove it before upgrading from Drupal 8.0.x to 8.1.x.</strong></dd>
 
 <dt>Inline Form Errors (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
 <dd>
