@@ -12,8 +12,8 @@ The following important issues are also resolved in VERSION8 (in addition to the
 <li>@todo 8.1.0 release notes issues</li>
 </ul>
 
-<h3>New stable features</h3>
-Errr. Are there any? Some nice API things..
+<h3>New stable features and API improvements</h3>
+https://www.drupal.org/node/1993928
 
 <h3>Experimental modules</h3>
 
