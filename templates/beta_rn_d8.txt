@@ -14,6 +14,9 @@ The following important issues are also resolved in VERSION8 (in addition to the
 </ul>
 
 <h3>New stable features and API improvements</h3>
+
+The following new stable features and API improvements have been added to Drupal 8.1.0-beta1:
+
 https://www.drupal.org/node/1993928
 https://www.drupal.org/node/2307141
 https://www.drupal.org/node/1740540

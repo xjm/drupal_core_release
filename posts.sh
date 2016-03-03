@@ -3,6 +3,7 @@
 # Date of the next scheduled minor and current D8 branch; update as needed.
 MINOR="Wednesday, April 20"
 BRANCH8="8.0.x"
+NEXT_BRANCH8="8.1.x"
 
 # Get the script directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -34,6 +35,9 @@ while [ $# -gt 0 ]; do
             ;;
         -s)
             s=TRUE
+            ;;
+        -b)
+            b=TRUE
             ;;
         *)
             echo -e "Invalid option: $1.\nUsage:\n-g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\nSee the README.md for details." >&2
@@ -138,6 +142,9 @@ if [ $g ] ; then
 elif [ $r ] ; then
     if [ $s ] ; then
         text=`cat templates/sec_rn.txt`
+    elif [ $b ] ; then
+        BRANCH8=$NEXT_BRANCH8
+        text=`cat templates/beta_rn_d8.txt`
     else
         if [ -z" $AUTO_ISSUES" ] ; then
             text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
