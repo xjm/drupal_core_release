@@ -1,8 +1,8 @@
-Drupal 8 core release window on DATE, YEAR
+Drupal 8 core release window beginning DATE, YEAR
 
 The monthly core patch (bug fix) release window is this DATE. Drupal VERSION8 will be released with dozens of fixes for Drupal 8. There will be no Drupal 7 bugfix release this month.
 
-To ensure a reliable release window for the patch release, there will be a Drupal BRANCH8 commit freeze from 00:00 to 23:30 UTC on DATE. Now is a good time to update your development/staging servers to the latest BRANCH8-dev code and help us catch any regressions in advance. If you do find any regressions, please report them in the <a href="http://drupal.org/project/issues/drupal?version=8.x">issue queue</a>. Thanks!
+To ensure a reliable release window for the patch release, there will be a Drupal BRANCH8 commit freeze beginning 00:00 to 23:30 UTC on DATE. Now is a good time to update your development/staging servers to the latest BRANCH8-dev code and help us catch any regressions in advance. If you do find any regressions, please report them in the <a href="http://drupal.org/project/issues/drupal?version=8.x">issue queue</a>. Thanks!
 
 To see all of the latest changes that will be included in the release, see the <a href="http://cgit.drupalcode.org/drupal/log/">BRANCH8 commit log</a>.
 
