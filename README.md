@@ -17,6 +17,8 @@ With each command, markup for the post is printed to `stdout` and copied to the 
 
 `-s` Security window instead of a patch window.
 
+`-m` Minor release, beta, or RC instead of a patch window.
+
 `-d` Override dates for a release window announcement.
 
 ### Release window announcements for g.d.o/core
@@ -50,6 +52,10 @@ Generate a template for the release notes for the patch release (Drupal 8 only).
 #### `./posts.sh -r -s`
 
 Generate a template for the release notes for a security release. The template is the same for all versions.
+
+#### `./posts.sh -r -m`
+
+Generate a template for the release notes of a minor release, beta, or release candidate (Drupal 8 only). You will be prompted to enter the release number for Drupal 8. For betas and RCs, enter the minor version number only (e.g. '8.1.0' for 8.1.0-beta1).
 
 ### Release announcements for the Drupal.org frontpage
 

@@ -36,11 +36,11 @@ while [ $# -gt 0 ]; do
         -s)
             s=TRUE
             ;;
-        -b)
-            b=TRUE
+        -m)
+            m=TRUE
             ;;
         *)
-            echo -e "Invalid option: $1.\nUsage:\n-g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\nSee the README.md for details." >&2
+            echo -e "Invalid option: $1.\nUsage:\n-g Generate g.d.o/core announcement.\n-r Generate release notes.\n-f Generate frontpage post.\n-d Override dates.\n-s Security window instead of a patch window.\n-m Minor release.\nSee the README.md for details." >&2
             exit 1
     esac
     shift
@@ -142,9 +142,9 @@ if [ $g ] ; then
 elif [ $r ] ; then
     if [ $s ] ; then
         text=`cat templates/sec_rn.txt`
-    elif [ $b ] ; then
+    elif [ $m ] ; then
         BRANCH8=$NEXT_BRANCH8
-        text=`cat templates/beta_rn_d8.txt`
+        text=`cat templates/minor_rn_d8.txt`
     else
         if [ -z" $AUTO_ISSUES" ] ; then
             text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
