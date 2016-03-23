@@ -23,7 +23,7 @@ path or by using the full path to the script.
    `git show`
    `git log`
 5. Push your tags and commits manually:
-   `git push --tags`
+   `git push --tags origin HEAD`
 
 Post generation script: `posts.sh`
 ----------------------------------
