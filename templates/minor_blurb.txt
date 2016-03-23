@@ -1,0 +1,3 @@
+This is a <strong>beta release for the next feature release of Drupal 8</strong>. Betas are good testing targets for developers and site builders who are comfortable reporting (and where possible, fixing) their own bugs. Beta releases are not recommended for non-technical users, nor for production websites. <a href="https://www.drupal.org/core/d8-allowed-changes#beta">More information on beta releases</a>.
+
+<!--break-->

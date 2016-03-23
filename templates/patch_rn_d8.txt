@@ -1,6 +1,4 @@
-This is a <strong>patch release of Drupal 8</strong> and is ready for use on production sites. See the <a href="http://cgit.drupalcode.org/drupal/plain/core/CHANGELOG.txt">CHANGELOG.txt</a> for an extensive summary of changes and improvements since Drupal 7! <a href="https://www.drupal.org/8">Learn more about Drupal 8</a>.
-
-<!--break-->
+BLURB
 
 This release only contains bug fixes, along with documentation and testing improvements. Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">minor string changes since the last patch release</a>.
 

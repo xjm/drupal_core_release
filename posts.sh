@@ -58,6 +58,12 @@ if [[ $d && ($f || $r) ]] ; then
     exit
 fi
 
+# Dates are only used in g.d.o/core announcements in advance of the window.
+if [[ $m && ($f || $g) ]] ; then
+    echo -e "The -m option is only valid with -r.\nSee the README.md for details."
+    exit
+fi
+
 # Prompt for release numbers.
 # No release numbers are needed for patch release window announcements.
 # @todo Add input validation.
@@ -67,6 +73,19 @@ if [[ $f || $r || ! $s ]] ; then
     if [ ! $r ] ; then
         echo -e "Enter the D7 release number (blank for none):"
         read VERSION7
+    else
+      BLURB=`cat templates/patch_blurb.txt`
+      if [ $m ] ; then
+          echo -e "Enter 'beta' or 'rc' (blank for a full minor release):"
+          read minor_release_type
+          if [ $minor_release_type=='beta' ] ; then
+              BLURB=`cat templates/beta_blurb.txt`
+          elif [ $minor_release_type=='rc' ] ; then
+              BLURB=`cat templates/rc_blurb.txt`
+          else
+              BLURB=`cat templates/minor_blurb.txt`
+          fi
+      fi
     fi
 fi
 
@@ -159,6 +178,7 @@ fi
 # Replace the placeholders in the templates.
 # @todo This is ugly.
 output="${text//AUTO_ISSUES/$AUTO_ISSUES}"
+output="${output//BLURB/$BLURB}"
 output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
 output="${output//DATE/$DATE}"
