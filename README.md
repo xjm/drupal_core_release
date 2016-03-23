@@ -4,6 +4,27 @@ Set of scripts for preparing a Drupal core release.
 Usage
 =====
 
+Release tagging script: `tag.sh`
+----------------------------------
+
+See https://www.drupal.org/core/maintainers/create-core-release for complete
+instructions on creating core releases. Use at your own risk!
+
+Execute this script from your local git repository, either by adding it to your
+path or by using the full path to the script.
+
+1. Check out the correct branch and ensure you have the latest changes:
+   `git checkout 8.1.x; git pull`
+2. Run the script:
+   `/path/to/core_release/tag.sh`
+3. Your drush rn output will be copied to the clipboard if you have pbcopy
+   (Mac), or output directly otherwise. Add it to your release notes.
+4. Make sure the script did the right things:
+   `git show`
+   `git log`
+5. Push your tags and commits manually:
+   `git push --tags`
+
 Post generation script: `posts.sh`
 ----------------------------------
 
