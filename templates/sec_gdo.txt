@@ -1,4 +1,4 @@
-Drupal core security release window beginning NEXT_SECURITY, YEAR
+Drupal core security release window on NEXT_SECURITY, YEAR
 
 The monthly security release window for Drupal 8 and 7 core will take place on NEXT_SECURITY.
 
