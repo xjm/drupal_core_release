@@ -78,9 +78,9 @@ if [[ $f || $r || ! $s ]] ; then
       if [ $m ] ; then
           echo -e "Enter 'beta' or 'rc' (blank for a full minor release):"
           read minor_release_type
-          if [ $minor_release_type=='beta' ] ; then
+          if [ "$minor_release_type" == 'beta' ] ; then
               BLURB=`cat templates/beta_blurb.txt`
-          elif [ $minor_release_type=='rc' ] ; then
+          elif [ "$minor_release_type" = 'rc' ] ; then
               BLURB=`cat templates/rc_blurb.txt`
           else
               BLURB=`cat templates/minor_blurb.txt`
