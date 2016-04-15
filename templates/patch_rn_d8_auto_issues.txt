@@ -17,5 +17,5 @@ The following issues may affect people running Drupal VERSION8 on specific hosti
 
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
 
-<h3>All changes since the last patch release</h3>
+<h3>All changes since the last release</h3>
 
