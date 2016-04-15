@@ -6,7 +6,19 @@ AUTO_ISSUES
 
 <h3>New stable features and API improvements</h3>
 
-The following new stable features and API improvements have been added to Drupal VERSION8:
+The following new stable features have been added to Drupal VERSION8:
+
+<ul>
+
+</ul>
+
+<h3>API improvements</h3>
+
+Modules requiring Drupal VERSION8 or later can take advantage of these API improvements:
+
+<ul>
+
+</ul>
 
 <h3>Experimental modules</h3>
 
@@ -36,6 +48,20 @@ Always back up your data before performing a migration, and be sure to take note
 <dd>
 This provides a proof-of-concept for showing form errors inline. It has not changed significantly from 8.0.0. Be aware that this module has <a href="https://www.drupal.org/node/2504847">outstanding issues</a>, some of which are significant.
 </dd>
+
+<h3>Third-party library updates</h3>
+
+<ul>
+
+</ul>
+
+<h3>Changed coding standards</h3>
+
+Drupal VERSION8 has adopted the following coding standards changes:
+
+<ul>
+
+</ul>
 
 <h3>Known issues</h3>
 
