@@ -1,3 +1,3 @@
-This is a <strong>minor version (feature release) of Drupal 8</strong> and is ready for use on production sites.  See the <a href="http://cgit.drupalcode.org/drupal/plain/core/CHANGELOG.txt">CHANGELOG.txt</a> for an extensive summary of changes and improvements since the last minor release. <a href="https://www.drupal.org/8">Learn more about Drupal 8</a> and the <a href="https://www.drupal.org/core/release-cycle-overview">Drupal 8 release cycle</a>.
+This is a <strong>minor version (feature release) of Drupal 8</strong> and is ready for use on production sites.  See the <a href="http://cgit.drupalcode.org/drupal/plain/core/CHANGELOG.txt">CHANGELOG.txt</a> for a summary of changes and improvements since the last minor release. <a href="https://www.drupal.org/8">Learn more about Drupal 8</a> and the <a href="https://www.drupal.org/core/release-cycle-overview">Drupal 8 release cycle</a>.
 
 <!--break-->
