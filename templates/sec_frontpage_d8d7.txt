@@ -1,9 +1,8 @@
 Drupal VERSION8 and VERSION7 released
 
-<p style="position: inherit;">Drupal VERSION8 and Drupal VERSION7, maintenance releases which contain fixes for <strong>security vulnerabilities</strong>, are now available for download. <!--break-->See the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">Drupal VERSION8</a> and <a href="https://www.drupal.org/drupal-VERSION7-release-notes">Drupal VERSION7</a> release notes for further information.</p>
+<p style="position: inherit;">Drupal VERSION8 and Drupal VERSION7, maintenance releases which contain fixes for <strong>security vulnerabilities</strong>, are now available for download. <!--break-->See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">Drupal VERSION8</a> and <a href="https://www.drupal.org/project/drupal/releases/VERSION7">Drupal VERSION7</a> release notes for further information.</p>
 
-<div style="float: right; margin: 0 0 1em 1em; text-align: center;">
-<a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a><br />
+<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a><br />
 <a href="http://ftp.drupal.org/files/projects/drupal-VERSION7.tar.gz" class="link-button"><span>Download Drupal VERSION7</span></a></div>
 
 <p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 and 7 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in these releases. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>. More information on the Drupal 7.x release series can be found in the <a href="https://www.drupal.org/drupal-7.0">Drupal 7.0 release announcement</a>.</p>
@@ -24,9 +23,9 @@ Both Drupal BRANCH8 and 7.x are being maintained, so given enough <a href="https
 
 <h2>Change log</h2>
 
-Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">VERSION8 release notes</a>.  A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=BRANCH8">the git commit log</a>.
+Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8 release notes</a>.  A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=BRANCH8">the git commit log</a>.
 
-Drupal VERSION7 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION7-release-notes">VERSION7 release notes</a>.  A complete list of all changes in the stable 7.x branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=7.x">the git commit log</a>.
+Drupal VERSION7 is a security release only. For more details, see the <a href="https://www.drupal.org/project/drupal/releases/VERSION7">VERSION7 release notes</a>.  A complete list of all changes in the stable 7.x branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=7.x">the git commit log</a>.
 
 <h2>Security vulnerabilities</h2>
 
@@ -40,8 +39,8 @@ To fix the security problem, please upgrade to either Drupal VERSION8 or Drupal 
 
 <h2>Update notes</h2>
 
-See the <a href="http://drupal.org/drupal-VERSION8-release-notes">VERSION8</a> and <a href="http://drupal.org/drupal-VERSION7-release-notes">VERSION7</a> release notes for details on important changes in this release.
+See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8</a> and <a href="https://www.drupal.org/project/drupal/releases/VERSION7">VERSION7</a> release notes for details on important changes in this release.
 
 <h2>Known issues</h2>
 
-See the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">VERSION8 release notes</a> or <a href="https://www.drupal.org/drupal-VERSION7-release-notes">VERSION7 release notes</a> for a list of known issues affecting each release.
+See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8 release notes</a> or <a href="https://www.drupal.org/project/drupal/releases/VERSION7">VERSION7 release notes</a> for a list of known issues affecting each release.

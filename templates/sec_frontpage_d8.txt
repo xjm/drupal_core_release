@@ -1,12 +1,10 @@
 Drupal VERSION8 released
 
-<p style="position: inherit;">Drupal VERSION8, a maintenance release which contains fixes for <strong>security vulnerabilities</strong>, is now available for download. <!--break-->See the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">Drupal VERSION8</a> release notes for further information.</p>
+<p style="position: inherit;">Drupal VERSION8, a maintenance release which contains fixes for <strong>security vulnerabilities</strong>, is now available for download. <!--break-->See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">Drupal VERSION8</a> release notes for further information.</p>
 
-<div style="float: right; margin: 0 0 1em 1em; text-align: center;">
-<a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a>
-</div>
+<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a></div>
 
-<p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in these releases. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>.
+<p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in this release. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>.
 
 <div style="float: right; padding: 0 0 2em 1em; margin-left: 2em; width: 35%; border-left: 1px solid #cdcdcd;">
 
@@ -24,7 +22,7 @@ Drupal BRANCH8 is actively maintained, so more maintenance releases will be made
 
 <h2>Change log</h2>
 
-Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/drupal-VERSION8-release-notes">VERSION8 release notes</a>.  A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=BRANCH8">the git commit log</a>.
+Drupal VERSION8 is a security release only. For more details, see the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8 release notes</a>.  A complete list of all changes in the stable BRANCH8 branch can be found in <a href="http://cgit.drupalcode.org/drupal/log/?h=BRANCH8">the git commit log</a>.
 
 <h2>Security vulnerabilities</h2>
 
@@ -38,8 +36,8 @@ To fix the security problem, please upgrade to Drupal VERSION8.
 
 <h2>Update notes</h2>
 
-See the <a href="http://drupal.org/drupal-VERSION8-release-notes">VERSION8</a> release notes for details on important changes in this release.
+See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8</a> release notes for details on important changes in this release.
 
 <h2>Known issues</h2>
 
-See the <a href="/drupal-VERSION8-release-notes">VERSION8 release notes</a> for known issues.
+See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">VERSION8 release notes</a> for known issues.
