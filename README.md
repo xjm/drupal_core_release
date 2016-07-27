@@ -66,6 +66,14 @@ Generate a g.d.o/core post for an upcoming security release window instead of a 
 
 ### Release notes (Drupal 8 only)
 
+The release notes automatically incorporate lists of issues in `rn_issues.txt` if it is available. To generate this with the [Core issue metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) sandbox:
+
+1. Update `src/triage/QueryBuilder.php` in the metrics project as needed.
+2. Execute the query set on staging: 
+   `bash build_run_queries.sh core_release`
+3. Run the PHP script provided in the core metrics project to build the release notes and place it within the root of this project: 
+   `php /path/to/core_metrics/core_release/core_release.php > ./rn_issues.txt`
+
 #### `./posts.sh -r`
 
 Generate a template for the release notes for the patch release (Drupal 8 only). You will be prompted to enter the release number for Drupal 8.
