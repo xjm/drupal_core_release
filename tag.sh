@@ -13,8 +13,6 @@ git tag -a "$v" -m "Drupal $v"
 git checkout HEAD^ -- core/lib/Drupal.php
 sed -i -e "s/[0-9\.]*-dev/$n-dev/1" core/lib/Drupal.php
 git commit -am "Back to dev."
-if command_exists pbcopy ; then
-    drush rn "$p" `git rev-parse --abbrev-ref HEAD` | pbcopy
-else
-    drush rn "$p" `git rev-parse --abbrev-ref HEAD`
-fi
+drush rn "$p" `git rev-parse --abbrev-ref HEAD` | pbcopy
+echo -e "To push use:"
+echo -e "git push && git push origin $v"
