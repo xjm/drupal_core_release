@@ -15,10 +15,16 @@ There are no known regressions in this release.
 The following issues may affect people running Drupal VERSION8 on specific hosting environments:
 
 <ul>
-<li>Installs on php-fpm environments may see fatal errors on enabling modules, due to <a href="/node/2572293">#2572293: Do not rebuild router in kernel.terminate</a>.</li>
+<li>Windows/IIS environments may encounter site errors due to the following issues:
+<ul>
+<li><a href="https://www.drupal.org/node/2606772">#2606772: Long Twig cache directories can cause failures on Windows</li>
+<li><a href="https://www.drupal.org/node/2783079">#2783079: DRUPAL-SA-CORE-2016-003 Completely broke IIS drupal deployments</a></li>
+</ul>
+</li>
 <li>There is not yet per-commit testing for MySQL 5.7.9 or MariaDB 10.1.8 (both released October 2015), but there are no known issues with them. We intend to add per-commit testing on one of these databases in the future.</li>
 <li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="/node/2619250">#2619250: Disabling -MultiViews in .htaccess can cause 500 errors
 </a></li>
+<li>Installs on php-fpm environments may see fatal errors on enabling modules, due to <a href="/node/2572293">#2572285: Module enabling and router rebuilding should be done in one transaction</a></li>
 </ul>
 
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
