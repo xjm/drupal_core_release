@@ -1,0 +1,19 @@
+There are no known regressions in this release.
+
+Drupal 8 currently has a number of known issues related to incorrect tracking of file usage, which can result in files being unexpectedly deleted from a site. (These issues also existed in 8.0.x and 8.1.x but have been recently discovered.) Site owners experiencing unexplained file loss should consider setting "Delete orphaned files" to "Never" on <code>/admin/config/media/file-system</code> until these issues are resolved, and note the following issues:
+
+<ul>
+<li><a href="https://www.drupal.org/node/2801777">#2801777: Give users the option to prevent Drupal from automatically marking unused files as temporary</a></li>
+<li><a href="https://www.drupal.org/node/2708411">#2708411: File usage not incremented when adding new translation</a></li>
+<li><a href="https://www.drupal.org/node/1239558">#1239558: Deleting a node with revisions does not release file usage</a></li>
+<li><a href="https://www.drupal.org/node/2666700">#2666700: User profile images unexpectedly deleted</a><li>
+</ul>
+
+The following issues may affect people running this release on specific hosting environments:
+
+<ul>
+<li>Windows/IIS environments may encounter site errors due to <a href="https://www.drupal.org/node/2606772">#2606772: Long Twig cache directories can cause failures on Windows</a></li>
+<li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="https://www.drupal.org/node/2619250”"#2619250: Disabling -MultiViews in .htaccess can cause 500 errors</a></li>
+</ul>
+
+<a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.

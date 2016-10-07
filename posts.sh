@@ -75,6 +75,7 @@ if [[ $f || $r || ! $s ]] ; then
         read VERSION7
     else
       BLURB=`cat templates/patch_blurb.txt`
+      KNOWN_ISSUES=`cat templates/known_issues.txt`
       if [ $m ] ; then
           echo -e "Enter 'beta' or 'rc' (blank for a full minor release):"
           read minor_release_type
@@ -178,6 +179,7 @@ fi
 # Replace the placeholders in the templates.
 # @todo This is ugly.
 output="${text//AUTO_ISSUES/$AUTO_ISSUES}"
+output="${text//KNOWN_ISSUES/$KNOWN_ISSUES}"
 output="${output//BLURB/$BLURB}"
 output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
