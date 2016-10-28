@@ -22,8 +22,9 @@ path or by using the full path to the script.
 4. Make sure the script did the right things:
    `git show`
    `git log`
-5. Push your tags and commits manually:
-   `git push --tags origin HEAD`
+5. Push your tags and commits manually using the command the script displays. The
+   command includes a `sleep` to avoid a race condition on packaging, so expect it
+   to sit doing nothing for a bit.
 
 Post generation script: `posts.sh`
 ----------------------------------
