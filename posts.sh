@@ -166,7 +166,7 @@ elif [ $r ] ; then
         BRANCH8=$NEXT_BRANCH8
         text=`cat templates/minor_rn_d8.txt`
     else
-        if [ -z" $AUTO_ISSUES" ] ; then
+        if [ ! -z "$AUTO_ISSUES" ] ; then
             text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
         else
             text=`cat templates/patch_rn_"${suffix}".txt`
