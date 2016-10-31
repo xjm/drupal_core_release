@@ -20,5 +20,5 @@ else
     drush rn "$p" `git rev-parse --abbrev-ref HEAD`
 fi
 echo -e "To push use:\n"
-echo -e "git push && sleep 20 && git push origin $v"
+echo -e "git push && sleep 10 && git push origin $v"
 echo -e "\n"
