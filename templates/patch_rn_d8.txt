@@ -6,6 +6,7 @@ The following important issues are resolved in VERSION8 (in addition to the doze
 <ul>
 <li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=BRANCH8-dev.</li>
 <li>@todo List any issues in: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=VERSION8+release+notes</li>
+<li>@todo List any noteworthy CRs in: https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8&version=VERSION8
 </ul>
 
 <h3>Known issues</h3>
