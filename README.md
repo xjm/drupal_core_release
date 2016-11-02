@@ -10,6 +10,10 @@ Release tagging script: `tag.sh`
 See https://www.drupal.org/core/maintainers/create-core-release for complete
 instructions on creating core releases. Use at your own risk!
 
+Requires:
+- drush
+- https://www.drupal.org/project/grn
+
 Execute this script from your local git repository, either by adding it to your
 path or by using the full path to the script.
 
