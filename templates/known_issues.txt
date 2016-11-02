@@ -6,7 +6,7 @@ Drupal 8 currently has a number of known issues related to incorrect tracking of
 <li><a href="https://www.drupal.org/node/2801777">#2801777: Give users the option to prevent Drupal from automatically marking unused files as temporary</a></li>
 <li><a href="https://www.drupal.org/node/2708411">#2708411: File usage not incremented when adding new translation</a></li>
 <li><a href="https://www.drupal.org/node/1239558">#1239558: Deleting a node with revisions does not release file usage</a></li>
-<li><a href="https://www.drupal.org/node/2666700">#2666700: User profile images unexpectedly deleted</a><li>
+<li><a href="https://www.drupal.org/node/2666700">#2666700: User profile images unexpectedly deleted</a></li>
 <li><a href="https://www.drupal.org/node/2810355">#2810355: Images lost when changing node language</a></li>
 </ul>
 
