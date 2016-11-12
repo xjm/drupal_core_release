@@ -18,12 +18,15 @@ read p
 echo -e "Enter the next stable release (e.g. 8.1.8):"
 read n
 
-commit_message="SA-CORE-$sa by $contributors"
-
 git checkout -b "$v"-security "$p"
 git apply --index "$f"
 
+date=date_ymd=$(date +"%Y-%m-%d")
+changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. SA-CORE-$sa.\n\n"
+
 # @todo Add changelog entry here
+
+commit_message="SA-CORE-$sa by $contributors"
 
 sed -i '' -e "s/[0-9\.]*-dev/$v/1" core/lib/Drupal.php
 git commit -am "$commit_message"
