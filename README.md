@@ -31,6 +31,9 @@ path or by using the full path to the script.
 
    `/path/to/core_release/tag.sh`
 
+   You will be prompted to enter the release number, as well as the previous and
+   next release numbers if it is not a normal patch release,
+   
 3. Your drush rn output will be copied to the clipboard if you have pbcopy
    (Mac), or output directly otherwise. Add it to your release notes.
 
@@ -61,6 +64,8 @@ path or by using the full path to the script.
 2. Run the script:
 
   `/path/to/core_release/tag.sh /path/to/sa_fix.patch`
+
+  You will be prompted to enter the release number and information about the SA.
 
 3. Make sure the script did the right things:
 
