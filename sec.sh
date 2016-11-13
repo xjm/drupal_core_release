@@ -25,7 +25,12 @@ commit_message="SA-CORE-$sa by $contributors"
 git commit -am "$commit_message"
 
 # Update the changelog and version constant.
-sed -i '' -e "s/$p/$v/1" core/lib/Drupal.php
+grep -q "VERSION = '$p'" core/lib/Drupal.php
+if [ ! $? -eq 0 ] ; then
+  echo -e "Cannot match version constant. The release must be tagged manually."
+  exit 1
+fi
+sed -i '' -e "s/VERSION = '$p'/VERSION = '$v'/1" core/lib/Drupal.php
 
 date=$(date +"%Y-%m-%d")
 changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. SA-CORE-$sa.\n"
@@ -39,7 +44,7 @@ git checkout "$branch"
 git merge --no-ff "$v"
 
 git checkout HEAD^ -- core/lib/Drupal.php
-sed -i '' -e "s/[0-9\.]*-dev/$n-dev/1" core/lib/Drupal.php
+sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 git add core/lib/Drupal.php
 git commit -am "Back to dev."
 
