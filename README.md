@@ -18,14 +18,22 @@ Execute this script from your local git repository, either by adding it to your
 path or by using the full path to the script.
 
 1. Check out the correct branch and ensure you have the latest changes:
+
    `git checkout 8.1.x; git pull`
+
 2. Run the script:
+
    `/path/to/core_release/tag.sh`
+
 3. Your drush rn output will be copied to the clipboard if you have pbcopy
    (Mac), or output directly otherwise. Add it to your release notes.
+
 4. Make sure the script did the right things:
+
    `git show`
+   
    `git log`
+
 5. Push your tags and commits manually using the command the script displays. The
    command includes a `sleep` to avoid a race condition on packaging, so expect it
    to sit doing nothing for a bit.
