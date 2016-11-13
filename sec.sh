@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ ! -a $1 ]] ; then
+  echo -e "Usage: ./sec.sh /path/to/sa_fix.patch"
+  exit 1
+fi
+
+f=$1
+
 echo -e "Enter the D8 security release number (e.g. 8.1.7):"
 read v
 
@@ -7,7 +14,7 @@ re="^([0-9]*)\.([0-9]*)\.([0-9]*)$"
 
 if [[ ! $v =~ $re ]] ; then
   echo "Invalid version number $v. To use $v, tag the release manually."
-  exit
+  exit 1
 fi
 
 base="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
@@ -17,8 +24,6 @@ branch="$base.x"
 
 echo -e "Enter the number for the SA (e.g. 2016-003):"
 read sa
-echo -e "Enter the path to the patch for the SA:"
-read f
 echo -e "Enter the list of contributors, separated by commas:"
 read contributors
 
