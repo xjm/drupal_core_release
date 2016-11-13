@@ -30,6 +30,36 @@ path or by using the full path to the script.
    command includes a `sleep` to avoid a race condition on packaging, so expect it
    to sit doing nothing for a bit.
 
+Security release tagging script: `sec.sh`
+----------------------------------
+
+See https://www.drupal.org/core/maintainers/create-core-security-release for complete
+instructions on creating security releases. Only create security releases in
+collaboration with the security team.
+
+Execute this script from your local git repository, either by adding it to your
+path or by using the full path to the script.
+
+1. Check out the correct branch and ensure you have the latest changes:
+
+  `git checkout 8.1.x; git pull`
+   
+2. Run the script:
+
+  `/path/to/core_release/tag.sh /path/to/sa_fix.patch`
+
+3. Make sure the script did the right things:
+
+   `git show`
+
+   `git log`
+   
+   `git diff 8.1.6 8.1.7`
+   
+4. Only push your tags and commits using the command the script displays once you
+   have approval from the security team.
+
+
 Post generation script: `posts.sh`
 ----------------------------------
 
