@@ -2,10 +2,34 @@
 
 echo -e "Enter the D8 release number (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
-echo -e "Enter the previous D8 release (e.g. 8.0.5 or 8.1.0-beta1):"
-read p
-echo -e "Enter the next stable release (e.g. 8.0.7 or 8.1.0):"
-read n
+
+re="^([0-9]*)\.([0-9]*)\.([0-9]*)$"
+
+if [[ $v =~ $re ]] ; then
+  base="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+  calc_n="$base.$(( ${BASH_REMATCH[3]} + 1 ))"
+  calc_p="$base.$(( ${BASH_REMATCH[3]} - 1 ))"
+  if [ ${BASH_REMATCH[3]} = 0 ] ; then
+    echo -e "Enter the previous D8 release (e.g. 8.1.0-rc2):"
+    read p
+  else
+    echo -e "Enter the previous D8 release (blank for $calc_p):"
+    read p
+    if [ -z "$p" ] ; then
+      p=$calc_p
+    fi
+    echo -e "Enter the next stable release (blank for $calc_n):"
+    read n
+    if [ -z "$n" ] ; then
+      n=$calc_n
+    fi
+  fi
+else
+  echo -e "Enter the previous D8 release (e.g. 8.0.5 or 8.1.0-beta1):"
+  read p
+  echo -e "Enter the next stable release (e.g. 8.0.7 or 8.1.0):"
+  read n
+fi
 
 grep -q "[0-9\.]*-dev" core/lib/Drupal.php
 if [ ! $? -eq 0 ] ; then
