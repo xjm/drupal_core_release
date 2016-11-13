@@ -24,13 +24,16 @@ branch="$base.x"
 
 echo -e "Enter the number for the SA (e.g. 2016-003):"
 read sa
-echo -e "Enter the list of contributors, separated by commas:"
+echo -e "Enter the list of contributors, separated by commas (blank for none):"
 read contributors
 
 # Commit the fix for the SA.
 git checkout -b "$v"-security "$p"
 git apply --index "$f"
-commit_message="SA-CORE-$sa by $contributors"
+commit_message="SA-CORE-$sa"
+if [ ! -z "$contributors" ] ; then
+  commit_message="$commit_message by $contributors"
+fi
 git commit -am "$commit_message"
 
 # Update the changelog and version constant.
