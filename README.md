@@ -1,6 +1,12 @@
 # drupal_core_release
 Set of scripts for preparing a Drupal core release.
 
+- `tag.sh`: Tags a core release
+- `sec.sh`: Creates a core security release
+- `branch.sh`: Creates a new core branch for a new minor version
+- `posts.sh`: Generates post text for various release announcements.
+- `generate_queries.sh`: (deprecated) Generate SQL queries for release notes. Use the [core metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) instead.
+
 Usage
 =====
 
@@ -38,7 +44,7 @@ path or by using the full path to the script.
    command includes a `sleep` to avoid a race condition on packaging, so expect it
    to sit doing nothing for a bit.
 
-Security release tagging script: `sec.sh`
+Security release script: `sec.sh`
 ----------------------------------
 
 See https://www.drupal.org/core/maintainers/create-core-security-release for complete
@@ -67,6 +73,13 @@ path or by using the full path to the script.
 4. Only push your tags and commits using the command the script displays once you
    have approval from the security team.
 
+Core branching script: `branch.sh`
+----------------------------------
+
+1. Follow the prompts.
+2. Manually push the new branch once it is created. Be careful; this posts thousands of issue comments.
+3. Be sure to configure automated testing.
+4. Ask drumm to run any needed issue migrations and to update api.d.o.
 
 Post generation script: `posts.sh`
 ----------------------------------
