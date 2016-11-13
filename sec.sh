@@ -18,28 +18,30 @@ read p
 echo -e "Enter the next stable release (e.g. 8.1.8):"
 read n
 
+# Commit the fix for the SA.
 git checkout -b "$v"-security "$p"
 git apply --index "$f"
-
-date=date_ymd=$(date +"%Y-%m-%d")
-changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. SA-CORE-$sa.\n\n"
-
-# @todo Add changelog entry here
-
 commit_message="SA-CORE-$sa by $contributors"
-
-sed -i '' -e "s/[0-9\.]*-dev/$v/1" core/lib/Drupal.php
 git commit -am "$commit_message"
+
+# Update the changelog and version constant.
+sed -i '' -e "s/$p/$v/1" core/lib/Drupal.php
+
+date=$(date +"%Y-%m-%d")
+changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. SA-CORE-$sa.\n"
+echo -e "$changelog\n$(cat core/CHANGELOG.txt)" > core/CHANGELOG.txt
+
+git commit -am "Drupal $v"
 git tag -a "$v" -m "Drupal $v"
 
+# Merge the changes back into the main branch.
 git checkout "$branch"
 git merge --no-ff "$v"
 
-# @todo Handle resolving merge conflicts here.
-
-# git checkout HEAD^ -- core/lib/Drupal.php
-# sed -i '' -e "s/[0-9\.]*-dev/$n-dev/1" core/lib/Drupal.php
-# git commit -am "Back to dev."
+git checkout HEAD^ -- core/lib/Drupal.php
+sed -i '' -e "s/[0-9\.]*-dev/$n-dev/1" core/lib/Drupal.php
+git add core/lib/Drupal.php
+git commit -am "Back to dev."
 
 git branch -D "$v"-security
 
