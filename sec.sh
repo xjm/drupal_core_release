@@ -29,7 +29,15 @@ read contributors
 
 # Commit the fix for the SA.
 git checkout -b "$v"-security "$p"
+if [ ! $? -eq 0 ] ; then
+  echo -e "Error: Could create a working branch."
+  exit 1
+fi
 git apply --index "$f"
+if [ ! $? -eq 0 ] ; then
+  echo -e "Error: Could not apply the specified patch."
+  exit 1
+fi
 commit_message="SA-CORE-$sa"
 if [ ! -z "$contributors" ] ; then
   commit_message="$commit_message by $contributors"
