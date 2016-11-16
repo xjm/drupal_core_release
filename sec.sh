@@ -45,7 +45,7 @@ fi
 sed -i '' -e "s/VERSION = '$p'/VERSION = '$v'/1" core/lib/Drupal.php
 
 date=$(date +"%Y-%m-%d")
-changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. SA-CORE-$sa.\n"
+changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. See SA-CORE-$sa.\n"
 echo -e "$changelog\n$(cat core/CHANGELOG.txt)" > core/CHANGELOG.txt
 
 git commit -am "Drupal $v"
