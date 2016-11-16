@@ -30,7 +30,7 @@ read contributors
 # Commit the fix for the SA.
 git checkout -b "$v"-security "$p"
 if [ ! $? -eq 0 ] ; then
-  echo -e "Error: Could create a working branch."
+  echo -e "Error: Could not create a working branch."
   exit 1
 fi
 git apply --index "$f"
