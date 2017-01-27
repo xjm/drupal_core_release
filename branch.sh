@@ -12,6 +12,8 @@ cp=${pb/.x/}
 
 git checkout "$pb"
 git pull
+rm -rf vendor
+composer install
 git checkout -b "$b"
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 sed -i '' -e "s/\"drupal\/core\": \"~$cp\"/\"drupal\/core\": \"~$cn\"/1" composer.json
