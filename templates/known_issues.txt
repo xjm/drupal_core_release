@@ -13,7 +13,6 @@ Drupal 8 currently has a number of known issues related to incorrect tracking of
 The following issues may affect people running this release on specific hosting environments:
 
 <ul>
-<li> There are two known issues running Drupal 8 on PHP 7.1: <a href="https://www.drupal.org/node/2840596">Update Symfony components to ~2.8.15</a> and <a href="https://www.drupal.org/node/2838095">Only one site slogan character in site slogan when using PHP 7.1</a></li>
 <li>Windows/IIS environments may encounter site errors due to <a href="https://www.drupal.org/node/2606772">#2606772: Long Twig cache directories can cause failures on some filesystems</a></li>
 <li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="https://www.drupal.org/node/2619250">#2619250: Disabling -MultiViews in .htaccess can cause 500 errors</a></li>
 </ul>
