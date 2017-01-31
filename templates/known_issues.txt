@@ -6,7 +6,7 @@ A recently discovered data loss issue affects this release:
 <li><a href="https://www.drupal.org/node/2846782">Bulk operation actions might not act on the selected items</a></li>
 </ul>
 
-Drupal 8 currently has a number of known issues related to incorrect tracking of file usage, which can result in files being unexpectedly deleted from a site. (These issues also existed in 8.0.x and 8.1.x but have been recently discovered.) Site owners experiencing unexplained file loss should consider setting "Delete orphaned files" to "Never" on <code>/admin/config/media/file-system</code> until these issues are resolved, and note the following issues:
+Drupal 8 currently has a number of known issues related to incorrect tracking of file usage, which can result in files being unexpectedly deleted from a site. Site owners experiencing unexplained file loss should consider setting "Delete orphaned files" to "Never" on <code>/admin/config/media/file-system</code> until these issues are resolved, and note the following issues:
 
 <ul>
 <li><a href="https://www.drupal.org/node/2801777">#2801777: Give users the option to prevent Drupal from automatically marking unused files as temporary</a></li>
