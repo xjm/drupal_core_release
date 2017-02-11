@@ -1,11 +1,5 @@
 There are no known regressions in this release.
 
-A recently discovered data loss issue affects this release:
-
-<ul>
-<li><a href="https://www.drupal.org/node/2846782">Bulk operation actions might not act on the selected items</a></li>
-</ul>
-
 Drupal 8 currently has a number of known issues related to incorrect tracking of file usage, which can result in files being unexpectedly deleted from a site. Site owners experiencing unexplained file loss should consider setting "Delete orphaned files" to "Never" on <code>/admin/config/media/file-system</code> until these issues are resolved, and note the following issues:
 
 <ul>
