@@ -1,6 +1,6 @@
 BLURB
 
-This minor release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. Note that there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies. Note that both policies have been <a href="https://www.drupal.org/node/2689681">updated for the 8.1.x release</a>.
+This minor release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies. Note that both policies have been <a href="https://www.drupal.org/node/2689681">updated for the 8.1.x release</a>.
 
 <h3>Critical bug fixes</h3>
 
