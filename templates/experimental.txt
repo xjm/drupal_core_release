@@ -11,6 +11,8 @@ This module abstracts the transitions and states system from Content Moderation 
 <dt>Layout Discovery (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
 <dd>
 Provides an API for modules or themes to register layouts. See the <a href="https://www.drupal.org/node/2811175">layout roadmap</a> for the next steps for this module.
+
+With the addition of Layout Discovery and several <a href="https://www.drupal.org/node/2852656">related API improvements for the plugin system</a>, the contributed <a href="https://www.drupal.org/project/ds">Display Suite</a> module now has an 8.x-3.x development branch compatible with this new core API!
 </dd>
 
 <dt>Field Layout (<a href="https://www.drupal.org/core/experimental#alpha">alpha stability</a>)</dt>
