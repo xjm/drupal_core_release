@@ -26,11 +26,7 @@ Modules requiring Drupal VERSION8 or later can take advantage of these API impro
 
 </ul>
 
-<h3>Experimental modules</h3>
-
-The following modules are considered experimental for this release. <a href="https://www.drupal.org/core/experimental">Experimental modules</a> are provided with Drupal core for testing purposes, but are not yet fully supported.
-
-@todo List experimental modules for the release
+EXPERIMENTAL
 
 <h3>Third-party library updates</h3>
 

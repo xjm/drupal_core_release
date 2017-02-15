@@ -165,6 +165,7 @@ elif [ $r ] ; then
     elif [ $m ] ; then
         BRANCH8=$NEXT_BRANCH8
         text=`cat templates/minor_rn_d8.txt`
+        EXPERIMENTAL=`cat templates/experimental.txt`
     else
         if [ ! -z "$AUTO_ISSUES" ] ; then
             text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
@@ -181,6 +182,7 @@ fi
 output="${text//AUTO_ISSUES/$AUTO_ISSUES}"
 output="${text//KNOWN_ISSUES/$KNOWN_ISSUES}"
 output="${output//BLURB/$BLURB}"
+output="${output//EXPERIMENTAL/$EXPERIMENTAL}"
 output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
 output="${output//DATE/$DATE}"
