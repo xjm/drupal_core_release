@@ -10,10 +10,4 @@ Drupal 8 currently has a number of known issues related to incorrect tracking of
 <li><a href="https://www.drupal.org/node/2810355">#2810355: Images lost when changing node language</a></li>
 </ul>
 
-The following issues may affect people running this release on specific hosting environments:
-
-<ul>
-<li>Particular Apache configurations may have issues with serving public file assets. Issue: <a href="https://www.drupal.org/node/2619250">#2619250: Disabling -MultiViews in .htaccess can cause 500 errors</a></li>
-</ul>
-
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
