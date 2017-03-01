@@ -11,7 +11,7 @@ The following important issues are resolved in VERSION8 (in addition to the doze
 
 <h3>Update instructions</h3>
 
-Beginning with 8.2.3, packaged Drupal releases no longer contain <a href=”https://getcomposer.org/doc/04-schema.md#require-dev”>development PHP libraries</a>. See <a href="https://www.drupal.org/blog/drupal-8-will-no-longer-include-dev-dependencies-in-release-packages">Drupal 8 will no longer include dev dependencies in release packages</a> for more information.
+Beginning with 8.2.3, packaged Drupal releases no longer contain <a href="https://getcomposer.org/doc/04-schema.md#require-dev">development PHP libraries</a>. See <a href="https://www.drupal.org/blog/drupal-8-will-no-longer-include-dev-dependencies-in-release-packages">Drupal 8 will no longer include dev dependencies in release packages</a> for more information.
 
 <h3>Known issues</h3>
 
