@@ -63,7 +63,7 @@ path or by using the full path to the script.
    
 2. Run the script:
 
-  `/path/to/core_release/tag.sh /path/to/sa_fix.patch`
+  `/path/to/core_release/sec.sh /path/to/sa_fix.patch`
 
   You will be prompted to enter the release number and information about the SA.
 
