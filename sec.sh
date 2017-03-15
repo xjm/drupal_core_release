@@ -42,7 +42,7 @@ commit_message="SA-CORE-$sa"
 if [ ! -z "$contributors" ] ; then
   commit_message="$commit_message by $contributors"
 fi
-git commit -am "$commit_message"
+git commit -am "$commit_message" --no-verify
 
 # Update the changelog and version constant.
 grep -q "VERSION = '$p'" core/lib/Drupal.php
@@ -56,7 +56,7 @@ date=$(date +"%Y-%m-%d")
 changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. See SA-CORE-$sa.\n"
 echo -e "$changelog\n$(cat core/CHANGELOG.txt)" > core/CHANGELOG.txt
 
-git commit -am "Drupal $v"
+git commit -am "Drupal $v" --no-verify
 git tag -a "$v" -m "Drupal $v"
 
 # Merge the changes back into the main branch.
@@ -66,7 +66,7 @@ git merge --no-ff "$v"
 git checkout HEAD^ -- core/lib/Drupal.php
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 git add core/lib/Drupal.php
-git commit -am "Back to dev."
+git commit -am "Back to dev." --no-verify
 
 git branch -D "$v"-security
 
