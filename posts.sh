@@ -2,8 +2,8 @@
 
 # Date of the next scheduled minor and current D8 branch; update as needed.
 MINOR="Wednesday, April 5"
-BRANCH8="8.2.x"
-NEXT_BRANCH8="8.3.x"
+BRANCH8="8.3.x"
+NEXT_BRANCH8="8.4.x"
 
 # Get the script directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
