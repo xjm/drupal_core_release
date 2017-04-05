@@ -52,7 +52,10 @@ Security release script: `sec.sh`
 
 See https://www.drupal.org/core/maintainers/create-core-security-release for complete
 instructions on creating security releases. Only create security releases in
-collaboration with the security team.
+collaboration with the security team and do not share any information (including whether
+there will be a release) outside the security team. (See the 
+[security team disclosure policy](https://www.drupal.org/drupal-security-team/security-team-procedures/drupal-security-team-disclosure-policy-for-security)
+for more information.
 
 Execute this script from your local git repository, either by adding it to your
 path or by using the full path to the script.
