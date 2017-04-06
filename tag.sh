@@ -9,10 +9,10 @@ if [[ $v =~ $re ]] ; then
   base="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
   calc_n="$base.$(( ${BASH_REMATCH[3]} + 1 ))"
   calc_p="$base.$(( ${BASH_REMATCH[3]} - 1 ))"
-  if [ ${BASH_REMATCH[3]} = 0 ] ; then
-    echo -e "Enter the previous D8 release (e.g. 8.1.0-rc2):"
-    read p
-  else
+#  if [ ${BASH_REMATCH[3]} = 0 ] ; then
+#    echo -e "Enter the previous D8 release (e.g. 8.1.0-rc2):"
+#    read p
+#  else
     echo -e "Enter the previous D8 release (blank for $calc_p):"
     read p
     if [ -z "$p" ] ; then
@@ -23,7 +23,7 @@ if [[ $v =~ $re ]] ; then
     if [ -z "$n" ] ; then
       n=$calc_n
     fi
-  fi
+#  fi
 else
   echo -e "Enter the previous D8 release (e.g. 8.0.5 or 8.1.0-beta1):"
   read p
