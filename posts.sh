@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Date of the next scheduled minor and current D8 branch; update as needed.
-MINOR="Wednesday, April 5"
+MINOR="Wednesday, October 5"
 BRANCH8="8.3.x"
 NEXT_BRANCH8="8.4.x"
 
