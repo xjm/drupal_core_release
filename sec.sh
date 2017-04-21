@@ -64,6 +64,7 @@ git checkout "$branch"
 git merge --no-ff "$v"
 
 git checkout HEAD^ -- core/lib/Drupal.php
+git commit -m "Merged $v."
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 git add core/lib/Drupal.php
 git commit -am "Back to dev." --no-verify
