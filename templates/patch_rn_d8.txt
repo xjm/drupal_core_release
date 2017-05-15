@@ -9,9 +9,9 @@ The following important issues are resolved in VERSION8 (in addition to the doze
 <li>@todo List any noteworthy CRs in: https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8&version=VERSION8
 </ul>
 
-<h3>Update instructions</h3>
+<h3>Changes to the update process since Drupal 8.2.3</h3>
 
-Beginning with 8.2.3, packaged Drupal releases no longer contain <a href="https://getcomposer.org/doc/04-schema.md#require-dev">development PHP libraries</a>. See <a href="https://www.drupal.org/blog/drupal-8-will-no-longer-include-dev-dependencies-in-release-packages">Drupal 8 will no longer include dev dependencies in release packages</a> for more information.
+Beginning with 8.2.3, packaged Drupal releases no longer contain <a href="https://getcomposer.org/doc/04-schema.md#require-dev">development PHP libraries</a>. See <a href="https://www.drupal.org/blog/drupal-8-will-no-longer-include-dev-dependencies-in-release-packages">Drupal 8 will no longer include dev dependencies in release packages</a> for more information. See UPDATE.TXT in the Drupal download for full instructions on how to update.
 
 <h3>Known issues</h3>
 
