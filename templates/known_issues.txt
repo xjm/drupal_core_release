@@ -19,6 +19,7 @@ Drupal 8 currently has a number of known issues related to incorrect tracking of
 <li><a href="https://www.drupal.org/node/1239558">#1239558: Deleting a node with revisions does not release file usage</a></li>
 <li><a href="https://www.drupal.org/node/2666700">#2666700: User profile images unexpectedly deleted</a></li>
 <li><a href="https://www.drupal.org/node/2810355">#2810355: Images lost when changing node language</a></li>
+<li><a href="https://www.drupal.org/node/2884052">#2884025: Uploading a managed file on a custom form that allows multiple files also triggers the remove button which results in a duplicate temporary record and results in the file being deleted</a></li>
 </ul>
 
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
