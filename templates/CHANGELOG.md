@@ -15,6 +15,6 @@ paths from 8.4.0 to future releases:
   breaks that affected Drupal core](https://www.drupal.org/node/2743809).
   [Drupal 8 also requires Symfony 3.2.8](https://www.drupal.org/node/2871253)
   because of a bug in Symfony 3.2.7.
-* [zendframework/zend-diactoros has been updated from 1.3.10 to 1.4.0].
+* [zendframework/zend-diactoros has been updated from 1.3.10 to 1.4.0](https://www.drupal.org/node/2874817).
 
 ## Experimental modules
