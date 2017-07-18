@@ -1,3 +1,9 @@
+## Note for Drush users: Update to Drush 8.1.12
+
+Versions of [Drush]() earlier than 8.1.12 will not work with Drupal 8.4.x.
+Update Drush to 8.1.12 before using it to update Drupal core or you will
+encounter fatal errors.
+
 ## New stable modules
 
 The following modules, previously considered experimental, are now stable and
@@ -20,6 +26,12 @@ and will not appear on the 'Extend' (module administration) page. (Enabling a
 contributed module that depends on the Media module will also enable the
 Media automatically.) The module will be displayed to site builders normally
 once the user experience issues are resolved in a future release.
+
+## REST and API-first improvements
+
+## Developer experience improvements
+
+## Automated testing improvements
 
 ## Third-party library updates
 
