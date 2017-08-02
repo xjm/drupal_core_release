@@ -203,7 +203,7 @@ for decoupled applications will be improved in a future release.
 
 ## Developer experience improvements
 
-* [Adopted Airbnb JavaScript style guide 14.1] as the new baseline set of
+* [Adopted Airbnb JavaScript style guide 14.1](https://www.drupal.org/node/2815077) as the new baseline set of
   coding standards for Drupal core and contributed modules.
   [Change record](https://www.drupal.org/node/2873849)
 * Field type definitions can now [enforce the cardinality of the field](https://www.drupal.org/node/2403703).
