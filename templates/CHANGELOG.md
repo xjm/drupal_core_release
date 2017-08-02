@@ -6,6 +6,16 @@ Versions of [Drush](https://github.com/drush-ops/drush) earlier than 8.1.12
 [will not work with Drupal 8.4.x](https://www.drupal.org/node/2874827). Update Drush to 8.1.12 before using it to
 update Drupal core or you will encounter fatal errors.
 
+## Major version updates to third-party libraries
+* [Drupal's Symfony dependency has been updated from Symfony 2.8 to Symfony
+  3.2](https://www.drupal.org/node/2712647). This major version update is
+  necessary because Symfony 2.8 support will end around the release of Drupal
+  8.6.0 next year. [See the change record for information about Symfony 3 BC
+  breaks that affected Drupal core](https://www.drupal.org/node/2743809).
+  [Drupal 8 also requires Symfony 3.2.8](https://www.drupal.org/node/2871253)
+  because of a bug in Symfony 3.2.7.
+* [#2533498: Update jQuery to version 3](https://www.drupal.org/node/2533498). Now that jQuery 3.0 has been released jQuery 2.x will only be receiving security updates. jQuery 3 sports a number of improvements, including support for JavaScript promises, and better error reporting. We would love additional testing on JavaScript in both core and contrib modules against pre-release versions of Drupal 8.4.0 so that we flesh out problems ahead of time. There is at least one known issue in the Tour module. See "Known Issues" for more information.
+
 ## Updated browser requirements: Internet Explorer 9 and 10 no longer supported
 
 In April 2017, Microsoft discontinued all support for Internet Explorer 9 and
@@ -235,13 +245,6 @@ for decoupled applications will be improved in a future release.
 
 ## Third-party library updates
 
-* [Drupal's Symfony dependency has been updated from Symfony 2.8 to Symfony
-  3.2](https://www.drupal.org/node/2712647). This major version update is
-  necessary because Symfony 2.8 support will end around the release of Drupal
-  8.6.0 next year. [See the change record for information about Symfony 3 BC
-  breaks that affected Drupal core](https://www.drupal.org/node/2743809).
-  [Drupal 8 also requires Symfony 3.2.8](https://www.drupal.org/node/2871253)
-  because of a bug in Symfony 3.2.7.
 * [zendframework/zend-diactoros has been updated from 1.3.10 to 1.4.0](https://www.drupal.org/node/2874817).
 * [jQuery UI has been updated from 1.11.4 to 1.12.1](https://www.drupal.org/node/2809427).
 * [CKEditor has been updated from 4.6.2 to 4.7.1](https://www.drupal.org/node/2893566).
