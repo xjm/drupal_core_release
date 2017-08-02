@@ -1,5 +1,3 @@
-Drupal 8.4.0, 2017-10-05
-------------------------
 ## Drush users: Update to Drush 8.1.12
 
 Versions of [Drush](https://github.com/drush-ops/drush) earlier than 8.1.12
