@@ -302,3 +302,6 @@ for decoupled applications will be improved in a future release.
 
 * [Marked as hidden](https://www.drupal.org/node/2898267).
 * Minor bug fix.
+
+### Known Issues
+* [With jQuery3, modal tour tips lose their grey background and centering](https://www.drupal.org/node/2898808). This impacts users of the Tour module; the third-party Joyride library has an incompatibility with jQuery 3, which casues the tooltip modal to appear off-screen in smaller screen sizes. Work is underway for an upstream bug fix.
