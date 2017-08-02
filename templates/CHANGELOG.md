@@ -132,6 +132,8 @@ user experience issues with it are resolved in a future release.
 Similarly, the REST API and normalizations for Media is not final and support
 for decoupled applications will be improved in a future release.
 
+### Inline Form Errors
+
 ## Content authoring and site administration improvements
 
 * The "Save and keep un-/published" buttons which users found confusing
