@@ -242,6 +242,11 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
 
 Migrate provides a general API for migrations. It will be considered completely stable once all  issues tagged [Migrate critical](https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D&issue_tags=Migrate+critical) are resolved.
 
+* [Renamed `migration` process plugin to `migration_lookup`](https://www.drupal.org/node/2845486)
+  to better capture its purpose.
+* [Renamed `iterator` process plugin to `sub_process`](https://www.drupal.org/node/2845483)
+  to better capture its purpose.
+
 ### Migrate Drupal and Migrate Drupal UI ([alpha stability](https://www.drupal.org/core/experimental#alpha))
 
 Migrate Drupal module provides API support for Drupal-to-Drupal migrations, and Migrate Drupal UI offers a simple user interface to run migrations from older Drupal versions.
@@ -257,10 +262,7 @@ Migrate Drupal module provides API support for Drupal-to-Drupal migrations, and 
 * [Renamed migration field plugins and classes](https://www.drupal.org/node/2683435)
   referring to custom fields provided by the Drupal 6 module CCK, which was
   replaced in Drupal 7 by the core Field API. [See the change record for more information about how this impacts your migration plugins](https://www.drupal.org/node/2751897).
-* [Renamed `migration` process plugin to `migration_lookup`](https://www.drupal.org/node/2845486)
-  to better capture its purpose.
-* [Renamed `iterator` process plugin to `sub_process`](https://www.drupal.org/node/2845483)
-  to better capture its purpose.
+
 
 ### Workflows ([beta stability](https://www.drupal.org/core/experimental#beta))
 
