@@ -217,8 +217,6 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
   [require use of the Drupal core deprecation policy](https://www.drupal.org/node/2488860)
   (`@trigger_error()`) to mark code deprecated; otherwise a test error will
   be thrown.
-* [RTBC] In preparation for [JavascriptTests with webDriver](https://www.drupal.org/node/2775653),
-  methods to test status code and response headers [are now disabled](https://www.drupal.org/node/2827014).
 * [Resolved random test failures](https://www.drupal.org/node/2866056) due to
   ResourceTestBase's HTTP client timeout of 30 seconds.
 
