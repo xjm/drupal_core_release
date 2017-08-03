@@ -266,11 +266,11 @@ Migrate Drupal module provides API support for Drupal-to-Drupal migrations, and 
 
 The Workflows module provides an abstract system of states (like Draft, Archived, and Published) and transitions between them. Workflows can be used by modules that implement non-publishing workflows (such as for users or products) as well as content publishing workflows. 
 
-Drupal 8.4 introduces a final significant backwards compatibility and data model break for this module, [moving responsibility for workflow states and transitions from the Workflow entity to the Workflow type plugin](https://www.drupal.org/node/2849827). Read [Workflow type plugins are now responsible for state and transition schema](https://www.drupal.org/node/2897706) for full details on the API and data model changes related to this fix. Now that this change is complete, the Workflows module has reached beta stability, and it may furthermore be marked stable in time for Drupal 8.4.0.
+Drupal 8.4 introduces a final significant backwards compatibility and data model break for this module, [moving responsibility for workflow states and transitions from the Workflow entity to the Workflow type plugin](https://www.drupal.org/node/2849827). Read [Workflow type plugins are now responsible for state and transition schema](https://www.drupal.org/node/2897706) for full details on the API and data model changes related to this fix. Now that this change is complete, the Workflows module has reached beta stability, and it may furthermore be marked stable in time for Drupal 8.4.0!
 
 ### Content Moderation ([beta stability](https://www.drupal.org/core/experimental#beta))
 
-Content Moderation allows workflows from the Workflows module to be applied to content. Content Moderation has beta stability in 8.4.0-alpha1, but may become stable in time for 8.4.0. Notable improvements in this release:
+Content Moderation allows workflows from the Workflows module to be applied to content. Content Moderation has beta stability in 8.4.0-alpha1, but may become stable in time for 8.4.0! Notable improvements in this release:
 
 * Workflow states are now [selected from a select list, rather than under a drop-button](https://www.drupal.org/node/2753717), which represents a significant usability improvement.
 * Now that workflows can be applied to any revisionable entity type, Content Moderation [adds entity type checkboxes to the workflow form](https://www.drupal.org/node/2843083). This allows site administrators to configure which entity types should have the workflow at the same time as they configure the workflow itself, for a more intuitive user experience.
