@@ -144,7 +144,7 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
 * Previously, deleting a field on a content type would also delete any views depending on the field. While the confirmation form did indicate that the view would be deleted, users did not expect the behavior and often missed the message, leading to data loss. [Now, the view is disabled instead](https://www.drupal.org/node/2468045). In the future, we intend to [notify users that configuration has been disabled](https://www.drupal.org/node/2832558) (as in this fix) as well as [give users clearer warnings for other highly destructive operations](https://www.drupal.org/node/2773205).
 * The [Drupal toolbar no longer flickers](https://www.drupal.org/node/2542050)
   during page rendering, thus improving perceived front-end performance.
-* Options in timezones selector [are now grouped by regions](https://www.drupal.org/node/2847651)
+* Options in [timezones selector are now grouped by regions](https://www.drupal.org/node/2847651)
   and labeled by cities instead of timezone names, making it much easier for users to find and select the specific timezone they need.
 * Both the ["Comments" administration page at `/admin/content/comment`](https://www.drupal.org/node/1986606) and the ["Recent log messages" report provided by dblog](https://www.drupal.org/node/2015149) are now configurable views.
 * Useful meta information about a node's status is typically displayed at the top of the node sidebar. Previously, this meta information was provided by the Seven theme, so it was not available in other administrative themes. [This meta information is now provided by node.module itself](https://www.drupal.org/node/2803875)
