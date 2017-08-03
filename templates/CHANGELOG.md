@@ -159,9 +159,9 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
   different URLs, they therefore now use the URLs you'd expect. Backwards
   compatibility is maintained.
 * There is now a dedicated resource for [resetting a user's password](https://www.drupal.org/node/2847708).
-* Time fields now are [normalized to RFC3339 timestamps by default](https://www.drupal.org/node/2768651), fixing time
+* Time fields now are [normalized to RFC3339 timestamps by default](https://www.drupal.org/node/2768651), fixing
   time ambiguity. Existing sites continue to receive UNIX timestamps, but can
-  opt in. [See the change record for more information about backwards compatibility](https://www.drupal.org/node/2859657).
+  opt in. [See the change record for more information about backwards compatibility and on how to opt in](https://www.drupal.org/node/2859657).
 * [Path alias fields now are normalized too](https://www.drupal.org/node/2846554).
   [See the change record for information about how this impacts API-first modules and other features relying on serialized entities](https://www.drupal.org/node/2856220).
 * When denormalization fails, a [422 response is now returned](https://www.drupal.org/node/2827084)
@@ -177,19 +177,21 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
 ## Performance and scalability improvements
 
 * The internal page cache now [has a dedicated cache bin](https://www.drupal.org/node/2889603)
-  distinct from the rest of the render cache.
+  distinct from the rest of the render cache (a significant scalability improvement).
 * The service collector [no longer loads all dependencies](https://www.drupal.org/node/2472337);
   instead, the new service ID collector allows instances of dependencies to
-  be lazily created. [See the change record for information about how to use the service ID collector](https://www.drupal.org/node/2598944).
+  be lazily created. [See the change record for information about how to use the service ID collector](https://www.drupal.org/node/2598944) for improved performance.
 * The maximum time in-progress forms are cached [is now customizable](https://www.drupal.org/node/1286154)
-  rather than being limited to a default cache lifetime of 6 hours.
+  rather than being limited to a default cache lifetime of 6 hours. Sites can decrease the lifetime
+  to reduce cache footprint, or increase it if needed for a particular site's usecase.
   [See the change record to learn how to access this new setting](https://www.drupal.org/node/2886836).
 * If there are no status messages to be rendered, the corresponding Twig
   template [is no longer loaded](https://www.drupal.org/node/2853509) on every
-  page.
+  page, leading to a 10% performance improvement when there are no messages!
 * [Optimized the early Drupal installer](https://www.drupal.org/node/2872611)
   to check whether any themes are installed first before invoking an
-  unnecessary function.
+  unnecessary function, which improves Drupal install time measurably for
+  both sites and automated tests.
 
 ## Developer experience improvements
 
@@ -197,7 +199,6 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
   coding standards for Drupal core and contributed modules.
   [See the change record for information about how to configure your project for eslint](https://www.drupal.org/node/2873849).
 * Field type definitions can now [enforce the cardinality of the field](https://www.drupal.org/node/2403703).
-  [See the change record for an example of this](https://www.drupal.org/node/2869873).
 * [Added new methods](https://www.drupal.org/node/2869809) to make getting
   typed configuration entity representations easier.
   [See the change record for more information about how to invoke these methods](https://www.drupal.org/node/2877282).
@@ -225,7 +226,7 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
 * [Drupal's Symfony dependency has been updated from Symfony 2.8 to Symfony
   3.2](https://www.drupal.org/node/2712647). This major version update is
   necessary because Symfony 2.8 support will end around the release of Drupal
-  8.6.0 next year. [See the change record for information about Symfony 3 backwards compatibility
+  8.6.0 next year. See the change record for information about [Symfony 3 backwards compatibility
   breaks that affected Drupal core](https://www.drupal.org/node/2743809).
   [Drupal 8 also requires Symfony 3.2.8](https://www.drupal.org/node/2871253)
   because of a bug in Symfony 3.2.7.
