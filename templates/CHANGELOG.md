@@ -120,13 +120,13 @@ Since there is a rich ecosystem of Drupal contributed modules built on Media
 Entity, the top priority for this release is to
 [provide a stable core API and data model](https://www.drupal.org/node/2895059)
 for a smoother transition for these modules. Developers and expert
-site builders can add Media as a dependency. Work is underway to [provide an
+site builders can now add Media as a dependency. Work is underway to [provide an
 update path for existing sites' Media Entity data](https://www.drupal.org/node/2880334)
 and to [port existing contributed modules to the refined core API](https://www.drupal.org/node/2860796).
 
 Note that **the core Media module is currently marked hidden** and will not
 appear on the 'Extend' (module administration) page. (Enabling a contributed
-module that depends on the core Media module will also enable the Media
+module that depends on the core Media module will also enable Media
 automatically.) The module will be displayed to site builders normally once
 user experience issues with it are resolved in a future release.
 
