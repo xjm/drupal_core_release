@@ -27,7 +27,7 @@ such as Safari 5 and Firefox 5. [Clarifications to the browser policy and docume
 * [Modal tour tips provided by the Tour module are not displayed correctly](https://www.drupal.org/node/2898808)
   because the third-party Joyride library has an incompatibility with jQuery 3.
   Tour tips are no longer centered and may be displayed entirely off-screen for many screen sizes.
-  Work is underway for an upstream bug fix.
+  Work is underway on an upstream bug fix.
 * Some sites that have files with 0 recorded usages may encounter
   [validation errors when saving content referencing these files](https://www.drupal.org/node/2896480).
   If your site's users report errors when saving content, you can
