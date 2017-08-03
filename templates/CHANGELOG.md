@@ -158,7 +158,7 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
   instead of `/entity/node`, `/entity/taxonomy_term`. Instead of confusingly
   different URLs, they therefore now use the URLs you'd expect. Backwards
   compatibility is maintained.
-* Added dedicated resource for [resetting a user's password](https://www.drupal.org/node/2847708).
+* There is now a dedicated resource for [resetting a user's password](https://www.drupal.org/node/2847708).
 * Time fields now are [normalized to RFC3339 timestamps by default](https://www.drupal.org/node/2768651), fixing time
   time ambiguity. Existing sites continue to receive UNIX timestamps, but can
   opt in. [See the change record for more information about backwards compatibility](https://www.drupal.org/node/2859657).
