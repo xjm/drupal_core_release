@@ -46,7 +46,7 @@ usages](https://www.drupal.org/node/2801777). This will result of the accumulati
 of unused files on sites, but ensures that files erroneously reporting 0 usages are
 not deleted while in use.
 [The change record explains how sites can opt back into marking files temporary](https://www.drupal.org/node/2891902).
-If you choose to enable the setting, you canalso set "Delete orphaned files" to
+If you choose to enable the setting, you can also set "Delete orphaned files" to
 "Never" on `/admin/config/media/file-system` to avoid permanent deletion of the affected files.
 
 While the files will no longer be deleted by default, file usage is still not
