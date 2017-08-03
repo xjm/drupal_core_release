@@ -250,7 +250,6 @@ Migrate Drupal module provides API support for Drupal-to-Drupal migrations, and 
 * Core provides migrations for most Drupal 6 data and can be used for migrating Drupal 6 sites to Drupal 8, and the Drupal 6 to 8 migration path is nearing beta stability. Some gaps remain, such as for some internationalization data. ([Outstanding issues for the Drupal 6 to Drupal 8 migration](https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=1&status%5B%5D=13&status%5B%5D=8&status%5B%5D=14&status%5B%5D=15&status%5B%5D=4&issue_tags_op=%3D&issue_tags=migrate-d6-d8))
 * The Drupal 7 to Drupal 8 migration is incomplete but is suitable for developers who would like to help improve the migration and can be used to test upgrades especially for simple Drupal 7 sites. Most high-priority migrations are available. ([Outstanding issues for the Drupal 7 to Drupal 8 migration](https://www.drupal.org/node/2456259))
 * Drush support for Migrate is currently only available in the [Drupal Upgrade](https://www.drupal.org/project/migrate_upgrade) contributed module. (See the [pull request to add support to Drush](https://github.com/drush-ops/drush/issues/2140).)
-
 * [Added field plugin](https://www.drupal.org/node/2814949) to handle
   migration of node reference field values from Drupal 6 to Drupal 8.
 * [Added date field plugin](https://www.drupal.org/node/2566779) to handle
