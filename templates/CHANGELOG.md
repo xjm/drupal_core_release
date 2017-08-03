@@ -165,7 +165,7 @@ The [Inline Form Errors module](https://www.drupal.org/node/2897652) provides a 
 * [Path alias fields now are normalized too](https://www.drupal.org/node/2846554).
   [See the change record for information about how this impacts API-first modules and other features relying on serialized entities](https://www.drupal.org/node/2856220).
 * When denormalization fails, a [422 response is now returned](https://www.drupal.org/node/2827084)
-  instead of 400, per the HTTP specification.
+  instead of a 400, per the HTTP specification.
 * With CORS enabled to allow origins besides the site's own host,
   [submitting forms was broken](https://www.drupal.org/node/2853201) unless
   the site's own host was also explicitly allowed.
