@@ -366,21 +366,14 @@ Drupal versions.
   [Drupal Upgrade](https://www.drupal.org/project/migrate_upgrade) contributed
   module. (See the
   [pull request to add support to Drush](https://github.com/drush-ops/drush/issues/2140).)
-* [Renamed migration field plugins and classes](https://www.drupal.org/node/2683435)
-  referring to custom fields provided by the Drupal 6 CCK module, which was
-  replaced in Drupal 7 by the core Field API. [See the change record for more information about how this impacts your migration plugins](https://www.drupal.org/node/2751897).
-  The migration [classes extending from CCKFieldPluginBase are also deprecated
-  in favor of field migration classes](https://www.drupal.org/node/2833206).
-* Field type mapping became easier with
-  [default implementations of getFieldFormatterMap() and processFieldValues()](https://www.drupal.org/node/2896507).
-* Conflicting text field processing settings [are now identified and logged](https://www.drupal.org/node/2842222).
-  To support this change, [a new ProcessField plugin was added](https://www.drupal.org/node/2893061)
-  to dynamically compute the migrated field type.
-* [The field instance source plugin got refactored](https://www.drupal.org/node/2891935),
-  resulting in changed migration template keys.
+* This release includes numerous developer experience for Migrate, including [deprecating outdated references to "CCK"](https://www.drupal.org/node/2751897),
+  [simplifying field type mapping](https://www.drupal.org/node/2896507), and many other API improvements.
+* Conflicting text field processing settings [are now identified and
+  logged](https://www.drupal.org/node/2842222) to avoid security
+  or data integrity issues with the migration of plain and formatted text fields.
 * Automatic redirects are now
   [added for node paths that are not valid anymore due to translation merges](https://www.drupal.org/node/2850085).
-* @todo * [Migration for forum and article comments: duplicate comment types and incorrect comment_entity_statistics](https://www.drupal.org/node/2853872)
+* @todo [Migration for forum and article comments: duplicate comment types and incorrect comment_entity_statistics](https://www.drupal.org/node/2853872)
 * @todo [File migration from D6 to D8 version using Migrate Drupal UI](https://www.drupal.org/node/2907233)
 
 #### Content Moderation ([beta stability](https://www.drupal.org/core/experimental#beta))
