@@ -1,4 +1,4 @@
-Drupal 8.4.x, xxxx-xx-xx
+Drupal 8.4.0, 2017-10-05
 ------------------------
 ### Drush users: Update to Drush 8.1.12
 
@@ -9,7 +9,7 @@ Update Drush to 8.1.12 before using it to update to Drupal core 8.4.x or you
 ### Updated browser requirements: Internet Explorer 9 and 10 no longer supported
 
 In April 2017, Microsoft discontinued all support for Internet Explorer 9 and
-10. Therefore, [Drupal 8.4 has as well](https://www.drupal.org/node/2897971).
+10. Therefore, [Drupal 8.4 has as well](https://www.drupal.org/node/2842298).
 Drupal 8.4 still mostly works in these browser versions, but bugs that affect
 them only will no longer be fixed, and existing workarounds for them will
 be removed beginning in Drupal 8.5.
@@ -25,6 +25,7 @@ are underway and we hope to finalize it before 8.4.0-rc1.
   Symfony 3.2 and jQuery 3. Both updates may introduce backwards compatibility
   issues for some sites or modules, so test carefully.
   For more information, see the "Third-party library updates" section below.
+* @todo: One such issue is with Drush https://www.drupal.org/node/2907224
 * [Modal tour tips provided by the Tour module are not displayed correctly](https://www.drupal.org/node/2898808)
   because the third-party Joyride library has an incompatibility with jQuery 3.
   Tour tips are no longer centered and may be displayed entirely off-screen for
@@ -36,6 +37,7 @@ are underway and we hope to finalize it before 8.4.0-rc1.
   but make sure you also set "Delete orphaned files" to "Never" on
   `/admin/config/media/file-system`
   to avoid permanent deletion of the affected files.
+* @todo Some Symfony file handling thing https://www.drupal.org/node/2906030
 
 ### Important fixes since 8.3.x
 
@@ -91,6 +93,21 @@ is underway.
   to anything that would make the revision go "missing".
   [A similar but unrelated bug in Content Moderation](https://www.drupal.org/node/2862988)
   has also been fixed in this release.
+
+#### Other critical improvements
+
+When nodes got deleted, Menu UI module deleted their menu items. However menu
+items may exist if Menu UI module is not enabled and could also be attached
+to entities other than nodes. Menu item deletion when referenced entities
+are deleted [is now performed by the Custom Menu Links module](https://www.drupal.org/node/2350797)
+covering the previously missing cases.
+
+A race condition occured in the Batch API when using fastcgi. The Batch API now
+ensures that [the current batch state is written completely to the database before starting the next batch](https://www.drupal.org/node/2851111).
+
+When uninstalling modules, empty fields were left behind to be purged. However
+without the field definitions, it was not possible to purge them anymore.
+[Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
 
 ### New stable modules
 
@@ -153,6 +170,23 @@ and polished enough for production use. See the core
 [Inline Form Errors module issue queue](https://www.drupal.org/project/issues/drupal?text=&status=Open&priorities=All&categories=All&version=All&component=inline_form_errors.module)
 for outstanding issues.
 
+#### Workflows
+
+The Workflows module provides an abstract system of states (like Draft,
+Archived, and Published) and transitions between them. Workflows can be used by
+modules that implement non-publishing workflows (such as for users or products)
+as well as content publishing workflows.
+
+Drupal 8.4 introduces a final significant backwards compatibility and data
+model break for this module,
+[moving responsibility for workflow states and transitions from the Workflow entity to the Workflow type plugin](https://www.drupal.org/node/2849827).
+Read [Workflow type plugins are now responsible for state and transition schema](https://www.drupal.org/node/2897706)
+for full details on the API and data model changes related to this fix. Now
+that this change is complete, [the Workflows module became stable](https://www.drupal.org/node/2897130)!
+
+While the module can be installed as-is, it is not useful in itself without
+either Content Moderation and/or some other module that requires it.
+
 ### Content authoring and site administration improvements
 
 * The "Save and keep (un)published" dropbutton has been replaced with [a "Published" checkbox and single "Save" button](https://www.drupal.org/node/2068063).
@@ -172,12 +206,16 @@ for outstanding issues.
   during page rendering, thus improving perceived front-end performance.
 * Options in [timezones selector are now grouped by regions](https://www.drupal.org/node/2847651)
   and labeled by cities instead of timezone names, making it much easier for users to find and select the specific timezone they need.
-* Both the ["Comments" administration page at `/admin/content/comment`](https://www.drupal.org/node/1986606) and the ["Recent log messages" report provided by dblog](https://www.drupal.org/node/2015149) are now configurable views.
+* Both the ["Comments" administration page at `/admin/content/comment`](https://www.drupal.org/node/1986606)
+  and the ["Recent log messages" report provided by dblog](https://www.drupal.org/node/2015149)
+  are now configurable views. The "Comments" administration page also [has some
+  default filters added](https://www.drupal.org/node/2898344).
 * Useful meta information about a node's status is typically displayed at the
   top of the node sidebar. Previously, this meta information was provided by
   the Seven theme, so it was not available in other administrative themes.
   [This meta information is now provided by node.module itself](https://www.drupal.org/node/2803875)
   so other administration themes can access it.
+* [Views now supports rendering computed fields](https://www.drupal.org/node/2852067).
 
 ### REST and API-first improvements
 
@@ -205,6 +243,10 @@ for outstanding issues.
 
 ### Performance and scalability improvements
 
+* Drupal 8 aims to do effective caching at various levels, however this
+  resulted in exessively growing cache tables with many tens of thousands of
+  entries (even hundreds of thousands), and gigabytes in size.
+  [A new limit of 5000 rows per cache bin was introduced to limit this growth](https://www.drupal.org/node/2526150).
 * The internal page cache now [has a dedicated cache bin](https://www.drupal.org/node/2889603)
   distinct from the rest of the render cache (a significant scalability
   improvement).
@@ -276,8 +318,10 @@ for outstanding issues.
   rolling back this library update if the [bug affecting tours](https://www.drupal.org/node/2898808) is not resolved in time for Drupal 8.4.0-beta1.
 * [zendframework/zend-diactoros has been updated from 1.3.10 to 1.4.0](https://www.drupal.org/node/2874817).
 * [jQuery UI has been updated from 1.11.4 to 1.12.1](https://www.drupal.org/node/2809427).
-* [CKEditor has been updated from 4.6.2 to 4.7.1](https://www.drupal.org/node/2893566).
+* [jQuery Once has been updated from 2.1.1 to 2.2.0](https://www.drupal.org/node/2899156).
+* [CKEditor has been updated from 4.6.2 to 4.7.2](https://www.drupal.org/node/2904142).
 * [asm89/stack-cors has been updated from 1.0 to 1.1](https://www.drupal.org/node/2853201).
+* [The minimum phpsec/prophecy requirement is now 1.4](https://www.drupal.org/node/2900800).
 
 ### Experimental modules
 
@@ -291,6 +335,8 @@ stable once all  issues tagged [Migrate critical](https://www.drupal.org/project
   [`iterator` process plugin to `sub_process`](https://www.drupal.org/node/2845483)
   to better capture their purposes. (Backwards compatibility is provided for
   both process plugins since Migrate is in beta.)
+* Added the ability to [provide the source module](https://www.drupal.org/node/2569805)
+  to migrations.
 
 #### Migrate Drupal and Migrate Drupal UI ([alpha stability](https://www.drupal.org/core/experimental#alpha))
 
@@ -319,23 +365,17 @@ Drupal versions.
 * [Added date field plugin](https://www.drupal.org/node/2566779) to handle
   migration of CCK date fields in Drupal 6 to Drupal 8.
 * [Renamed migration field plugins and classes](https://www.drupal.org/node/2683435)
-  referring to custom fields provided by the Drupal 6 module CCK, which was
+  referring to custom fields provided by the Drupal 6 CCK module, which was
   replaced in Drupal 7 by the core Field API. [See the change record for more information about how this impacts your migration plugins](https://www.drupal.org/node/2751897).
-
-#### Workflows ([beta stability](https://www.drupal.org/core/experimental#beta))
-
-The Workflows module provides an abstract system of states (like Draft,
-Archived, and Published) and transitions between them. Workflows can be used by
-modules that implement non-publishing workflows (such as for users or products)
-as well as content publishing workflows.
-
-Drupal 8.4 introduces a final significant backwards compatibility and data
-model break for this module,
-[moving responsibility for workflow states and transitions from the Workflow entity to the Workflow type plugin](https://www.drupal.org/node/2849827).
-Read [Workflow type plugins are now responsible for state and transition schema](https://www.drupal.org/node/2897706)
-for full details on the API and data model changes related to this fix. Now
-that this change is complete, the Workflows module has reached beta stability,
-and it may furthermore be marked stable in time for Drupal 8.4.0!
+  The migration [classes extending from CCKFieldPluginBase are also deprecated
+  in favor of field migration classes](https://www.drupal.org/node/2833206).
+* Field type mapping became easier with
+  [default implementations of getFieldFormatterMap() and processFieldValues()](https://www.drupal.org/node/2896507).
+* Conflicting text field processing settings [are now identified and logged](https://www.drupal.org/node/2842222).
+  To support this change, [a new ProcessField plugin was added](https://www.drupal.org/node/2893061)
+  to dynamically compute the migrated field type.
+* [The field instance source plugin got refactored](https://www.drupal.org/node/2891935),
+  resulting in changed migration template keys.
 
 #### Content Moderation ([beta stability](https://www.drupal.org/core/experimental#beta))
 
@@ -357,6 +397,10 @@ stable in time for 8.4.0! Notable improvements in this release:
   If your contributed module refers to revisions that are not yet published, it
   should use this new term.
 
+As per the experimental module process, there were some backwards incompatible
+changes since Drupal 8.3.x. Experimental modules do not offer a supported
+upgrade path, but [an unofficial upgrade path is being worked on](https://www.drupal.org/node/2896630).
+
 #### Field Layout ([alpha stability](https://www.drupal.org/core/experimental#alpha))
 
 This module provides the ability for site builders to rearrange fields on
@@ -367,14 +411,13 @@ the [entity display layout roadmap](https://www.drupal.org/node/2795833) for
 the next steps for this module, which needs to become stable by 8.5.0 to remain
 in Drupal core.
 
-#### Settings Tray ([alpha stability](https://www.drupal.org/core/experimental#alpha))
+#### Settings Tray ([beta stability](https://www.drupal.org/core/experimental#beta))
 
 The Settings Tray module allows configuring page elements such as blocks and
 menus from the frontend of your site. Settings Tray has improved significantly
-since Drupal 8.3.0. The goal for this release is to get Settings Tray to beta
-stability. Only two issues remain before that milestone: to
-[move the off-canvas dialog renderer into a core component](https://www.drupal.org/node/2784443), and to
-[rename the machine name of the module to settings_tray](https://www.drupal.org/node/2803375),
+since Drupal 8.3.0. The module reached beta stability following completion of
+[moving the off-canvas dialog renderer into a core component](https://www.drupal.org/node/2784443), and
+[renaming the machine name of the module to settings_tray](https://www.drupal.org/node/2803375),
 to match its user-facing name. We hope to make Settings Tray stable by 8.5.0.
 To track progress, see the ["outside in" roadmap issue](https://www.drupal.org/node/2762505).
 
