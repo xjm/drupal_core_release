@@ -2,13 +2,13 @@ Drupal 8.4.0, 2017-10-05
 ------------------------
 ### Drush users: Update to Drush 8.1.12
 
-[Versions of Drush earlier than 8.1.12 will not work with Drupal 8.4.x]
-(https://www.drupal.org/node/2874827). Update Drush to 8.1.12 or higher
+[Versions of Drush earlier than 8.1.12 will not work with Drupal
+8.4.x](https://www.drupal.org/node/2874827). Update Drush to 8.1.12 or higher
 *before using it to update to Drupal core 8.4.x* or you will encounter
 fatal errors that prevent updates from running. (Drush 8.1.12 and 8.1.13
 will successfully update Drupal 8.3.x to 8.4.0, but users may still see
-[other error messages after updates have run]
-(https://www.drupal.org/node/2907224).)
+[other error messages after updates have
+run](https://www.drupal.org/node/2907224).)
 
 ### Updated browser requirements: Internet Explorer 9 and 10 no longer supported
 
@@ -387,6 +387,8 @@ Drupal versions.
   to dynamically compute the migrated field type.
 * [The field instance source plugin got refactored](https://www.drupal.org/node/2891935),
   resulting in changed migration template keys.
+* Automatic redirects are now
+  [added for node paths that are not valid anymore due to translation merges](https://www.drupal.org/node/2850085).
 
 #### Content Moderation ([beta stability](https://www.drupal.org/core/experimental#beta))
 
