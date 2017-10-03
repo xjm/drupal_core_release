@@ -26,10 +26,6 @@ are underway and we hope to finalize it before 8.4.0-rc1.
   issues for some sites or modules, so test carefully.
   For more information, see the "Third-party library updates" section below.
 * @todo: One such issue is with Drush https://www.drupal.org/node/2907224
-* [Modal tour tips provided by the Tour module are not displayed correctly](https://www.drupal.org/node/2898808)
-  because the third-party Joyride library has an incompatibility with jQuery 3.
-  Tour tips are no longer centered and may be displayed entirely off-screen for
-   many screen sizes. Work is underway on an upstream bug fix.
 * Some sites that have files with 0 recorded usages may encounter
   [validation errors when saving content referencing these files](https://www.drupal.org/node/2896480).
   If your site's users report errors when saving content, you can
@@ -314,8 +310,11 @@ either Content Moderation and/or some other module that requires it.
   features numerous improvements, including better error reporting. See the
   [jQuery Core 3.0 Upgrade Guide](https://jquery.com/upgrade-guide/3.0/) for
   information on jQuery 3 backwards compatibility breaks that might affect the
-  JavaScript code in your modules, themes, and sites. Note that we may consider
-  rolling back this library update if the [bug affecting tours](https://www.drupal.org/node/2898808) is not resolved in time for Drupal 8.4.0-beta1.
+  JavaScript code in your modules, themes, and sites.
+* The zurb/joyride library (used by the Tour module) has been
+  [updated to a development version higher than 2.1.0.1](https://www.drupal.org/node/2898808)
+  to resolve an upstream incompatibility with jQuery 3. We will update to Joyride 2.1.1 once
+  it is available with the needed fix.
 * [zendframework/zend-diactoros has been updated from 1.3.10 to 1.4.0](https://www.drupal.org/node/2874817).
 * [jQuery UI has been updated from 1.11.4 to 1.12.1](https://www.drupal.org/node/2809427).
 * [jQuery Once has been updated from 2.1.1 to 2.2.0](https://www.drupal.org/node/2899156).
