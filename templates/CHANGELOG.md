@@ -249,13 +249,12 @@ either Content Moderation and/or some other module that requires it.
 
 ### Performance and scalability improvements
 
-* Drupal 8 aims to do effective caching at various levels, however this
-  resulted in exessively growing cache tables with many tens of thousands of
-  entries (even hundreds of thousands), and gigabytes in size.
+* Drupal 8 aims to do effective caching at various levels. However, this
+  resulted in exessively growing cache tables with tens or hundreds of thousands of
+  entries, and gigabytes in size.
   [A new limit of 5000 rows per cache bin was introduced to limit this growth](https://www.drupal.org/node/2526150).
 * The internal page cache now [has a dedicated cache bin](https://www.drupal.org/node/2889603)
-  distinct from the rest of the render cache (a significant scalability
-  improvement).
+  distinct from the rest of the render cache for improved scalability.
 * The service collector pattern instantiates all services it collects, which is expensive, and unnecessary for some use cases.   For those use cases, a [new service ID collector](https://www.drupal.org/node/2472337)
   pattern was added. The theme negotiator was updated to use it.
   [See the change record for information about how to use the service ID collector](https://www.drupal.org/node/2598944) for improved performance.
@@ -265,7 +264,7 @@ either Content Moderation and/or some other module that requires it.
   a particular site's usecase.
   [See the change record to learn how to access this new setting](https://www.drupal.org/node/2886836).
 * If there are no status messages, the corresponding rendering
-  [is now skipped](https://www.drupal.org/node/2853509). On simple sites, this
+  [is now skipped](https://www.drupal.org/node/2853509). On simple sites that use the default Dynamic Page Cache, this
   can result in a 10% improvement when there are no messages!
 * [Optimized the early Drupal installer](https://www.drupal.org/node/2872611)
   to check whether any themes are installed first before invoking an
