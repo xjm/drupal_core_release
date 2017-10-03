@@ -108,7 +108,7 @@ is underway.
 * A race condition occured in the Batch API when using fastcgi. The Batch API now
   ensures that [the current batch state is written completely to the database before
   starting the next batch](https://www.drupal.org/node/2851111).
-* When uninstalling modules, empty fields were left behind to be purged. However.
+* When uninstalling modules, empty fields were left behind to be purged. However,
   without the field definitions, it was not possible to purge them anymore.
   [Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
 * @todo [Orphaned menu routes breaking site installs and module uninstalls](https://www.drupal.org/node/2907654).
