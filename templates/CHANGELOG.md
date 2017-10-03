@@ -118,7 +118,7 @@ is underway.
 * When uninstalling modules, empty fields were left behind to be purged. However.
   without the field definitions, it was not possible to purge them anymore.
   [Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
-* @todo [Orphaned menu routes breaking site installs and module uninstalls](https://www.drupal.org/node/2907654
+* @todo [Orphaned menu routes breaking site installs and module uninstalls](https://www.drupal.org/node/2907654).
 
 ### New stable modules
 
