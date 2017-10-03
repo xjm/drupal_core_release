@@ -367,10 +367,6 @@ Drupal versions.
   [Drupal Upgrade](https://www.drupal.org/project/migrate_upgrade) contributed
   module. (See the
   [pull request to add support to Drush](https://github.com/drush-ops/drush/issues/2140).)
-* [Added field plugin](https://www.drupal.org/node/2814949) to handle
-  migration of node reference field values from Drupal 6 to Drupal 8.
-* [Added date field plugin](https://www.drupal.org/node/2566779) to handle
-  migration of CCK date fields in Drupal 6 to Drupal 8.
 * [Renamed migration field plugins and classes](https://www.drupal.org/node/2683435)
   referring to custom fields provided by the Drupal 6 CCK module, which was
   replaced in Drupal 7 by the core Field API. [See the change record for more information about how this impacts your migration plugins](https://www.drupal.org/node/2751897).
