@@ -18,8 +18,8 @@ Drupal 8.4 still mostly works in these browser versions, but bugs that affect
 them only will no longer be fixed, and existing workarounds for them will
 be removed beginning in Drupal 8.5.
 
-Additionally, Drupal 8's [browser requirements documentation page]
-(https://www.drupal.org/docs/8/system-requirements/browser-requirements)
+Additionally, Drupal 8's [browser requirements documentation
+page](https://www.drupal.org/docs/8/system-requirements/browser-requirements)
 currently lists incorrect information regarding very outdated browser versions
 such as Safari 5 and Firefox 5. [Clarifications to the browser policy and
 documentation](https://www.drupal.org/node/2390621) are underway and we hope
