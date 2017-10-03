@@ -2,9 +2,13 @@ Drupal 8.4.0, 2017-10-05
 ------------------------
 ### Drush users: Update to Drush 8.1.12
 
-[Versions of Drush earlier than 8.1.12 will not work with Drupal 8.4.x](https://www.drupal.org/node/2874827).
-Update Drush to 8.1.12 before using it to update to Drupal core 8.4.x or you
- will encounter fatal errors.
+[Versions of Drush earlier than 8.1.12 will not work with Drupal 8.4.x]
+(https://www.drupal.org/node/2874827). Update Drush to 8.1.12 or higher
+*before using it to update to Drupal core 8.4.x* or you will encounter
+fatal errors that prevent updates from running. (Drush 8.1.12 and 8.1.13
+will successfully update Drupal 8.3.x to 8.4.0, but users may still see
+[other error messages after updates have run]
+(https://www.drupal.org/node/2907224).)
 
 ### Updated browser requirements: Internet Explorer 9 and 10 no longer supported
 
@@ -14,10 +18,12 @@ Drupal 8.4 still mostly works in these browser versions, but bugs that affect
 them only will no longer be fixed, and existing workarounds for them will
 be removed beginning in Drupal 8.5.
 
-Additionally, Drupal 8's [browser requirements documentation page](https://www.drupal.org/docs/8/system-requirements/browser-requirements)
+Additionally, Drupal 8's [browser requirements documentation page]
+(https://www.drupal.org/docs/8/system-requirements/browser-requirements)
 currently lists incorrect information regarding very outdated browser versions
-such as Safari 5 and Firefox 5. [Clarifications to the browser policy and documentation](https://www.drupal.org/node/2390621)
-are underway and we hope to finalize it before 8.4.0-rc1.
+such as Safari 5 and Firefox 5. [Clarifications to the browser policy and
+documentation](https://www.drupal.org/node/2390621) are underway and we hope
+to finalize it before 8.4.0-rc1.
 
 ### Known Issues
 
@@ -25,7 +31,14 @@ are underway and we hope to finalize it before 8.4.0-rc1.
   Symfony 3.2 and jQuery 3. Both updates may introduce backwards compatibility
   issues for some sites or modules, so test carefully.
   For more information, see the "Third-party library updates" section below.
-* @todo: One such issue is with Drush https://www.drupal.org/node/2907224
+  Known issues related to the Symfony update include:
+    * [Incompatibility with Drush 8.1.11 and earlier](https://www.drupal.org/node/2874827).
+    * [Other error messages with Drush 8.1.12 and higher](https://www.drupal.org/node/2907224).
+    * [Certain file uploads may fail silently](https://www.drupal.org/node/2906030)
+      due to a Symfony 3 backwards compatibility break if they used the `$deep`
+      parameter (which was already deprecated in Symfony 2.8 and is removed
+      in Symfony 3.0. *Check any custom file upload code* that may have used
+      the deprecated parameter and [update it according to the API change record](https://www.drupal.org/node/2743809).
 * Some sites that have files with 0 recorded usages may encounter
   [validation errors when saving content referencing these files](https://www.drupal.org/node/2896480).
   If your site's users report errors when saving content, you can
@@ -33,7 +46,6 @@ are underway and we hope to finalize it before 8.4.0-rc1.
   but make sure you also set "Delete orphaned files" to "Never" on
   `/admin/config/media/file-system`
   to avoid permanent deletion of the affected files.
-* @todo Some Symfony file handling thing https://www.drupal.org/node/2906030
 
 ### Important fixes since 8.3.x
 
