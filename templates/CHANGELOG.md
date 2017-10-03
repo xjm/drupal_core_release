@@ -22,8 +22,7 @@ Additionally, Drupal 8's [browser requirements documentation
 page](https://www.drupal.org/docs/8/system-requirements/browser-requirements)
 currently lists incorrect information regarding very outdated browser versions
 such as Safari 5 and Firefox 5. [Clarifications to the browser policy and
-documentation](https://www.drupal.org/node/2390621) are underway and we hope
-to finalize it before 8.4.0-rc1.
+documentation](https://www.drupal.org/node/2390621) are underway.
 
 ### Known Issues
 
