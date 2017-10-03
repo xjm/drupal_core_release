@@ -107,18 +107,18 @@ is underway.
 
 #### Other critical improvements
 
-When nodes got deleted, Menu UI module deleted their menu items. However menu
-items may exist if Menu UI module is not enabled and could also be attached
-to entities other than nodes. Menu item deletion when referenced entities
-are deleted [is now performed by the Custom Menu Links module](https://www.drupal.org/node/2350797)
-covering the previously missing cases.
-
-A race condition occured in the Batch API when using fastcgi. The Batch API now
-ensures that [the current batch state is written completely to the database before starting the next batch](https://www.drupal.org/node/2851111).
-
-When uninstalling modules, empty fields were left behind to be purged. However
-without the field definitions, it was not possible to purge them anymore.
-[Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
+* When nodes got deleted, Menu UI module deleted their menu items. However menu
+  items may exist if Menu UI module is not enabled and could also be attached
+  to entities other than nodes. Menu item deletion when referenced entities
+  are deleted [is now performed by the Custom Menu Links module](https://www.drupal.org/node/2350797)
+  covering the previously missing cases.
+* A race condition occured in the Batch API when using fastcgi. The Batch API now
+  ensures that [the current batch state is written completely to the database before
+  starting the next batch](https://www.drupal.org/node/2851111).
+* When uninstalling modules, empty fields were left behind to be purged. However.
+  without the field definitions, it was not possible to purge them anymore.
+  [Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
+* @todo [Orphaned menu routes breaking site installs and module uninstalls](https://www.drupal.org/node/2907654
 
 ### New stable modules
 
@@ -392,6 +392,8 @@ Drupal versions.
   resulting in changed migration template keys.
 * Automatic redirects are now
   [added for node paths that are not valid anymore due to translation merges](https://www.drupal.org/node/2850085).
+* @todo * [Migration for forum and article comments: duplicate comment types and incorrect comment_entity_statistics](https://www.drupal.org/node/2853872)
+* @todo [File migration from D6 to D8 version using Migrate Drupal UI](https://www.drupal.org/node/2907233)
 
 #### Content Moderation ([beta stability](https://www.drupal.org/core/experimental#beta))
 
