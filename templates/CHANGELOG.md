@@ -100,18 +100,20 @@ is underway.
 
 #### Other critical improvements
 
-* When nodes got deleted, Menu UI module deleted their menu items. However menu
-  items may exist if Menu UI module is not enabled and could also be attached
-  to entities other than nodes. Menu item deletion when referenced entities
-  are deleted [is now performed by the Custom Menu Links module](https://www.drupal.org/node/2350797)
-  covering the previously missing cases.
+* When nodes were deleted, Menu UI module deleted their menu items. However, menu
+  items may exist even whenm Menu UI module is not enabled and can also be attached
+  to entities other than nodes. Therefore, menu item cleanup on entity deletetion
+  [is now performed by the Custom Menu Links module](https://www.drupal.org/node/2350797)
+  instead, covering the previously missing cases. 
+* A related issue that [prevented correct URLs from being generated for entity
+  forms](https://www.drupal.org/node/2907654) and consequently broke module uninstallation
+  for some modules providing menu items for these forms has also been resolved.
 * A race condition occured in the Batch API when using fastcgi. The Batch API now
   ensures that [the current batch state is written completely to the database before
   starting the next batch](https://www.drupal.org/node/2851111).
 * When uninstalling modules, empty fields were left behind to be purged. However,
   without the field definitions, it was not possible to purge them anymore.
   [Empty field deletion is now performed immediately](https://www.drupal.org/node/2884202).
-* @todo [Orphaned menu routes breaking site installs and module uninstalls](https://www.drupal.org/node/2907654).
 
 ### New stable modules
 
