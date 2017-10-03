@@ -3,11 +3,11 @@ Drupal 8.4.0, 2017-10-05
 ### Drush users: Update to Drush 8.1.12
 
 [Versions of Drush earlier than 8.1.12 will not work with Drupal
-8.4.x](https://www.drupal.org/node/2874827). Update Drush to 8.1.12 or higher
-*before using it to update to Drupal core 8.4.x* or you will encounter
-fatal errors that prevent updates from running. (Drush 8.1.12 and 8.1.13
-will successfully update Drupal 8.3.x to 8.4.0, but users may still see
-[other error messages after updates have
+8.4.x](https://www.drupal.org/node/2874827). Update Drush to 8.1.12 or
+higher **before using it to update to Drupal core 8.4.x** or you will
+encounter fatal errors that prevent updates from running. (Drush 8.1.12
+and 8.1.13 will successfully update Drupal 8.3.x to 8.4.0, but users may still
+see [other error messages after updates have
 run](https://www.drupal.org/node/2907224).)
 
 ### Updated browser requirements: Internet Explorer 9 and 10 no longer supported
@@ -38,7 +38,8 @@ to finalize it before 8.4.0-rc1.
       due to a Symfony 3 backwards compatibility break if they used the `$deep`
       parameter (which was already deprecated in Symfony 2.8 and is removed
       in Symfony 3.0. *Check any custom file upload code* that may have used
-      the deprecated parameter and [update it according to the API change record](https://www.drupal.org/node/2743809).
+      the deprecated parameter and [update it according to the API change
+      record](https://www.drupal.org/node/2743809).
 * Some sites that have files with 0 recorded usages may encounter
   [validation errors when saving content referencing these files](https://www.drupal.org/node/2896480).
   If your site's users report errors when saving content, you can
