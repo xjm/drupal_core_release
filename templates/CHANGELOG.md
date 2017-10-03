@@ -40,8 +40,7 @@ to finalize it before 8.4.0-rc1.
       in Symfony 3.0. *Check any custom file upload code* that may have used
       the deprecated parameter and [update it according to the API change
       record](https://www.drupal.org/node/2743809).
-* Some sites that have files with 0 recorded usages may encounter
-  [validation errors when saving content referencing these files](https://www.drupal.org/node/2896480).
+* .
   If your site's users report errors when saving content, you can
   [set the `file.settings.make_unused_managed_files_temporary` setting to `true`](https://www.drupal.org/node/2891902),
   but make sure you also set "Delete orphaned files" to "Never" on
@@ -58,7 +57,10 @@ Drupal 8 has several longstanding [file usage tracking
 bugs](https://www.drupal.org/node/2821423). To prevent further data loss,
 Drupal 8.4 has [disabled the automatic deletion of files with no known remaining usages](https://www.drupal.org/node/2801777).
 This will result of the accumulation of unused files on sites, but ensures that
-files erroneously reporting 0 usages are not deleted while in use.
+files erroneously reporting 0 usages are not deleted while in use. Additionally,
+an issue with [validation errors when saving content referencing these
+files](https://www.drupal.org/node/2896480) has also been resolved.
+
 [The change record explains how sites can opt back into marking files temporary](https://www.drupal.org/node/2891902).
 If you choose to enable the setting, you can also set "Delete orphaned files"
 to "Never" on `/admin/config/media/file-system` to avoid permanent deletion of
