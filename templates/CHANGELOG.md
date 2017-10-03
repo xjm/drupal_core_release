@@ -249,7 +249,7 @@ either Content Moderation and/or some other module that requires it.
 
 ### Performance and scalability improvements
 
-* Drupal 8 aims to do effective caching at various levels. However, this
+* Drupal 8 caches at various different levels for more effective caching. However, this
   resulted in exessively growing cache tables with tens or hundreds of thousands of
   entries, and gigabytes in size.
   [A new limit of 5000 rows per cache bin was introduced to limit this growth](https://www.drupal.org/node/2526150).
@@ -264,8 +264,8 @@ either Content Moderation and/or some other module that requires it.
   a particular site's usecase.
   [See the change record to learn how to access this new setting](https://www.drupal.org/node/2886836).
 * If there are no status messages, the corresponding rendering
-  [is now skipped](https://www.drupal.org/node/2853509). On simple sites that use the default Dynamic Page Cache, this
-  can result in a 10% improvement when there are no messages!
+  [is now skipped](https://www.drupal.org/node/2853509). On simple sites that use the
+  Dynamic Page Cache (on by default), this can result in a 10% improvement when there are no messages!
 * [Optimized the early Drupal installer](https://www.drupal.org/node/2872611)
   to check whether any themes are installed first before invoking an
   unnecessary function, which improves Drupal install time measurably for
