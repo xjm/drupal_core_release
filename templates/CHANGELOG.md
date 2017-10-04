@@ -26,19 +26,19 @@ documentation](https://www.drupal.org/node/2390621) are underway.
 
 ### Known Issues
 
-* Drupal 8.4.0-alpha1 includes major version updates for two dependencies:
-  Symfony 3.2 and jQuery 3. Both updates may introduce backwards compatibility
-  issues for some sites or modules, so test carefully.
-  For more information, see the "Third-party library updates" section below.
-  Known issues related to the Symfony update include:
-    * [Incompatibility with Drush 8.1.11 and earlier](https://www.drupal.org/node/2874827).
-    * [Other error messages with Drush 8.1.12 and higher](https://www.drupal.org/node/2907224).
-    * [Certain file uploads may fail silently](https://www.drupal.org/node/2906030)
-      due to a Symfony 3 backwards compatibility break if they used the `$deep`
-      parameter (which was already deprecated in Symfony 2.8 and is removed
-      in Symfony 3.0. *Check any custom file upload code* that may have used
-      the deprecated parameter and [update it according to the API change
-      record](https://www.drupal.org/node/2743809).
+Drupal 8.4.0-alpha1 includes major version updates for two dependencies:
+Symfony 3.2 and jQuery 3. Both updates may introduce backwards compatibility
+issues for some sites or modules, so test carefully.
+For more information, see the "Third-party library updates" section below.
+Known issues related to the Symfony update include:
+  * [Incompatibility with Drush 8.1.11 and earlier](https://www.drupal.org/node/2874827).
+  * [Other error messages with Drush 8.1.12 and higher](https://www.drupal.org/node/2907224).
+  * [Certain file uploads may fail silently](https://www.drupal.org/node/2906030)
+    due to a Symfony 3 backwards compatibility break if they used the `$deep`
+    parameter (which was already deprecated in Symfony 2.8 and is removed
+    in Symfony 3.0. *Check any custom file upload code* that may have used
+    the deprecated parameter and [update it according to the API change
+    record](https://www.drupal.org/node/2743809).
 
 ### Important fixes since 8.3.x
 
