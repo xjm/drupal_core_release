@@ -1,5 +1,8 @@
 There are no known regressions in this release.
 
-Important: If you have not already upgraded to 8.4.0, read the <a href="/project/drupal/releases/8.4.0">Drupal 8.4.0 release notes</a> before upgrading to VERSION8. Drupal 8.4 includes major version updates for Symfony, jQuery, and jQuery UI and is no longer compatible with older versions of Drush.
+<ul>
+<li>Important: If you have not already upgraded to 8.4.0, read the <a href="/project/drupal/releases/8.4.0">Drupal 8.4.0 release notes</a> before upgrading to VERSION8. Drupal 8.4 includes major version updates for Symfony, jQuery, and jQuery UI and is no longer compatible with older versions of Drush.</li>
+<li>Drupal 8 currently has several known <a href="https://www.drupal.org/project/issues/search?projects=Drupal+core&amp;project_issue_followers=&amp;status%5B%5D=Open&amp;priorities%5B%5D=400&amp;issue_tags_op=%3D&amp;issue_tags=PHP+7.2">issues with PHP 7.2 support</a>.</li>
+</ul>
 
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
