@@ -1,24 +1,5 @@
 There are no known regressions in this release.
 
-<h4>Updating from versions older than 8.3.0</h4>
-
-We've received reports of the following issues with the 8.3.0 release that may affect those updating from older versions of Drupal 8:
-
-<ul>
-<li>A few sites have reported <a href="https://www.drupal.org/node/2869449">#2869449: PluginNotFound exception after update to Drupal 8.3</a> where the plugin name mentioned in the exception may vary. Administrators of affected sites should check the issue queues of contributed modules in use. Comment on <a href="https://www.drupal.org/node/2869449">#2869449</a> if necessary.</li>
-<li>Sites that have the HAL module enabled and are upgrading from 8.1.x have encountered <a href="https://www.drupal.org/node/2867444">#2867444: Configuration schema errors whilst updating to 8.3.0</a>. Possible workarounds include updating to 8.2.7 first and then to 8.3.0, or (for sites using Drush) updating to Drush 8.1.10. (Note that 8.1.x has been end-of-life since September 2016, so we generally do not provide full support for updates that skip minor releases.)</li>
-</ul>
-
-<h4>File usage tracking causes unexpected file deletion</h4>
-
-Drupal 8 currently has a number of known issues related to incorrect tracking of file usage, which can result in files being unexpectedly deleted from a site. Site owners experiencing unexplained file loss should consider setting "Delete orphaned files" to "Never" on <code>/admin/config/media/file-system</code> until these issues are resolved, and note the following issues:
-
-<ul>
-<li><a href="https://www.drupal.org/node/2801777">#2801777: Give users the option to prevent Drupal from automatically marking unused files as temporary</a></li>
-<li><a href="https://www.drupal.org/node/2708411">#2708411: File usage not incremented when adding new translation</a></li>
-<li><a href="https://www.drupal.org/node/1239558">#1239558: Deleting a node with revisions does not release file usage</a></li>
-<li><a href="https://www.drupal.org/node/2810355">#2810355: Images lost when changing node language</a></li>
-<li><a href="https://www.drupal.org/node/2884052">#2884025: Uploading a managed file on a custom form that allows multiple files also triggers the remove button which results in a duplicate temporary record and results in the file being deleted</a></li>
-</ul>
+Important: If you have not already upgraded to 8.4.0, read the <a href="/project/drupal/releases/8.4.0">Drupal 8.4.0 release notes</a> before upgrading to VERSION8. Drupal 8.4 includes major version updates for Symfony, jQuery, and jQuery UI and is no longer compatible with older versions of Drush.
 
 <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=Open&version%5B%5D=8.x&issue_tags_op=%3D">Search the issue queue for all known issues</a>.
