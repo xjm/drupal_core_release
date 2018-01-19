@@ -9,8 +9,8 @@ NEXT_BRANCH8="8.5.x"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Get the prepopulated list of issues, if any.
-if [ -a rn_issues.txt ] ; then
-    AUTO_ISSUES=`cat rn_issues.txt`
+if [ -a $DIR/rn_issues.txt ] ; then
+    AUTO_ISSUES="$(cat $DIR/rn_issues.txt)"
 fi
 
 # Format a Y-m-d date as (e.g.) 'Wednesday, February 3' in a Mac-friendly way.
@@ -74,17 +74,23 @@ if [[ $f || $r || ! $s ]] ; then
         echo -e "Enter the D7 release number (blank for none):"
         read VERSION7
     else
-      BLURB=`cat templates/patch_blurb.txt`
-      KNOWN_ISSUES=`cat templates/known_issues.txt`
+      BLURB="$(cat $DIR/templates/patch_blurb.txt)"
+      KNOWN_ISSUES="$(cat $DIR/templates/known_issues.txt)"
+      FULL_NOTES="$(git log --right-only --cherry-pick $BRANCH8...$NEXT_BRANCH8 --pretty='<li>%s</li>')"
+      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/Issue #\([0-9]*\) /Issue <a href=\"https:\/\/www.drupal.org\/node\/\1\">#\1<\/a> /g')"
+      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/<\/li>/<\/li>\'$'\n/g')"
+
       if [ $m ] ; then
-          echo -e "Enter 'beta' or 'rc' (blank for a full minor release):"
+          echo -e "Enter 'alpha', 'beta', or 'rc' (blank for a full minor release):"
           read minor_release_type
-          if [ "$minor_release_type" = 'beta' ] ; then
-              BLURB=`cat templates/beta_blurb.txt`
+          if [ "$minor_release_type" = 'alpha' ] ; then
+              BLURB="$(cat $DIR/templates/alpha_blurb.txt)"
+          elif [ "$minor_release_type" = 'beta' ] ; then
+              BLURB="$(cat $DIR/templates/beta_blurb.txt)"
           elif [ "$minor_release_type" = 'rc' ] ; then
-              BLURB=`cat templates/rc_blurb.txt`
+              BLURB="$(cat $DIR/templates/rc_blurb.txt)"
           else
-              BLURB=`cat templates/minor_blurb.txt`
+              BLURB="$(cat $DIR/templates/minor_blurb.txt)"
           fi
       fi
     fi
@@ -155,26 +161,26 @@ fi
 
 if [ $g ] ; then
     if [ $s ] ; then
-        text=`cat templates/sec_gdo.txt`
+        text="$(cat $DIR/templates/sec_gdo.txt)"
     else
-        text=`cat templates/patch_gdo_"${suffix}".txt`
+        text="$(cat $DIR/templates/patch_gdo_\"${suffix}\".txt)"
     fi
 elif [ $r ] ; then
     if [ $s ] ; then
-        text=`cat templates/sec_rn.txt`
+        text="$(cat $DIR/templates/sec_rn.txt)"
     elif [ $m ] ; then
         BRANCH8=$NEXT_BRANCH8
-        text=`cat templates/minor_rn_d8.txt`
-        EXPERIMENTAL=`cat templates/experimental.txt`
+        text="$(cat $DIR/templates/minor_rn_d8.txt)"
+        EXPERIMENTAL="$(cat $DIR/templates/experimental.txt)"
     else
         if [ ! -z "$AUTO_ISSUES" ] ; then
-            text=`cat templates/patch_rn_"${suffix}"_auto_issues.txt`
+            text="$(cat $DIR/templates/patch_rn_\"${suffix}\"_auto_issues.txt)"
         else
-            text=`cat templates/patch_rn_"${suffix}".txt`
+            text="$(cat $DIR/templates/patch_rn\"${suffix}\".txt)"
         fi
     fi
 elif [ $f ] ; then
-    text=`cat templates/"${prefix}"_frontpage_"${suffix}".txt`
+    text="$(cat $DIR/templates/"${prefix}"_frontpage_\"${suffix}\".txt)"
 fi
 
 # Replace the placeholders in the templates.
@@ -191,6 +197,7 @@ output="${output//MINOR/$MINOR}"
 output="${output//NEXT_PATCH/$NEXT_PATCH}"
 output="${output//NEXT_SECURITY/$NEXT_SECURITY}"
 output="${output//SA_NUMBER/$SA_NUMBER}"
+output="${output//FULL_NOTES/$FULL_NOTES}"
 
 # If a Drupal 7 version is included, replace that placeholder too.
 if [ ! -z "$VERSION7" ] ; then
