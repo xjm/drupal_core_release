@@ -1,50 +1,28 @@
 BLURB
 
-This minor release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. there may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies. Note that both policies have been <a href="https://www.drupal.org/node/2689681">updated for the 8.1.x release</a>.
+This minor release provides new improvements and functionality without breaking backward compatibility (BC) for public APIs. There may be changes in internal APIs and experimental modules that require updates to contributed and custom modules and themes per <a href="https://www.drupal.org/core/d8-bc-policy">Drupal core's backwards compatibility</a> and <a href="https://www.drupal.org/core/experimental">experimental module</a> policies.
+
+Minor releases may include string changes and additions. Translators can <a href="https://localize.drupal.org/translate/drupal8">review the latest translation status on localize.drupal.org</a>.
+
+<h3>Important update information</h3>
+
+Site update and module owners planning to update to this release should take note of the following important issues:
+
+<ul>
+<li>@todo List any issues in: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=VERSION8+release+notes</li>
+<li>@todo List any noteworthy CRs in: https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8
+</ul>
+
+Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">minor string changes since the last release</a>.
 
 <h3>Critical bug fixes</h3>
 
 The following critical issues are fixed in Drupal VERSION8:
 
 <ul>
-
+<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=NEXT_BRANCH8-dev.</li>
+<li>List noteworthy regressions resolved in this release.
 </ul>
-
-<h3>New stable features</h3>
-
-The following new stable features have been added to Drupal VERSION8:
-
-<ul>
-
-</ul>
-
-<h3>Developer API improvements</h3>
-
-Modules requiring Drupal VERSION8 or later can take advantage of these API improvements:
-
-<ul>
-
-</ul>
-
-EXPERIMENTAL
-
-<h3>Third-party library updates</h3>
-
-<ul>
-
-</ul>
-
-<h3>Changed coding standards</h3>
-
-Drupal VERSION8 has adopted the following coding standards changes:
-
-<ul>
-
-</ul>
-
-<h3>Other important issues</h3>
-
-AUTO_ISSUES
 
 <h3>Known issues</h3>
 
@@ -52,3 +30,6 @@ KNOWN_ISSUES
 
 <h3>All changes since the last minor release</h3>
 
+<ul>
+FULL_NOTES
+</ul>
