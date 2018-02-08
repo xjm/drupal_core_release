@@ -1,6 +1,6 @@
 BLURB
 
-This release only contains bug fixes, along with documentation and testing improvements. Translators should take note of a handful of <a href="https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+VERSION8">minor string changes since the last release</a>.
+This release only contains bug fixes, along with documentation and testing improvements.
 
 The following important issues are resolved in VERSION8 (in addition to the dozens of other fixes listed at the end of this post):
 <ul>

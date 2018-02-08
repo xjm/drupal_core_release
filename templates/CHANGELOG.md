@@ -42,9 +42,6 @@ Known issues related to the Symfony update include:
 
 ### Important fixes since 8.3.x
 
-Translators should take note of several [string additions and changes since the
-last release](https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=String+change+in+8.4.0).
-
 #### File usage tracking
 
 Drupal 8 has several longstanding [file usage tracking
