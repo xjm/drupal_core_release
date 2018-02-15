@@ -76,23 +76,33 @@ if [[ $f || $r || ! $s ]] ; then
     else
       BLURB="$(cat $DIR/templates/patch_blurb.txt)"
       KNOWN_ISSUES="$(cat $DIR/templates/known_issues.txt)"
-      FULL_NOTES="$(git log --right-only --cherry-pick $BRANCH8...$NEXT_BRANCH8 --pretty='<li>%s</li>')"
-      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/Issue #\([0-9]*\) /Issue <a href=\"https:\/\/www.drupal.org\/node\/\1\">#\1<\/a> /g')"
-      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/<\/li>/<\/li>\'$'\n/g')"
 
       if [ $m ] ; then
-          echo -e "Enter 'alpha', 'beta', or 'rc' (blank for a full minor release):"
-          read minor_release_type
-          if [ "$minor_release_type" = 'alpha' ] ; then
-              BLURB="$(cat $DIR/templates/alpha_blurb.txt)"
-          elif [ "$minor_release_type" = 'beta' ] ; then
-              BLURB="$(cat $DIR/templates/beta_blurb.txt)"
-          elif [ "$minor_release_type" = 'rc' ] ; then
-              BLURB="$(cat $DIR/templates/rc_blurb.txt)"
-          else
-              BLURB="$(cat $DIR/templates/minor_blurb.txt)"
+        echo -e "Enter 'alpha', 'beta', or 'rc' (blank for a full minor release):"
+        read minor_release_type
+        echo -e "Enter the tag of the last milestone (blank for none since the last branch)"
+        read LAST_MILESTONE
+        if [ ! $LAST_MILESTONE ] ; then
+          $LAST_MILESTONE=$BRANCH8
+        else
+          if [ ! $m ]
+            SEE_ALSO="$(cat $DIR/templates/see_also.txt)"
           fi
+        fi
+        if [ "$minor_release_type" = 'alpha' ] ; then
+          BLURB="$(cat $DIR/templates/alpha_blurb.txt)"
+        elif [ "$minor_release_type" = 'beta' ] ; then
+          BLURB="$(cat $DIR/templates/beta_blurb.txt)"
+        elif [ "$minor_release_type" = 'rc' ] ; then
+          BLURB="$(cat $DIR/templates/rc_blurb.txt)"
+        else
+          BLURB="$(cat $DIR/templates/minor_blurb.txt)"
+        fi
       fi
+
+      FULL_NOTES="$(git log --right-only --cherry-pick $LAST_MILESTONE...$NEXT_BRANCH8 --pretty='<li>%s</li>')"
+      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/Issue #\([0-9]*\) /Issue <a href=\"https:\/\/www.drupal.org\/node\/\1\">#\1<\/a> /g')"
+      FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/<\/li>/<\/li>\'$'\n/g')"
     fi
 fi
 
@@ -176,7 +186,7 @@ elif [ $r ] ; then
         if [ ! -z "$AUTO_ISSUES" ] ; then
             text="$(cat $DIR/templates/patch_rn_\"${suffix}\"_auto_issues.txt)"
         else
-            text="$(cat $DIR/templates/patch_rn\"${suffix}\".txt)"
+            text="$(cat $DIR/templates/patch_rn_\"${suffix}\".txt)"
         fi
     fi
 elif [ $f ] ; then
@@ -188,7 +198,8 @@ fi
 output="${text//AUTO_ISSUES/$AUTO_ISSUES}"
 output="${text//KNOWN_ISSUES/$KNOWN_ISSUES}"
 output="${output//BLURB/$BLURB}"
-output="${output//EXPERIMENTAL/$EXPERIMENTAL}"
+output="${output//SEE_ALSO/$SEE_ALSO}"
+output="${output//LAST_MILESTONE/$LAST_MILESTONE}"
 output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
 output="${output//DATE/$DATE}"

@@ -6,6 +6,8 @@ Minor releases may include string changes and additions. Translators can <a href
 
 <h3 id="update-info">Important update information</h3>
 
+SEE_ALSO
+
 Site update and module owners planning to update to this release should take note of the following important issues:
 
 <ul>
