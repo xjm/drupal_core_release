@@ -3,7 +3,7 @@
 # Date of the next scheduled minor and current D8 branch; update as needed.
 MINOR="Wednesday, March 7"
 BRANCH8="8.4.x"
-NEXT_BRANCH8="8.5.x"
+NEXTBRANCH="8.5.x"
 
 # Get the script directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -15,7 +15,7 @@ fi
 
 # Format a Y-m-d date as (e.g.) 'Wednesday, February 3' in a Mac-friendly way.
 function word_date() {
-    echo "$(date -jf "%Y-%m-%d" "$1" +"%A, %B %d")"
+  echo "$(date -jf "%Y-%m-%d" "$1" +"%A, %B %d")"
 }
 
 # Fetch CLI arguments.
@@ -78,16 +78,18 @@ if [[ $f || $r || ! $s ]] ; then
       KNOWN_ISSUES="$(cat $DIR/templates/known_issues.txt)"
 
       if [ $m ] ; then
+        # @todo We also need the minor version itself for pre-release
+        # milestones in order to link the stuff correctly.
+        # @todo Just parse this out of the version.
         echo -e "Enter 'alpha', 'beta', or 'rc' (blank for a full minor release):"
         read minor_release_type
         echo -e "Enter the tag of the last milestone (blank for none since the last branch)"
         read LAST_MILESTONE
-        if [ ! $LAST_MILESTONE ] ; then
+        # @todo This isn't working.
+        if [ -z "$LAST_MILESTONE" ] ; then
           $LAST_MILESTONE=$BRANCH8
-        else
-          if [ ! $m ]
-            SEE_ALSO="$(cat $DIR/templates/see_also.txt)"
-          fi
+        elif [ ! $m ] ; then
+          SEE_ALSO="$(cat $DIR/templates/see_also.txt)"
         fi
         if [ "$minor_release_type" = 'alpha' ] ; then
           BLURB="$(cat $DIR/templates/alpha_blurb.txt)"
@@ -100,7 +102,7 @@ if [[ $f || $r || ! $s ]] ; then
         fi
       fi
 
-      FULL_NOTES="$(git log --right-only --cherry-pick $LAST_MILESTONE...$NEXT_BRANCH8 --pretty='<li>%s</li>')"
+      FULL_NOTES="$(git log --right-only --cherry-pick $LAST_MILESTONE...$NEXTBRANCH --pretty='<li>%s</li>')"
       FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/Issue #\([0-9]*\) /Issue <a href=\"https:\/\/www.drupal.org\/node\/\1\">#\1<\/a> /g')"
       FULL_NOTES="$(echo $FULL_NOTES | sed -e 's/<\/li>/<\/li>\'$'\n/g')"
     fi
@@ -179,7 +181,7 @@ elif [ $r ] ; then
     if [ $s ] ; then
         text="$(cat $DIR/templates/sec_rn.txt)"
     elif [ $m ] ; then
-        BRANCH8=$NEXT_BRANCH8
+        BRANCH8=$NEXTBRANCH
         text="$(cat $DIR/templates/minor_rn_d8.txt)"
         EXPERIMENTAL="$(cat $DIR/templates/experimental.txt)"
     else
@@ -202,6 +204,7 @@ output="${output//SEE_ALSO/$SEE_ALSO}"
 output="${output//LAST_MILESTONE/$LAST_MILESTONE}"
 output="${output//VERSION8/$VERSION8}"
 output="${output//BRANCH8/$BRANCH8}"
+output="${output//NEXTBRANCH/$NEXTBRANCH}"
 output="${output//DATE/$DATE}"
 output="${output//YEAR/$YEAR}"
 output="${output//MINOR/$MINOR}"

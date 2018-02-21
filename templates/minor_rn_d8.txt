@@ -20,7 +20,7 @@ Site update and module owners planning to update to this release should take not
 The following critical issues are fixed in Drupal VERSION8:
 
 <ul>
-<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=NEXT_BRANCH8-dev.</li>
+<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=NEXTBRANCH-dev.</li>
 <li>List noteworthy regressions resolved in this release.
 </ul>
 
