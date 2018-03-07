@@ -52,10 +52,6 @@ if [ ! $? -eq 0 ] ; then
 fi
 sed -i '' -e "s/VERSION = '$p'/VERSION = '$v'/1" core/lib/Drupal.php
 
-date=$(date +"%Y-%m-%d")
-changelog="Drupal $v, $date\n------------------------\n- Fixed security issues. See SA-CORE-$sa.\n"
-echo -e "$changelog\n$(cat core/CHANGELOG.txt)" > core/CHANGELOG.txt
-
 git commit -am "Drupal $v" --no-verify
 git tag -a "$v" -m "Drupal $v"
 

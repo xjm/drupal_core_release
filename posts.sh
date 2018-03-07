@@ -87,7 +87,7 @@ if [[ $f || $r || ! $s ]] ; then
         read LAST_MILESTONE
         # @todo This isn't working.
         if [ -z "$LAST_MILESTONE" ] ; then
-          $LAST_MILESTONE=$BRANCH8
+          LAST_MILESTONE=$BRANCH8
         elif [ ! $m ] ; then
           SEE_ALSO="$(cat $DIR/templates/see_also.txt)"
         fi
