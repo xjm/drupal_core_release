@@ -1,72 +1,133 @@
 #!/bin/bash
 
-if [[ ! -a $1 ]] ; then
-  echo -e "Usage: ./sec.sh /path/to/sa_fix.patch"
-  exit 1
+ if [[ -z $1 ]] ; then
+   echo -e "Usage: ./sec.sh 8.2.8 8.3.1"
+   echo -e "(List the releases that will be tagged.)"
+   exit 1
+ fi
+
+versions=( "$@" )
+
+echo -e "Enter the remote name (blank for origin):"
+read remote
+
+if [ -z $remote ] ; then
+  remote='origin'
 fi
 
-f=$1
+echo -e "\nEnter the number for the SA (e.g. 2017-002):"
+read -e sa
+echo -e "\nEnter the list of contributors, separated by commas (blank for none):"
+read -e contributors
 
-echo -e "Enter the D8 security release number (e.g. 8.1.7):"
-read v
+re="^[ ]*([0-9]*)\.([0-9]*)\.([0-9]*)[ ]*$"
 
-re="^([0-9]*)\.([0-9]*)\.([0-9]*)$"
+# @todo soet it so the oldest tag/branch is first.
+declare -a branches
+declare -a previous
+declare -a next
+declare -a patches
 
-if [[ ! $v =~ $re ]] ; then
-  echo "Invalid version number $v. To use $v, tag the release manually."
-  exit 1
-fi
+for i in "${!versions[@]}"; do
+  v="${versions[$i]}"
 
-base="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
-p="$base.$(( ${BASH_REMATCH[3]} - 1 ))"
-n="$base.$(( ${BASH_REMATCH[3]} + 1 ))"
-branch="$base.x"
+  if [[ ! $v =~ $re ]] ; then
+    echo -e "\nInvalid version number $v. To use $v, tag the release manually."
+    exit 1
+  fi
 
-echo -e "Enter the number for the SA (e.g. 2016-003):"
-read sa
-echo -e "Enter the list of contributors, separated by commas (blank for none):"
-read contributors
+  base=''
+  patch=''
+  last_patch=''
+  branch=''
+  contents=''
+
+  base="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+  previous[$i]="$base.$(( ${BASH_REMATCH[3]} - 1 ))"
+  next[$i]="$base.$(( ${BASH_REMATCH[3]} + 1 ))"
+  branch="$base.x"
+  branches[$i]=$branch
+
+  if [ -z "$patches" ]; then
+    echo -e "\nPath to the $branch patch (tab completion works but not '~'):"
+    read -e patch
+    if [ -z $patch ] ; then
+      echo -e "\nYou must specify at least one patch name:"
+      read -e patch
+    fi
+  else
+    echo -e "\nPath to the $branch patch (blank to cherry-pick the last patch):"
+    read -e patch
+  fi
+
+  if contents="$(cat $patch)" ; then
+    patches[$i]=$contents
+  else
+    if [ -z patch ] ; then
+      patches[$i]=$patches[$i-1]
+    else
+      exit 1
+    fi
+  fi
+
+done
 
 # Commit the fix for the SA.
-git checkout -b "$v"-security "$p"
-if [ ! $? -eq 0 ] ; then
-  echo -e "Error: Could not create a working branch."
-  exit 1
-fi
-git apply --index "$f"
-if [ ! $? -eq 0 ] ; then
-  echo -e "Error: Could not apply the specified patch."
-  exit 1
-fi
 commit_message="SA-CORE-$sa"
 if [ ! -z "$contributors" ] ; then
   commit_message="$commit_message by $contributors"
 fi
-git commit -am "$commit_message" --no-verify
 
-# Update the changelog and version constant.
-grep -q "VERSION = '$p'" core/lib/Drupal.php
-if [ ! $? -eq 0 ] ; then
-  echo -e "Cannot match version constant. The release must be tagged manually."
-  exit 1
-fi
-sed -i '' -e "s/VERSION = '$p'/VERSION = '$v'/1" core/lib/Drupal.php
+# Loop over version list.
+for i in "${!versions[@]}"; do
+  v="${versions[$i]}"
+  p="${previous[$i]}"
+  n="${next[$i]}"
+  f="${patches[$i]}"
+  branch="${branches[$i]}"
+  git checkout -b "$v"-security "$p"
+  if [ ! $? -eq 0 ] ; then
+    echo -e "Error: Could not create a working branch."
+    exit 1
+  fi
 
-git commit -am "Drupal $v" --no-verify
-git tag -a "$v" -m "Drupal $v"
+  echo "$f" | git apply --index -
 
-# Merge the changes back into the main branch.
-git checkout "$branch"
-git merge --no-ff "$v"
+  if [ ! $? -eq 0 ] ; then
+    echo -e "Error: Could not apply the specified patch."
+    exit 1
+  fi
+  git commit -am "$commit_message" --no-verify
 
-git checkout HEAD -- core/lib/Drupal.php
-git commit -m "Merged $v."
-sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
-git add core/lib/Drupal.php
-git commit -am "Back to dev."
+  # Update the changelog and version constant.
+  grep -q "VERSION = '$p'" core/lib/Drupal.php
+  if [ ! $? -eq 0 ] ; then
+    echo -e "Cannot match version constant. The release must be tagged manually."
+    exit 1
+  fi
+  sed -i '' -e "s/VERSION = '$p'/VERSION = '$v'/1" core/lib/Drupal.php
 
-git branch -D "$v"-security
+  git commit -am "Drupal $v" --no-verify
+  git tag -a "$v" -m "Drupal $v"
+
+  # Merge the changes back into the main branch.
+  git checkout "$branch"
+  # We expect a merge conflict here.
+  git merge --no-ff "$v" 1> /dev/null
+
+  # Fix it by checking out the HEAD version and updating that.
+  git checkout HEAD -- core/lib/Drupal.php
+  git commit -m "Merged $v."
+  sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+  git add core/lib/Drupal.php
+  git commit -am "Back to dev."
+
+  git branch -D "$v"-security
+done
+
+branch_list=$(IFS=' ' ; echo ${branches[*]})
+tag_list=$(IFS=' ' ; echo ${versions[*]})
 
 echo -e "To push use:\n"
-echo -e "git push && sleep 10 && git push origin $v"
+echo -e "git push $remote $branch_list && sleep 10 && git push origin $tag_list"
 echo -e "\n"
