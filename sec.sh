@@ -129,5 +129,5 @@ branch_list=$(IFS=' ' ; echo ${branches[*]})
 tag_list=$(IFS=' ' ; echo ${versions[*]})
 
 echo -e "To push use:\n"
-echo -e "git push $remote $branch_list && sleep 10 && git push origin $tag_list"
+echo -e "git push $remote $branch_list && sleep 10 && git push $remote $tag_list"
 echo -e "\n"
