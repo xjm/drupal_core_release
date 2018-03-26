@@ -64,7 +64,7 @@ path or by using the full path to the script.
 
    `git checkout 8.1.x; git pull`
    
-2. Run the script, with the tag(g)s to create as arguments:
+2. Run the script, with the tag(s) to create as arguments:
 
    `/path/to/core_release/sec.sh 8.1.7`
 
