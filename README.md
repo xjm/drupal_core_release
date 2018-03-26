@@ -66,7 +66,7 @@ path or by using the full path to the script.
    
 2. Run the script, with the tag(g)s to create as arguments:
 
-  `/path/to/core_release/sec.sh 8.1.7
+  `/path/to/core_release/sec.sh 8.1.7`
 
   You will be prompted to enter information about the SA and the path(s) to patches for each branch.
 
