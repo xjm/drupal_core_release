@@ -78,7 +78,7 @@ path or by using the full path to the script.
    
    `git diff 8.1.6 8.1.7`
    
-4. Only push your tags and commits using the command the script displays once you
+4. Only push your tags and commits using the command the script displays, and only after you
    have approval from the security team.
 
 Core branching script: `branch.sh`
