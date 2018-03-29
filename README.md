@@ -55,10 +55,10 @@ instructions on creating security releases. Only create security releases in
 collaboration with the security team and do not share any information (including whether
 there will be a release) outside the security team. (See the 
 [security team disclosure policy](https://www.drupal.org/drupal-security-team/security-team-procedures/drupal-security-team-disclosure-policy-for-security)
-for more information.
+for more information.)
 
-Execute this script from your local git repository, either by adding it to your
-path or by using the full path to the script.
+Execute this script from your local git clone of Drupal core, either by adding it to your
+system path or by using the full path to the script.
 
 1. Check out the correct branch and ensure you have the latest changes:
 
