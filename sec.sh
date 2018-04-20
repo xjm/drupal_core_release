@@ -38,7 +38,6 @@ for i in "${!versions[@]}"; do
 
   base=''
   patch=''
-  last_patch=''
   branch=''
   contents=''
 
@@ -51,6 +50,10 @@ for i in "${!versions[@]}"; do
   if [ -z "$patches" ]; then
     echo -e "\nPath to the $branch patch (tab completion works but not '~'):"
     read -e patch
+
+    # This will be empty on the first pass because it is initialized above.
+    # Thereafter it will be whatever was entered for the last branch (based on
+    # input order, not version order).
     if [ -z $patch ] ; then
       echo -e "\nYou must specify at least one patch name:"
       read -e patch
