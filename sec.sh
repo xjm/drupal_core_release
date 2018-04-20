@@ -60,8 +60,9 @@ for i in "${!versions[@]}"; do
     read -e patch
   fi
 
+  # @todo We don't need to load the entire file.
   if contents="$(cat $patch)" ; then
-    patches[$i]=$contents
+    patches[$i]=$patch
   else
     if [ -z patch ] ; then
       patches[$i]=$patches[$i-1]
@@ -91,12 +92,13 @@ for i in "${!versions[@]}"; do
     exit 1
   fi
 
-  echo "$f" | git apply --index -
+  git apply --index "$f"
 
   if [ ! $? -eq 0 ] ; then
-    echo -e "Error: Could not apply the specified patch."
+    echo -e "Error: Could not apply the specified patch $f."
     exit 1
   fi
+
   git commit -am "$commit_message" --no-verify
 
   # Update the changelog and version constant.
