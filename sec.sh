@@ -51,8 +51,6 @@ function includes_file() {
 
 # @param $1
 #   The Drupal 7 version.
-# @param $2
-#   The previous Drupal 7 version.
 function update_changelog() {
   # This assumes the D7 changelog location, because D8 does not maintain a
   # list of releases in a changelog.
@@ -200,7 +198,7 @@ for i in "${!versions[@]}"; do
 
   # Only D7 uses a changelog now.
   if [[ "${major[$i]}" = 7 ]] ; then
-    update_changelog "$version" "$p"
+    update_changelog "$version"
     git add CHANGELOG.txt
   fi
 
