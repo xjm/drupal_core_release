@@ -50,6 +50,21 @@ function includes_file() {
 }
 
 # @param $1
+#   The Drupal 7 version.
+# @param $2
+#   The previous Drupal 7 version.
+function update_changelog() {
+  # This assumes the D7 changelog location, because D8 does not maintain a
+  # list of releases in a changelog.
+  date=$(date +"%Y-%m-%d")
+  changelog="Drupal $1, $date\n------------------------\n- Fixed security issues. See SA-CORE-$sa.\n"
+
+  # @todo The merge later resolves this in a silly way, with this entry above
+  # rather than below the release notes added after the last tag.
+  echo -e "$changelog$(cat CHANGELOG.txt)" > CHANGELOG.txt
+}
+
+# @param $1
 #   The version constant to use.
 # @param $2
 #   The old version constant.
@@ -63,7 +78,6 @@ function update_constant() {
   find=''
   replace=''
   if [[ "$3" = 7 ]] ; then
-    # @todo D7 also needs the CHANGELOG update.
     find="'VERSION', '$2'"
     replace="'VERSION', '$1'"
 
@@ -183,6 +197,12 @@ for i in "${!versions[@]}"; do
 
   # Update the version constant.
   update_constant "$version" "$p" "${major[$i]}"
+
+  # Only D7 uses a changelog now.
+  if [[ "${major[$i]}" = 7 ]] ; then
+    update_changelog "$version" "$p"
+    git add CHANGELOG.txt
+  fi
 
   git commit -am "Drupal $version" --no-verify
   git tag -a "$version" -m "Drupal $version"
