@@ -213,11 +213,11 @@ for i in "${!versions[@]}"; do
   # Fix it by checking out the HEAD version and updating that.
   # @todo This is also version-specific.
   git checkout HEAD -- "$includes_file"
-  git commit -m "Merged $version."
+  git commit -m "Merged $version." --no-verify
   update_constant "$n-dev" "$version-dev" "${major[$i]}"
 #  sed -i '' -e "s/VERSION = '[0-9\.]-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
   git add "$includes_file"
-  git commit -am "Back to dev."
+  git commit -am "Back to dev." --no-verify
 
   git branch -D "$version"-security
 done
