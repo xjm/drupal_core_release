@@ -60,15 +60,15 @@ for more information.)
 Execute this script from your local git clone of Drupal core, either by adding it to your
 system path or by using the full path to the script.
 
-1. Check out the correct branch and ensure you have the latest changes:
+1. Check out the correct branch(es) and ensure you have the latest changes:
 
    `git checkout 8.1.x; git pull`
    
 2. Run the script, with the tag(s) to create as arguments:
 
-   `/path/to/core_release/sec.sh 8.1.7`
+   `/path/to/core_release/sec.sh 8.6.4 8.5.9`
 
-   You will be prompted to enter information about the SA and the path(s) to patches for each branch.
+   You will be prompted to enter information about the SA and the path(s) to patches for each branch. You can tag D7 and D8 releases at the same time with a single command.
 
 3. Make sure the script did the right things:
 
