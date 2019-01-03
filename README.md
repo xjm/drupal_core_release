@@ -94,8 +94,6 @@ Post generation script: `posts.sh`
 
 With each command, markup for the post is printed to `stdout` and copied to the clipboard with `pbcopy`.
 
-`-g` Generate g.d.o/core announcement.
-
 `-r` Generate release notes.
 
 `-f` Generate frontpage post.
@@ -104,38 +102,14 @@ With each command, markup for the post is printed to `stdout` and copied to the 
 
 `-m` Minor release, beta, or RC instead of a patch window.
 
-`-d` Override dates for a release window announcement.
-
-### Release window announcements for g.d.o/core
-
-Post these announcements a few days in advance of the release window.
-
-#### `./posts.sh -g`
-
-Generate a post for http://groups.drupal.org/core about an upcoming patch release window. You will be promped to enter the release number for Drupal 8 (required) and Drupal 7 (optional).
-
-The normal release window dates are used for the next upcoming patch release window. See: https://www.drupal.org/core/release-cycle-overview#dates
-
-#### `./posts.sh -g -d`
-
-Override one or more release window dates for the upcoming post (this patch release window, the following security release window, or the following patch release window).
-
-#### `./posts.sh -g -s`
-
-Generate a g.d.o/core post for an upcoming security release window instead of a patch release window.
-
-#### `./posts.sh -g -s -d`
-
-Generate a g.d.o/core post for an upcoming security release window instead of a patch release window, overriding dates.
-
 ### Release notes (Drupal 8 only)
 
 The release notes automatically incorporate lists of issues in `rn_issues.txt` if it is available. To generate this with the [Core issue metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) sandbox:
 
 1. Update `src/triage/QueryBuilder.php` in the metrics project as needed.
-2. Execute the query set on staging: 
+2. Execute the query set on staging:
    `bash build_run_queries.sh core_release`
-3. Run the PHP script provided in the core metrics project to build the release notes and place it within the root of this project: 
+3. Run the PHP script provided in the core metrics project to build the release notes and place it within the root of this project:
    `php /path/to/core_metrics/core_release/core_release.php > ./rn_issues.txt`
 
 #### `./posts.sh -r`

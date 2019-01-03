@@ -1,9 +1,0 @@
-Drupal core security release window on NEXT_SECURITY, YEAR
-
-The monthly security release window for Drupal 8 and 7 core will take place on NEXT_SECURITY.
-
-This does not mean that a Drupal core security release will necessarily take place on that date for any of the Drupal 8 or 7 branches, only that you should watch for one (and be ready to update your Drupal sites in the event that the Drupal security team decides to make a release).
-
-There will be no bug fix or stable feature release on this date. The next window for a Drupal core patch (bug fix) release for all branches is NEXT_PATCH. The next scheduled minor (feature) release for Drupal 8 will be on MINOR.
-
-For more information on Drupal core release windows, see the documentation on <a href="http://drupal.org/documentation/version-info#when">release timing</a> and <a href="http://drupal.org/node/1173280">security releases</a>, and the <a href="http://groups.drupal.org/node/260803">discussion</a> that led to this policy being implemented.
