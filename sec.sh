@@ -51,18 +51,31 @@ function includes_file() {
 
 # @param $1
 #   The Drupal 7 version.
-function update_changelog() {
+# @param $2
+#   The old version constant.
+function insert_changelog_entry() {
   # This assumes the D7 changelog location, because D8 does not maintain a
   # list of releases in a changelog.
+  find="Drupal $2, "
   date=$(date +"%Y-%m-%d")
-  changelog="Drupal $1, $date\n-----------------------\n- Fixed security issues:\n"
+  changelog="Drupal $1, $date\\
+-----------------------\\
+- Fixed security issues:\\
+"
+  # @todo This is relying on a global.
   for advisory in "${advisories[@]}" ; do
-    changelog="$changelog   - $advisory\n"
+    changelog="$changelog   - $advisory\\
+"
   done
+  changelog="$changelog\\
+$find"
 
-  # @todo The merge later resolves this in a silly way, with this entry above
-  # rather than below the release notes added after the last tag.
-  echo -e "$changelog\n$(cat CHANGELOG.txt)" > CHANGELOG.txt
+  grep -q "$find" CHANGELOG.txt
+  if [ ! $? -eq 0 ] ; then
+    echo -e "Cannot match version constant $2 in the CHANGELOG. The CHANGELOG must be corrected manually."
+    exit 1
+  fi
+  sed -i '' -e "s/$find/$changelog/1" CHANGELOG.txt
 }
 
 # @param $1
@@ -227,7 +240,7 @@ for i in "${!versions[@]}"; do
 
   # Only D7 uses a changelog now.
   if [[ "${major[$i]}" = 7 ]] ; then
-    update_changelog "$version"
+    insert_changelog_entry "$version" "$p"
     git add CHANGELOG.txt
   fi
 
@@ -241,6 +254,12 @@ for i in "${!versions[@]}"; do
 
   # Fix it by checking out the HEAD version and updating that.
   git checkout HEAD -- "$includes_file"
+  # For D7 only, merge the changelog entry into HEAD manually.
+  if [[ "${major[$i]}" = 7 ]] ; then
+    git checkout HEAD -- CHANGELOG.txt
+    insert_changelog_entry "$version" "$p"
+    git add CHANGELOG.txt
+  fi
   git commit -m "Merged $version." --no-verify
   update_constant "$n-dev" "$version-dev" "${major[$i]}"
   git add "$includes_file"
