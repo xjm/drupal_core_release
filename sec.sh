@@ -55,11 +55,14 @@ function update_changelog() {
   # This assumes the D7 changelog location, because D8 does not maintain a
   # list of releases in a changelog.
   date=$(date +"%Y-%m-%d")
-  changelog="Drupal $1, $date\n------------------------\n- Fixed security issues. See SA-CORE-$sa.\n"
+  changelog="Drupal $1, $date\n-----------------------\n- Fixed security issues:\n"
+  for advisory in "${advisories[@]}" ; do
+    changelog="$changelog   - $advisory\n"
+  done
 
   # @todo The merge later resolves this in a silly way, with this entry above
   # rather than below the release notes added after the last tag.
-  echo -e "$changelog$(cat CHANGELOG.txt)" > CHANGELOG.txt
+  echo -e "$changelog\n$(cat CHANGELOG.txt)" > CHANGELOG.txt
 }
 
 # @param $1
@@ -101,80 +104,96 @@ if [ -z $remote ] ; then
   remote='origin'
 fi
 
-echo -e "\nEnter the number for the SA (e.g. 2018-002):"
-read -e sa
-echo -e "\nEnter the list of contributors, separated by commas (blank for none):"
-read -e contributors
+echo -e "How many advisories will be included in the release?"
+read advisory_count
 
-# @todo soet it so the oldest tag/branch is first.
-declare -a base
-declare -a major
-declare -a branches
-declare -a previous
-declare -a next
-declare -a patches
+echo -e "First SA number in this release (e.g. '3' if SA-CORE-2019-003 is next):"
+read first_advisory
 
-for i in "${!versions[@]}"; do
-  v="${versions[$i]}"
+year=$(date +%Y)
+declare -a advisories
+declare -a advisory_contributors
 
-  validate_version "$v" || ! $? -eq 0
-
-  if [[ -z ${BASH_REMATCH[4]} ]] ; then
-    major[$i]="${BASH_REMATCH[1]}"
-    base[$i]="${BASH_REMATCH[1]}"
-    previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} - 1 ))"
-    next[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} + 1 ))"
-  else
-    major[$i]="${BASH_REMATCH[1]}"
-    base[$i]="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
-    previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} - 1 ))"
-    next[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} + 1 ))"
-  fi
-
-  branches[$i]="${base[$i]}.x"
-
-  patch=''
-  if [ -z "$patches" ]; then
-    echo -e "\nPath to the ${branches[$i]} patch (tab completion works but not '~'):"
-    read -e patch
-
-    # This will be empty on the first pass because it is initialized above.
-    # Thereafter it will be whatever was entered for the last branch (based on
-    # input order, not version order).
-    if [ -z $patch ] ; then
-      echo -e "\nYou must specify at least one patch name:"
-      read -e patch
-    fi
-  else
-    echo -e "\nPath to the ${branches[$i]} patch (blank to use the last patch):"
-    read -e patch
-  fi
-
-  if [[ -s "$patch" ]] ; then
-    patches[$i]=$patch
-  else
-    if [[ -z "$patch" ]] ; then
-      patches[$i]="${patches[$i-1]}"
-    else
-      echo -e "\nNo valid filename was supplied."
-      exit 1
-    fi
-  fi
-
+for i in $( eval echo {1..$advisory_count} )
+do
+  advisory_number=$(( $i + $first_advisory - 1 ))
+  advisory_name=$(printf '%03d' $advisory_number)
+  advisories[$i]="SA-CORE-$year-$advisory_name"
 done
 
-# Prepare the commit message
-commit_message="SA-CORE-$sa"
-if [ ! -z "$contributors" ] ; then
-  commit_message="$commit_message by $contributors"
-fi
+for sa in "${!advisories[@]}"
+do
+  # @todo soet it so the oldest tag/branch is first.
+  declare -a base
+  declare -a major
+  declare -a branches
+  declare -a previous
+  declare -a next
+
+  echo -e "\n\n==== ${advisories[$sa]} ===="
+
+  for i in "${!versions[@]}"; do
+    v="${versions[$i]}"
+
+    validate_version "$v" || ! $? -eq 0
+
+    if [[ -z ${BASH_REMATCH[4]} ]] ; then
+      major[$i]="${BASH_REMATCH[1]}"
+      base[$i]="${BASH_REMATCH[1]}"
+      previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} - 1 ))"
+      next[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} + 1 ))"
+    else
+      major[$i]="${BASH_REMATCH[1]}"
+      base[$i]="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+      previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} - 1 ))"
+      next[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} + 1 ))"
+    fi
+
+    branches[$i]="${base[$i]}.x"
+
+    patch=''
+    if [[ $i -eq 0 ]]; then
+      echo -e "\nPath to the ${branches[$i]} patch for ${advisories[$sa]} (tab completion works but not '~'):"
+      read -e patch
+
+      # This will be empty on the first pass because it is initialized above.
+      # Thereafter it will be whatever was entered for the last branch (based
+      # on input order, not version order).
+      if [ -z $patch ] ; then
+        echo -e "\nYou must specify at least one patch name:"
+        read -e patch
+      fi
+    else
+      echo -e "\nPath to the ${branches[$i]} patch for ${advisories[$sa]} (blank to use the last patch):"
+      read -e patch
+    fi
+
+    if [[ -s "$patch" ]] ; then
+      # Use indirect expansion, because bash 3 doesn't support associative
+      # arrays.
+      declare patches_${sa}_${i}="$patch"
+    else
+      if [[ -z "$patch" ]] ; then
+        last_index=$(( $i - 1 ))
+        last_patch=patches_${sa}_${last_index}
+        declare patches_${sa}_${i}=${!last_patch}
+      else
+        echo -e "\nNo valid filename was supplied."
+        exit 1
+      fi
+    fi
+  done
+
+  echo -e "\nEnter the list of contributors for ${advisories[$sa]}, separated by commas (blank for none):"
+  read -e contributors
+  advisory_contributors[$sa]=$contributors
+done
 
 # Loop over version list.
 for i in "${!versions[@]}"; do
   version="${versions[$i]}"
   p="${previous[$i]}"
   n="${next[$i]}"
-  f="${patches[$i]}"
   branch="${branches[$i]}"
   includes_file "${major[$i]}" || ! $? -eq 0
 
@@ -184,14 +203,24 @@ for i in "${!versions[@]}"; do
     exit 1
   fi
 
-  git apply --index "$f"
+  for sa in "${!advisories[@]}"; do
+    varname=patches_${sa}_${i}
+    f=${!varname}
+    git apply --index "$f"
 
-  if [ ! $? -eq 0 ] ; then
-    echo -e "Error: Could not apply the specified patch $f."
-    exit 1
-  fi
+    if [ ! $? -eq 0 ] ; then
+      echo -e "Error: Could not apply the specified patch $f."
+      exit 1
+    fi
 
-  git commit -am "$commit_message" --no-verify
+    # Prepare the commit message
+    commit_message="${advisories[$sa]}"
+    if [ ! -z "${advisory_contributors[$sa]}" ] ; then
+      commit_message="$commit_message by ${advisory_contributors[$sa]}"
+    fi
+
+    git commit -am "$commit_message" --no-verify
+  done
 
   # Update the version constant.
   update_constant "$version" "$p" "${major[$i]}"
@@ -211,11 +240,9 @@ for i in "${!versions[@]}"; do
   git merge --no-ff "$version" 1> /dev/null
 
   # Fix it by checking out the HEAD version and updating that.
-  # @todo This is also version-specific.
   git checkout HEAD -- "$includes_file"
   git commit -m "Merged $version." --no-verify
   update_constant "$n-dev" "$version-dev" "${major[$i]}"
-#  sed -i '' -e "s/VERSION = '[0-9\.]-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
   git add "$includes_file"
   git commit -am "Back to dev." --no-verify
 
