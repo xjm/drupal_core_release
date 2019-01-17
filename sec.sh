@@ -219,6 +219,15 @@ for i in "${!versions[@]}"; do
   for sa in "${!advisories[@]}"; do
     varname=patches_${sa}_${i}
     f=${!varname}
+    # Check that the patch doesn't update Drupal.php or bootstrap.inc,
+    # because our strategy for resolving the version constant merge
+    # conflict won't work.
+    grep_output="$(grep $includes_file $patch)"
+    if [ ! -z "$grep_output" ] ; then
+      echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
+      exit 1
+    fi
+
     git apply --index "$f"
 
     if [ ! $? -eq 0 ] ; then
