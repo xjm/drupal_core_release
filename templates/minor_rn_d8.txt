@@ -11,17 +11,17 @@ SEE_ALSO
 Site update and module owners planning to update to this release should take note of the following important issues:
 
 <ul>
-<li>@todo List any issues in: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=VERSION8+release+notes</li>
-<li>@todo List any noteworthy CRs in: https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8
+<li>@todo List any issues in: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&issue_tags_op=%3D&issue_tags=VERSION8+release+notes Use the release notes snippet from the IS if one is provided. If there is no release notes snippet, comment on the issue, tag it "Needs release note", and ping the issue contributors for them to write one.</li>
+<li>@todo List any noteworthy CRs in: https://www.drupal.org/list-changes/drupal/published?keywords_description=&to_branch=BRANCH8 Tag them with the version release notes tag and ensure they have a release notes snippet.</li>
 </ul>
 
-<h3>Critical bug fixes</h3>
+<h3>Important bug fixes</h3>
 
 The following critical issues are fixed in Drupal VERSION8:
 
 <ul>
-<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=NEXTBRANCH-dev.</li>
-<li>List noteworthy regressions resolved in this release.
+<li>@todo List resolved criticals: https://www.drupal.org/project/issues/search/drupal?project_issue_followers=&status%5B%5D=2&status%5B%5D=7&priorities%5B%5D=400&version%5B%5D=NEXTBRANCH-dev. Be sure not to include criticals that were backported -- sometimes the metadata on the issue is wrong.</li>
+<li>List noteworthy regressions resolved in this release.</li>
 </ul>
 
 <h3 id="known-issues">Known issues</h3>
