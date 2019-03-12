@@ -50,7 +50,7 @@ fi
 # No release numbers are needed for patch release window announcements.
 # @todo Add input validation.
 if [[ $f || $r || ! $s ]] ; then
-    echo -e "Enter the D8 release number:"
+    echo -e "Enter the D8 release number (use e.g. '8.7.0' for any pre-8.7.0 milestone):"
     read VERSION8
     if [ ! $r ] ; then
         echo -e "Enter the D7 release number (blank for none):"
