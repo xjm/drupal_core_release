@@ -31,6 +31,9 @@ else
   read n
 fi
 
+rm -rf vendor
+composer install
+
 grep -q "[0-9\.]*-dev" core/lib/Drupal.php
 if [ ! $? -eq 0 ] ; then
   echo -e "Cannot match version constant. The release must be tagged manually."
