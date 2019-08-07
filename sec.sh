@@ -202,6 +202,8 @@ do
   advisory_contributors[$sa]=$contributors
 done
 
+  echo -e "\n\n==== Beginning tagging ====\n"
+
 # Loop over version list.
 for i in "${!versions[@]}"; do
   version="${versions[$i]}"
@@ -216,9 +218,13 @@ for i in "${!versions[@]}"; do
     exit 1
   fi
 
+  echo -e "\nWorking branch created.\n"
   for sa in "${!advisories[@]}"; do
     varname=patches_${sa}_${i}
     f=${!varname}
+
+    echo -e "\nAttempting to apply patch $f...\n"
+
     # Check that the patch doesn't update Drupal.php or bootstrap.inc,
     # because our strategy for resolving the version constant merge
     # conflict won't work.
@@ -227,6 +233,8 @@ for i in "${!versions[@]}"; do
       echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
       exit 1
     fi
+
+    echo -e "\nPast the grep...\n"
 
     git apply --index "$f"
 
