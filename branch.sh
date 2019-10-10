@@ -17,8 +17,8 @@ composer install
 git checkout -b "$b"
 # @todo Make it fail if the following don't make changes.
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
-sed -i '' -e "s/\"drupal\/core\": \"\^$cp\"/\"drupal\/core\": \"\^$cn\"/1" composer.json
 composer self-update
+composer update drupal/core
 composer update --lock
 git commit -am "Drupal $b-dev"
 
