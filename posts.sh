@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Date of the next scheduled minor and current D8 branch; update as needed.
-BRANCH8="8.6.x"
-NEXTBRANCH="8.7.x"
+BRANCH8="8.7.x"
+NEXTBRANCH="8.8.x"
 
 # Get the script directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
