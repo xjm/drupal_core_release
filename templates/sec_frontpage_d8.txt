@@ -2,7 +2,7 @@ Drupal VERSION8 released
 
 <p style="position: inherit;">Drupal VERSION8, a maintenance release which contains fixes for <strong>security vulnerabilities</strong>, is now available for download. <!--break-->See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">Drupal VERSION8</a> release notes for further information.</p>
 
-<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a></div>
+<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;">Download Drupal VERSION8</a></div>
 
 <p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in this release. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>.
 

@@ -2,8 +2,8 @@ Drupal VERSION8 and VERSION7 released
 
 <p style="position: inherit;">Drupal VERSION8 and Drupal VERSION7, maintenance releases which contain fixes for <strong>security vulnerabilities</strong>, are now available for download. <!--break-->See the <a href="https://www.drupal.org/project/drupal/releases/VERSION8">Drupal VERSION8</a> and <a href="https://www.drupal.org/project/drupal/releases/VERSION7">Drupal VERSION7</a> release notes for further information.</p>
 
-<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;"><span>Download Drupal VERSION8</span></a><br />
-<a href="http://ftp.drupal.org/files/projects/drupal-VERSION7.tar.gz" class="link-button"><span>Download Drupal VERSION7</span></a></div>
+<div  style="text align: center; margin: 2em;"><a href="http://ftp.drupal.org/files/projects/drupal-VERSION8.tar.gz" class="link-button" style="margin: 0 0 0.6em 0;">Download Drupal VERSION8</a><br />
+<a href="http://ftp.drupal.org/files/projects/drupal-VERSION7.tar.gz" class="link-button">Download Drupal VERSION7</a></div>
 
 <p style="position: inherit;"><strong><a href="/upgrade/">Upgrading</a> your existing Drupal 8 and 7 sites is strongly recommended.</strong> There are no new features nor non-security-related bug fixes in these releases. For more information about the Drupal BRANCH8 release series, consult the <a href="https://www.drupal.org/8">Drupal 8 overview</a>. More information on the Drupal 7.x release series can be found in the <a href="https://www.drupal.org/drupal-7.0">Drupal 7.0 release announcement</a>.</p>
 
