@@ -31,11 +31,13 @@ else
   read n
 fi
 
-rm -rf vendor
-composer install
+# Ideally we dont need this, but its added safety
+echo -e "Enter the current branch (e.g. 8.8.x or 9.1.x):"
+read b
 
-# It is important to run the generators
-COMPOSER_ROOT_VERSION="$n" composer update --lock
+echo "Composer installing"
+rm -rf vendor
+composer install --no-progress --no-suggest -n -q
 
 grep -q "[0-9\.]*-dev" core/lib/Drupal.php
 if [ ! $? -eq 0 ] ; then
@@ -44,10 +46,16 @@ if [ ! $? -eq 0 ] ; then
 fi
 
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" core/lib/Drupal.php
+
+# Update the version strings in the metapackages
+echo "Updating metapackage versions to ${v} and tagging."
+COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
 git commit -am "Drupal $v"
 git tag -a "$v" -m "Drupal $v"
 
 sed -i '' -e "s/VERSION = '$v'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+echo "Restoring metapackage versions back to ${b}-dev"
+COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
 git commit -am "Back to dev."
 
 if hash pbcopy 2>/dev/null; then
