@@ -252,6 +252,12 @@ for i in "${!versions[@]}"; do
     git commit -am "$commit_message" --no-verify
   done
 
+  # If we're on D8 or higher, perform a clean Composer install.
+  if [[ "${major[$i]}" > 7 ]] ; then
+    rm -rf vendor
+    composer install --no-progress --no-suggest -n -q
+  fi
+
   # Update the version constant.
   update_constant "$version" "$p" "${major[$i]}"
 
@@ -259,14 +265,23 @@ for i in "${!versions[@]}"; do
   if [[ "${major[$i]}" = 7 ]] ; then
     insert_changelog_entry "$version" "$p"
     git add CHANGELOG.txt
+  # D8 and higher need to have the lock file updated prior to tagging.
+  else
+    echo "\nUpdating metapackage versions to ${version}...\n"
+    COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
   fi
+
+  echo "\nTagging ${version}...\n"
 
   git commit -am "Drupal $version" --no-verify
   git tag -a "$version" -m "Drupal $version"
 
   # Merge the changes back into the main branch.
   git checkout "$branch"
+
   # We expect a merge conflict here.
+  # @todo Following https://www.drupal.org/project/drupal/issues/3090906 there
+  #   will be additional merge conflicts to resolve here.
   git merge --no-ff "$version" 1> /dev/null
 
   # Fix it by checking out the HEAD version and updating that.
@@ -276,8 +291,13 @@ for i in "${!versions[@]}"; do
     git checkout HEAD -- CHANGELOG.txt
     insert_changelog_entry "$version" "$p"
     git add CHANGELOG.txt
+  # For D8 and higher, fix up the lock file again.
+  else
+    echo "\nRe-updating metapackage versions for the dev branch...\n"
+    COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
   fi
-  git commit -m "Merged $version." --no-verify
+
+  git commit -am "Merged $version." --no-verify
   update_constant "$n-dev" "$version-dev" "${major[$i]}"
   git add "$includes_file"
   git commit -am "Back to dev." --no-verify
