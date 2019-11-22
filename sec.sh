@@ -267,11 +267,11 @@ for i in "${!versions[@]}"; do
     git add CHANGELOG.txt
   # D8 and higher need to have the lock file updated prior to tagging.
   else
-    echo "\nUpdating metapackage versions to ${version}...\n"
+    echo -e "\nUpdating metapackage versions to ${version}...\n"
     COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
   fi
 
-  echo "\nTagging ${version}...\n"
+  echo -e "\nTagging ${version}...\n"
 
   git commit -am "Drupal $version" --no-verify
   git tag -a "$version" -m "Drupal $version"
@@ -293,7 +293,7 @@ for i in "${!versions[@]}"; do
     git add CHANGELOG.txt
   # For D8 and higher, fix up the lock file again.
   else
-    echo "\nRe-updating metapackage versions for the dev branch...\n"
+    echo -e "\nRe-updating metapackage versions for the dev branch...\n"
     COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
   fi
 
