@@ -21,19 +21,21 @@ if [[ $v =~ $re ]] ; then
     n=$calc_n
   fi
   # Ideally we dont need this, but it's added safety.
-  echo -e "Enter the current branch (blank for $calc_b):"
-  read b
-    if [ -z "$b" ] ; then
-      b=$calc_b
-    fi
+  # Well, it also makes the script not work for pre-release milestones, so comment it
+  # out for now.
+  # echo -e "Enter the current branch (blank for $calc_b):"
+  # read b
+  #  if [ -z "$b" ] ; then
+  #    b=$calc_b
+  #  fi
 else
   echo -e "Enter the previous D8 release (e.g. 8.0.5 or 8.1.0-beta1):"
   read p
   echo -e "Enter the next stable release (e.g. 8.0.7 or 8.1.0):"
   read n
   # Ideally we dont need this, but it's added safety.
-  echo -e "Enter the current branch (e.g. 8.8.x or 9.1.x):"
-  read b
+  # echo -e "Enter the current branch (e.g. 8.8.x or 9.1.x):"
+  # read b
 fi
 
 echo "Composer installing."
@@ -50,13 +52,19 @@ sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" core/lib/Drupal.php
 
 # Update the version strings in the metapackages
 echo "Updating metapackage versions to ${v} and tagging."
-COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
+
+# COMPOSER_ROOT_VERSION causes an error when building metapackages for an RC.
+# COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
+composer update --lock --no-progress --no-suggest -n -q
 git commit -am "Drupal $v"
 git tag -a "$v" -m "Drupal $v"
 
 sed -i '' -e "s/VERSION = '$v'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 echo "Restoring metapackage versions back to ${b}-dev"
-COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
+
+# COMPOSER_ROOT_VERSION causes an error when building metapackages for an RC.
+# COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
+composer update --lock --no-progress --no-suggest -n -q
 git commit -am "Back to dev."
 
 if hash pbcopy 2>/dev/null; then
