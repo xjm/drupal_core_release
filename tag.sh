@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 echo -e "Enter the D8 release number (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
 
@@ -53,19 +55,20 @@ sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" core/lib/Drupal.php
 # Update the version strings in the metapackages
 echo "Updating metapackage versions to ${v} and tagging."
 
-# COMPOSER_ROOT_VERSION causes an error when building metapackages for an RC.
-# COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
-composer update --lock --no-progress --no-suggest -n -q
+# Update the path repository versions in the lock file
+COMPOSER_ROOT_VERSION="$v" composer update drupal/core*
+
 git commit -am "Drupal $v"
 git tag -a "$v" -m "Drupal $v"
 
-sed -i '' -e "s/VERSION = '$v'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+# Revert the composer.lock change in the last commit
+git revert HEAD --no-edit
+
+# Put the version back to dev
+sed -i '' -e "s/VERSION = '[^']*'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 echo "Restoring metapackage versions back to ${b}-dev"
 
-# COMPOSER_ROOT_VERSION causes an error when building metapackages for an RC.
-# COMPOSER_ROOT_VERSION="${b}-dev" composer update --lock --no-progress --no-suggest -n -q
-composer update --lock --no-progress --no-suggest -n -q
-git commit -am "Back to dev."
+git commit --amend -am "Back to dev."
 
 if hash pbcopy 2>/dev/null; then
     drush rn "$p" `git rev-parse --abbrev-ref HEAD` | pbcopy
