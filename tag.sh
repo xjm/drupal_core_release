@@ -65,7 +65,7 @@ git tag -a "$v" -m "Drupal $v"
 git revert HEAD --no-edit
 
 # Put the version back to dev
-sed -i '' -e "s/VERSION = '$v'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+sed -i '' -e "s/VERSION = '[^']*'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 echo "Restoring metapackage versions back to ${b}-dev"
 
 git commit --amend -am "Back to dev."
