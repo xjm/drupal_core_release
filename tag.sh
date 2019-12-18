@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -ex
-
 echo -e "Enter the D8 release number (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
 
