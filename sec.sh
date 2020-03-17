@@ -267,8 +267,8 @@ for i in "${!versions[@]}"; do
     git add CHANGELOG.txt
   # D8 and higher need to have the lock file updated prior to tagging.
   else
-    echo -e "\nUpdating metapackage versions to ${version}...\n"
-    COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
+    echo -e "\nUpdating metapackage versions and lock file to ${version}...\n"
+    COMPOSER_ROOT_VERSION="$version" composer update drupal/core*
   fi
 
   echo -e "\nTagging ${version}...\n"
@@ -286,6 +286,7 @@ for i in "${!versions[@]}"; do
 
   # Fix it by checking out the HEAD version and updating that.
   git checkout HEAD -- "$includes_file"
+
   # For D7 only, merge the changelog entry into HEAD manually.
   if [[ "${major[$i]}" = 7 ]] ; then
     git checkout HEAD -- CHANGELOG.txt
@@ -293,8 +294,10 @@ for i in "${!versions[@]}"; do
     git add CHANGELOG.txt
   # For D8 and higher, fix up the lock file again.
   else
-    echo -e "\nRe-updating metapackage versions for the dev branch...\n"
-    COMPOSER_ROOT_VERSION="${branch}-dev" composer update --lock --no-progress --no-suggest -n -q
+    echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
+
+    devbranch="$branch""-dev"
+    COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
   fi
 
   git commit -am "Merged $version." --no-verify
