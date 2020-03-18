@@ -294,10 +294,12 @@ for i in "${!versions[@]}"; do
     git add CHANGELOG.txt
   # For D8 and higher, fix up the lock file again.
   else
+    git checkout HEAD -- composer.lock
     echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
 
     devbranch="$branch""-dev"
     COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
+
   fi
 
   git commit -am "Merged $version." --no-verify
