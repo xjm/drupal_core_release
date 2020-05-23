@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# @param $1
+#   Replacement pattern
+# @param $2
+#   File path.
+function portable_sed() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' -e "$1" "$2"
+  else
+    sed -i -e "$1" "$2"
+  fi
+}
+
 echo -e "Enter the D8 release number (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
 
@@ -48,7 +60,7 @@ if [ ! $? -eq 0 ] ; then
   exit 1
 fi
 
-sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" core/lib/Drupal.php
+portable_sed "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" "core/lib/Drupal.php"
 
 # Update the version strings in the metapackages
 echo "Updating metapackage versions to ${v} and tagging."

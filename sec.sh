@@ -6,6 +6,19 @@
    exit 1
  fi
 
+
+# @param $1
+#   Replacement pattern
+# @param $2
+#   File path.
+function portable_sed() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' -e "$1" "$2"
+  else
+    sed -i -e "$1" "$2"
+  fi
+}
+
 # @param $1
 #   Version string.
 function validate_version() {
@@ -75,7 +88,7 @@ $find"
     echo -e "Cannot match version constant $2 in the CHANGELOG. The CHANGELOG must be corrected manually."
     exit 1
   fi
-  sed -i '' -e "s/$find/$changelog/1" CHANGELOG.txt
+  portable_sed "s/$find/$changelog/1" "CHANGELOG.txt"
 }
 
 # @param $1
@@ -105,7 +118,7 @@ function update_constant() {
     echo -e "Cannot match version constant $2. The release must be tagged manually."
     exit 1
   fi
-  sed -i '' -e "s/$find/$replace/1" "$includes_file"
+  portable_sed "s/$find/$replace/1" "$includes_file"
 }
 
 versions=( "$@" )
