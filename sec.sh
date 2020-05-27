@@ -96,7 +96,7 @@ $find"
     dev="Drupal 7.xx, xxxx-xx-xx \(development version\)
 -----------------------
 \n"
-    perl -0777 -i -p -e "s/$dev//g" CHANGELOG.txt
+    perl -i -p0e "s/$dev//g" CHANGELOG.txt
   fi
 }
 
