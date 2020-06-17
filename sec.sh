@@ -66,6 +66,8 @@ function includes_file() {
 #   The Drupal 7 version.
 # @param $2
 #   The old version constant.
+# @param $3
+#   Whether to remove the 'development version' lines.
 function insert_changelog_entry() {
   # This assumes the D7 changelog location, because D8 does not maintain a
   # list of releases in a changelog.
@@ -89,6 +91,13 @@ $find"
     exit 1
   fi
   portable_sed "s/$find/$changelog/1" "CHANGELOG.txt"
+
+  if [ "$3" = true ] ; then
+    dev="Drupal 7.xx, xxxx-xx-xx \(development version\)
+-----------------------
+\n"
+    perl -i -p0e "s/$dev//g" CHANGELOG.txt
+  fi
 }
 
 # @param $1
@@ -276,7 +285,7 @@ for i in "${!versions[@]}"; do
 
   # Only D7 uses a changelog now.
   if [[ "${major[$i]}" = 7 ]] ; then
-    insert_changelog_entry "$version" "$p"
+    insert_changelog_entry "$version" "$p" true
     git add CHANGELOG.txt
   # D8 and higher need to have the lock file updated prior to tagging.
   else
@@ -303,7 +312,7 @@ for i in "${!versions[@]}"; do
   # For D7 only, merge the changelog entry into HEAD manually.
   if [[ "${major[$i]}" = 7 ]] ; then
     git checkout HEAD -- CHANGELOG.txt
-    insert_changelog_entry "$version" "$p"
+    insert_changelog_entry "$version" "$p" false
     git add CHANGELOG.txt
   # For D8 and higher, fix up the lock file again.
   else
