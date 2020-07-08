@@ -12,7 +12,7 @@ function portable_sed() {
   fi
 }
 
-echo -e "Enter the D8 release number (e.g. 8.0.6 or 8.1.0-beta2):"
+echo -e "Enter the release version (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
 
 re="^([0-9]*)\.([0-9]*)\.([0-9]*)$"
@@ -22,7 +22,7 @@ if [[ $v =~ $re ]] ; then
   calc_n="$base.$(( ${BASH_REMATCH[3]} + 1 ))"
   calc_p="$base.$(( ${BASH_REMATCH[3]} - 1 ))"
   calc_b="$base.x"
-  echo -e "Enter the previous D8 release (blank for $calc_p):"
+  echo -e "Enter the previous release version (blank for $calc_p):"
   read p
   if [ -z "$p" ] ; then
     p=$calc_p
@@ -41,7 +41,7 @@ if [[ $v =~ $re ]] ; then
   #    b=$calc_b
   #  fi
 else
-  echo -e "Enter the previous D8 release (e.g. 8.0.5 or 8.1.0-beta1):"
+  echo -e "Enter the previous release version (e.g. 8.0.5 or 8.1.0-beta1):"
   read p
   echo -e "Enter the next stable release (e.g. 8.0.7 or 8.1.0):"
   read n
@@ -80,11 +80,17 @@ echo "Restoring metapackage versions back to ${b}-dev"
 
 git commit --amend -am "Back to dev."
 
+if hash drush 2>/dev/null; then
+    notes="$(drush rn $p $v)"
+else
+    notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' ${v}^...${p} ) \n\n</ul>\n\n"
+fi
+
 if hash pbcopy 2>/dev/null; then
-    drush rn "$p" `git rev-parse --abbrev-ref HEAD` | pbcopy
+    echo -e "$notes" | pbcopy
     echo -e "\n** Your releases notes have been copied to the clipboard. **\n"
 else
-    drush rn "$p" `git rev-parse --abbrev-ref HEAD`
+    echo -e "$notes"
 fi
 echo -e "To push use:\n"
 echo -e "git push && sleep 10 && git push origin $v"
