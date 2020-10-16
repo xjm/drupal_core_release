@@ -18,8 +18,7 @@ git checkout -b "$b"
 # @todo Make it fail if the following don't make changes.
 sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
 composer self-update
-composer update drupal/core
-composer update --lock
+COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core*
 git commit -am "Drupal $b-dev"
 
 
