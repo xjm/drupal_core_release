@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# @param $1
-#   Replacement pattern
-# @param $2
-#   File path.
-function portable_sed() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    sed -i '' -e "$1" "$2"
-  else
-    sed -i -e "$1" "$2"
-  fi
-}
-
 echo -e "Enter the release version (e.g. 8.0.6 or 8.1.0-beta2):"
 read v
 
@@ -60,7 +48,7 @@ if [ ! $? -eq 0 ] ; then
   exit 1
 fi
 
-portable_sed "s/VERSION = '[0-9\.]*-dev'/VERSION = '$v'/1" "core/lib/Drupal.php"
+php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$v');" 
 
 # Update the version strings in the metapackages
 echo "Updating metapackage versions to ${v} and tagging."
@@ -75,7 +63,8 @@ git tag -a "$v" -m "Drupal $v"
 git revert HEAD --no-edit
 
 # Put the version back to dev
-sed -i '' -e "s/VERSION = '[^']*'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$b');"
+ 
 echo "Restoring metapackage versions back to ${b}-dev"
 
 git commit --amend -am "Back to dev."
