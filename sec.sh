@@ -253,13 +253,15 @@ for i in "${!versions[@]}"; do
     # Check that the patch doesn't update Drupal.php or bootstrap.inc,
     # because our strategy for resolving the version constant merge
     # conflict won't work.
-    grep_output="$(grep $includes_file $patch)"
-    if [ ! -z "$grep_output" ] ; then
-      echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
-      exit 1
-    fi
+#    grep_output="$(grep $includes_file $patch)"
+#    echo -e "\nPast the grep call...\n"
 
-    echo -e "\nPast the grep...\n"
+#    if [ ! -z "$grep_output" ] ; then
+#      echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
+#      exit 1
+#    fi
+
+    echo -e "\nPast the grep exit condition...\n"
 
     git apply --index "$f"
 
