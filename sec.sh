@@ -133,6 +133,24 @@ function update_constant() {
   portable_sed "s/$find/$replace/1" "$includes_file"
 }
 
+
+# @param $1
+#   The Drupal version to set.
+# @param $2
+#   The previous version.
+# @param $3
+#   The major version.
+# @param $4
+#   The minor version.
+function set_version() {
+  if [[ $2 -ge 9 && $3 -gt 0 ]] ; then
+    echo -e "\n\n Setting version with Composer for 9.1+ \n"
+    php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');"
+  else
+    update_constant $1 $2 $3
+  fi
+}
+
 versions=( "$@" )
 
 echo -e "Enter the remote name (blank for origin):"
@@ -164,6 +182,7 @@ do
   # @todo soet it so the oldest tag/branch is first.
   declare -a base
   declare -a major
+  declare -a minor
   declare -a branches
   declare -a previous
   declare -a next
@@ -182,6 +201,7 @@ do
       next[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} + 1 ))"
     else
       major[$i]="${BASH_REMATCH[1]}"
+      minor[$i]="${BASH_REMATCH[2]}"
       base[$i]="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
       previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} - 1 ))"
       next[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} + 1 ))"
@@ -286,7 +306,7 @@ for i in "${!versions[@]}"; do
   fi
 
   # Update the version constant.
-  update_constant "$version" "$p" "${major[$i]}"
+  set_version "$version" "$p" "${major[$i]}" "${minor[$i]}"
 
   # Only D7 uses a changelog now.
   if [[ "${major[$i]}" = 7 ]] ; then
@@ -326,11 +346,10 @@ for i in "${!versions[@]}"; do
 
     devbranch="$branch""-dev"
     COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
-
   fi
 
   git commit -am "Merged $version." --no-verify
-  update_constant "$n-dev" "$version-dev" "${major[$i]}"
+  set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
   git add "$includes_file"
   git commit -am "Back to dev." --no-verify
 
