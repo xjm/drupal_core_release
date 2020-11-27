@@ -82,13 +82,13 @@ git commit -am "Drupal $v"
 git tag -a "$v" -m "Drupal $v"
 
 # Revert the composer.lock change in the last commit
-git revert HEAD --no-edit
+git revert HEAD --no-commit
 
 # Put the version back to dev
 set_version "${n}-dev" "$major" "$minor"
-echo "Restoring metapackage versions back to ${n}-dev"
+echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
-git commit --amend -am "Back to dev."
+git commit -am "Back to dev."
 
 if hash drush 2>/dev/null; then
     notes="$(drush rn $p $v)"
@@ -103,5 +103,5 @@ else
     echo -e "$notes"
 fi
 echo -e "To push use:\n"
-echo -e "git push && sleep 10 && git push origin $v"
+echo -e "git push origin $v ${major}.${minor}.x"
 echo -e "\n"
