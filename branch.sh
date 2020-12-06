@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# @param $1
+#   Replacement pattern
+# @param $2
+#   File path.
+function portable_sed() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' -e "$1" "$2"
+  else
+    sed -i -e "$1" "$2"
+  fi
+}
+
 echo -e "Enter the new branch name (e.g. 8.3.x):"
 read b
 echo -e "Enter the original branch name (e.g. 8.2.x):"
@@ -13,12 +25,21 @@ cp=${pb/.x/}
 git checkout "$pb"
 git pull
 rm -rf vendor
-composer install
+
+echo -e "Composer installing.\n"
+composer install --no-progress --no-suggest -n -q
 git checkout -b "$b"
+
 # @todo Make it fail if the following don't make changes.
-sed -i '' -e "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
-composer self-update
-COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core*
+echo -e "\nUpdating version constant.\n"
+portable_sed "s/VERSION = '[0-9\.]*-dev'/VERSION = '$n-dev'/1" core/lib/Drupal.php
+
+echo -e "Updating templates.\n"
+for file in `find composer/Template -name composer.json`
+do
+  portable_sed "s/\^$cp/\^$cn/g" $file
+done
+
+echo -e "\nUpdating metapackages.\n"
+COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core* --no-progress --no-suggest -n -q
 git commit -am "Drupal $b-dev"
-
-
