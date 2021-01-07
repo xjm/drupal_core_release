@@ -78,7 +78,7 @@ echo "Updating metapackage versions to ${v} and tagging."
 # Update the path repository versions in the lock file
 COMPOSER_ROOT_VERSION="$v" composer update drupal/core*
 
-git commit -am "Drupal $v"
+git commit -am "Drupal $v" --no-verify
 git tag -a "$v" -m "Drupal $v"
 
 # Revert the composer.lock change in the last commit
@@ -88,7 +88,7 @@ git revert HEAD --no-commit
 set_version "${n}-dev" "$major" "$minor"
 echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
-git commit -am "Back to dev."
+git commit -am "Back to dev." --no-verify
 
 if hash drush 2>/dev/null; then
     notes="$(drush rn $p $v)"
