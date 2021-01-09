@@ -50,15 +50,16 @@ path or by using the full path to the script.
 Security release script: `sec.sh`
 ----------------------------------
 
-See https://www.drupal.org/core/maintainers/create-core-security-release for complete
-instructions on creating security releases. Only create security releases in
-collaboration with the security team and do not share any information (including whether
-there will be a release) outside the security team. (See the 
+See https://www.drupal.org/core/maintainers/create-core-security-release for
+complete instructions on creating security releases. Only create security
+releases in collaboration with the security team and do not share any
+information (including whetherthere will be a release) outside the security
+team. (See the
 [security team disclosure policy](https://www.drupal.org/drupal-security-team/security-team-procedures/drupal-security-team-disclosure-policy-for-security)
 for more information.)
 
-Execute this script from your local git clone of Drupal core, either by adding it to your
-system path or by using the full path to the script.
+Execute this script from your local git clone of Drupal core, either by
+adding it to your system path or by using the full path to the script.
 
 1. Check out the correct branch(es) and ensure you have the latest changes:
 
@@ -78,18 +79,49 @@ system path or by using the full path to the script.
    
    `git diff 8.1.6 8.1.7`
    
-4. Only push your tags and commits using the command the script displays, and only after you
-   have approval from the security team.
+4. Only push your tags and commits using the command the script displays, and
+    only after you have approval from the security team.
+
+Security release with manual merge conflict resolution: `manual_merge_sec.sh` and `conclude_merge.sh`
+-----------------------------------------------------------------------------
+1. Check out the correct branch(es) and ensure you have the latest changes:
+
+   `git checkout 9.1.x; git pull`
+
+2. Run the script, with the tag(s) to create as arguments:
+
+   `/path/to/core_release/sec.sh 9.1.3 9.0.11 8.9.13`
+
+   The script will prompt you for information about the SA, then apply the
+   patches and create working branches. It will stop before merging the tags
+   and output instructions for merging the tags manually.
+
+3. Follow the instructions to merge the tags after reviewing
+   [how to manually resolve the expected merge conflicts](https://www.drupal.org/core/maintainers/create-core-security-release/dep-update#release).
+
+4. Run `/path/to/cor_release/conclude_merge.sh`.
+
+5. Make sure the script did the right things:
+
+   `git show`
+
+   `git log`
+
+   `git diff 9.1.3 9.1.2`
+
+6. Only push your tags and commits using the command the script displays, and
+    only after you have approval from the security team.
+
 
 Core branching script: `branch.sh`
 ----------------------------------
 
 1. Follow the prompts.
-2. Manually push the new branch once it is created. Be careful; this posts thousands of issue comments.
+2. Manually push the new branch once it is created.
 3. Be sure to configure automated testing.
 4. Ask drumm to run any needed issue migrations and to update api.d.o.
 
-Post generation script: `posts.sh`
+(Deprecated) Post generation script: `posts.sh`
 ----------------------------------
 
 With each command, markup for the post is printed to `stdout` and copied to the clipboard with `pbcopy`.
@@ -136,8 +168,8 @@ Generate a frontpage announcement for https://www.drupal.org about the patch rel
 
 Generate a frontpage announcement for https://www.drupal.org about the security release. You will be promped to enter the release number for Drupal 8 (required) and Drupal 7 (optional).
 
-Release note query generation script: `generate_queries.sh`
-------------------------------------------------
+(Deprecated) Release note query generation script: `generate_queries.sh`
+------------------------------------------------------------------------
 
 This script generates SQL queries against the Drupal.org database to fetch lists of issues for the release notes. You will be prompted to enter the D8 version number. The generated queries are printed to `stdout` and copied to the clipboard.
 

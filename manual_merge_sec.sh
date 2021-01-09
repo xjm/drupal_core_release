@@ -1,11 +1,12 @@
 #!/bin/bash
 
- if [[ -z $1 ]] ; then
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if [[ -z $1 ]] ; then
    echo -e "Usage: ./sec.sh 8.5.1 8.4.6 7.58"
    echo -e "(List the releases that will be tagged.)"
    exit 1
- fi
-
+fi
 
 # @param $1
 #   Replacement pattern
@@ -247,8 +248,13 @@ do
   advisory_contributors[$sa]=$contributors
 done
 
-  echo -e "\n\n==== Beginning tagging ====\n"
+echo -e "\n\n==== Beginning tagging ====\n"
 
+instructions="\n\n\n==== Instructions for resolving merge conflicts ===="
+instructions="$instructions\n\nhttps://www.drupal.org/core/maintainers/create-core-security-release/dep-update#release"
+instructions="$instructions\n\n\n==== Commands to merge the releases ===="
+
+first=0
 # Loop over version list.
 for i in "${!versions[@]}"; do
   version="${versions[$i]}"
@@ -269,19 +275,6 @@ for i in "${!versions[@]}"; do
     f=${!varname}
 
     echo -e "\nAttempting to apply patch $f...\n"
-
-    # Check that the patch doesn't update Drupal.php or bootstrap.inc,
-    # because our strategy for resolving the version constant merge
-    # conflict won't work.
-#    grep_output="$(grep $includes_file $patch)"
-#    echo -e "\nPast the grep call...\n"
-
-#    if [ ! -z "$grep_output" ] ; then
-#      echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
-#      exit 1
-#    fi
-
-    echo -e "\nPast the grep exit condition...\n"
 
     git apply --index "$f"
 
@@ -324,24 +317,26 @@ for i in "${!versions[@]}"; do
   git tag -a "$version" -m "Drupal $version"
 
   # Merge the changes back into the main branch.
-  echo -e "\n\nCommands to merge the release:"
-  echo -e "1.\n"
-  echo -e "git checkout $branch; git merge --no-ff $version"
-  echo -e "\n2. Manually resolve the merge conflicts as described in step 2:\n"
-  echo -e "https://www.drupal.org/core/maintainers/create-core-security-release/dep-update#release\n"
-  echo -e "Commit the merge result."
-
-  # Commands for the cleanup script
-  # set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
-  # devbranch="$branch""-dev"
-  # COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
-  # git commit --amend -am "Merge $version, resolve merge conflicts, and update lockfile and dev versions." --no-verify
-  # git branch -D "$version"-security
+  instructions="$instructions\n\ngit checkout $branch; git merge --no-ff $version"
+  instructions="$instructions\n$EDITOR \`git diff --name-only\`"
+  if [ $first -eq 0 ] ; then
+     instructions="$instructions\n\n(Resolve the merge conflicts in the opened files. Be sure to increment the \nVERSION constant to $n-dev.)"
+     first=$((first + 1))
+  else
+     instructions="$instructions\n\n(Be sure to increment the VERSION constant to $n-dev.)"
+  fi
+  instructions="$instructions\n\ngit commit -m merge"
 done
 
-# branch_list=$(IFS=' ' ; echo ${branches[*]})
-# tag_list=$(IFS=' ' ; echo ${versions[*]})
 
-# echo -e "To push use:\n"
-#echo -e "git push $remote $branch_list && sleep 150 && git push $remote $tag_list"
-# echo -e "\n"
+instructions="$instructions\n\n\n==== Once all merge conflicts are resolved and committed ====\n"
+instructions="$instructions\nRun:\n"
+instructions="$instructions\n$DIR/conclude_merge.sh\n"
+instructions="$instructions\nThis will update lock hashes, ensure the versions are set correctly, and"
+instructions="$instructions\nclean up the temporary branches.\n"
+
+echo -e "$instructions"
+if hash pbcopy 2>/dev/null; then
+    echo -e "$instructions" | pbcopy
+    echo -e "\n(The above instructions have been copied to the clipboard.)\n"
+fi

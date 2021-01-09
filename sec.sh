@@ -359,6 +359,9 @@ done
 branch_list=$(IFS=' ' ; echo ${branches[*]})
 tag_list=$(IFS=' ' ; echo ${versions[*]})
 
-echo -e "To push use:\n"
-echo -e "git push $remote $branch_list && sleep 150 && git push $remote $tag_list"
+echo -e "To push use:\n\n"
+echo -e "git push $remote $tag_list"
+echo -e "\nCreate the release notes to begin packaging."
+echo -e "Once the release nodes have tarballs, then push the full branch data:"
+echo -e "\ngit push $remote $branch_list"
 echo -e "\n"
