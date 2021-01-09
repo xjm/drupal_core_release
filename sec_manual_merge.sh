@@ -324,41 +324,24 @@ for i in "${!versions[@]}"; do
   git tag -a "$version" -m "Drupal $version"
 
   # Merge the changes back into the main branch.
-  git checkout "$branch"
+  echo -e "\n\nCommands to merge the release:"
+  echo -e "1.\n"
+  echo -e "git checkout $branch; git merge --no-ff $version"
+  echo -e "\n2. Manually resolve the merge conflicts as described in step 2:\n"
+  echo -e "https://www.drupal.org/core/maintainers/create-core-security-release/dep-update#release\n"
+  echo -e "Commit the merge result."
 
-  # We expect a merge conflict here.
-  # @todo Following https://www.drupal.org/project/drupal/issues/3090906 there
-  #   will be additional merge conflicts to resolve here.
-  git merge --no-ff "$version" 1> /dev/null
-
-  # Fix it by checking out the HEAD version and updating that.
-  git checkout HEAD -- "$includes_file"
-
-  # For D7 only, merge the changelog entry into HEAD manually.
-  if [[ "${major[$i]}" = 7 ]] ; then
-    git checkout HEAD -- CHANGELOG.txt
-    insert_changelog_entry "$version" "$p" false
-    git add CHANGELOG.txt
-  # For D8 and higher, fix up the lock file again.
-  else
-    git checkout HEAD -- composer.lock
-    echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
-
-    devbranch="$branch""-dev"
-    COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
-  fi
-
-  git commit -am "Merged $version." --no-verify
-  set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
-  git add "$includes_file"
-  git commit -am "Back to dev." --no-verify
-
-  git branch -D "$version"-security
+  # Commands for the cleanup script
+  # set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
+  # devbranch="$branch""-dev"
+  # COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
+  # git commit --amend -am "Merge $version, resolve merge conflicts, and update lockfile and dev versions." --no-verify
+  # git branch -D "$version"-security
 done
 
-branch_list=$(IFS=' ' ; echo ${branches[*]})
-tag_list=$(IFS=' ' ; echo ${versions[*]})
+# branch_list=$(IFS=' ' ; echo ${branches[*]})
+# tag_list=$(IFS=' ' ; echo ${versions[*]})
 
-echo -e "To push use:\n"
-echo -e "git push $remote $branch_list && sleep 150 && git push $remote $tag_list"
-echo -e "\n"
+# echo -e "To push use:\n"
+#echo -e "git push $remote $branch_list && sleep 150 && git push $remote $tag_list"
+# echo -e "\n"
