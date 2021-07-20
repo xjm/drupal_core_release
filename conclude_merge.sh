@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo -e "Enter the remote name (blank for origin):"
+read remote
+
+if [ -z $remote ] ; then
+  remote='origin'
+fi
+
 # Look through all the local git branches.
 declare -a all_branches
 IFS=$'\n' read -r -d '' -a all_branches < <( git branch && printf '\0' )

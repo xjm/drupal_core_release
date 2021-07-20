@@ -154,13 +154,6 @@ function set_version() {
 
 versions=( "$@" )
 
-echo -e "Enter the remote name (blank for origin):"
-read remote
-
-if [ -z $remote ] ; then
-  remote='origin'
-fi
-
 echo -e "How many advisories will be included in the release?"
 read advisory_count
 
