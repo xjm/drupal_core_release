@@ -1,3 +1,0 @@
-This is a <strong>alpha release for the next minor version (feature release) of Drupal 8</strong>. Alpha releases are good testing targets for developers and site builders who are comfortable reporting (and where possible, fixing) their own bugs. Alpha releases are not recommended for non-technical users, nor for production websites. <a href="https://www.drupal.org/core/d8-allowed-changes#alpha">More information on alpha releases</a>.
-
-<!--break-->

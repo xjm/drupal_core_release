@@ -1,4 +1,0 @@
-This is a <strong>release candidate for the next feature release of Drupal 8</strong>. Release candidates are not supported for production sites, but they are intended for widespread testing in preparation for the upcoming stable release. <a href="https://www.drupal.org/core/d8-allowed-changes#rc">More information on release candidates</a>.
-
-<!--break-->
-

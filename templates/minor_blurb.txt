@@ -1,3 +1,0 @@
-This is a <strong>minor version (feature release) of Drupal 8</strong> and is ready for use on production sites. <a href="https://www.drupal.org/8">Learn more about Drupal 8</a> and the <a href="https://www.drupal.org/core/release-cycle-overview">Drupal 8 release cycle</a>.
-
-<!--break-->

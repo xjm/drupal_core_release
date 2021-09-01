@@ -1,1 +1,0 @@
-For a full list of important changes since BRANCH8, also see the <a href="https://www.drupal.org/project/drupal/releases/LAST_MILESTONE">LAST_MILESTONE release notes</a>.

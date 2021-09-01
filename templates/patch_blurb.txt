@@ -1,3 +1,0 @@
-This is a <strong>patch release of Drupal 8</strong> and is ready for use on production sites. <a href="https://www.drupal.org/8">Learn more about Drupal 8</a>.
-
-<!--break-->
