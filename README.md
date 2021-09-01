@@ -3,6 +3,7 @@ Set of scripts for preparing a Drupal core release.
 
 - `tag.sh`: Tags a core release
 - `sec.sh`: Creates a core security release
+- `manual_merge.sh` and `conclude_merge.sh`: Create a security release that requires a manual merge (e.g., for dependency updates)
 - `branch.sh`: Creates a new core branch for a new minor version
 
 Usage
