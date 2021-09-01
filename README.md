@@ -4,8 +4,6 @@ Set of scripts for preparing a Drupal core release.
 - `tag.sh`: Tags a core release
 - `sec.sh`: Creates a core security release
 - `branch.sh`: Creates a new core branch for a new minor version
-- `posts.sh`: Generates post text for various release announcements.
-- `generate_queries.sh`: (deprecated) Generate SQL queries for release notes. Use the [core metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) instead.
 
 Usage
 =====
@@ -120,58 +118,3 @@ Core branching script: `branch.sh`
 2. Manually push the new branch once it is created.
 3. Be sure to configure automated testing.
 4. Ask drumm to run any needed issue migrations and to update api.d.o.
-
-(Deprecated) Post generation script: `posts.sh`
-----------------------------------
-
-With each command, markup for the post is printed to `stdout` and copied to the clipboard with `pbcopy`.
-
-`-r` Generate release notes.
-
-`-f` Generate frontpage post.
-
-`-s` Security window instead of a patch window.
-
-`-m` Minor release, beta, or RC instead of a patch window.
-
-### Release notes (Drupal 8 only)
-
-The release notes automatically incorporate lists of issues in `rn_issues.txt` if it is available. To generate this with the [Core issue metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) sandbox:
-
-1. Update `src/triage/QueryBuilder.php` in the metrics project as needed.
-2. Execute the query set on staging:
-   `bash build_run_queries.sh core_release`
-3. Run the PHP script provided in the core metrics project to build the release notes and place it within the root of this project:
-   `php /path/to/core_metrics/core_release/core_release.php > ./rn_issues.txt`
-
-#### `./posts.sh -r`
-
-Generate a template for the release notes for the patch release (Drupal 8 only). You will be prompted to enter the release number for Drupal 8.
-
-#### `./posts.sh -r -s`
-
-Generate a template for the release notes for a security release. The template is the same for all versions.
-
-#### `./posts.sh -r -m`
-
-Generate a template for the release notes of a minor release, beta, or release candidate (Drupal 8 only). You will be prompted to enter the release number for Drupal 8. For betas and RCs, enter the minor version number only (e.g. '8.1.0' for 8.1.0-beta1).
-
-### Release announcements for the Drupal.org frontpage
-
-Post these announcements after the releases are created.
-
-#### `./posts.sh -f`
-
-Generate a frontpage announcement for https://www.drupal.org about the patch release. You will be promped to enter the release number for Drupal 8 (required) and Drupal 7 (optional).
-
-#### `./posts.sh -f -s`
-
-Generate a frontpage announcement for https://www.drupal.org about the security release. You will be promped to enter the release number for Drupal 8 (required) and Drupal 7 (optional).
-
-(Deprecated) Release note query generation script: `generate_queries.sh`
-------------------------------------------------------------------------
-
-This script generates SQL queries against the Drupal.org database to fetch lists of issues for the release notes. You will be prompted to enter the D8 version number. The generated queries are printed to `stdout` and copied to the clipboard.
-
-You can also use the [Core issue metrics sandbox](https://www.drupal.org/sandbox/xjm/core_metrics) to generate these queries and fetch their data (or ask xjm).
-
