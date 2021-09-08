@@ -15,10 +15,6 @@ Release tagging script: `tag.sh`
 See https://www.drupal.org/core/maintainers/create-core-release for complete
 instructions on creating core releases. Use at your own risk!
 
-Requires:
-- drush
-- https://www.drupal.org/project/grn
-
 Execute this script from your local git repository, either by adding it to your
 path or by using the full path to the script.
 
@@ -33,8 +29,9 @@ path or by using the full path to the script.
    You will be prompted to enter the release number, as well as the previous and
    next release numbers if it is not a normal patch release,
    
-3. Your drush rn output will be copied to the clipboard if you have pbcopy
-   (Mac), or output directly otherwise. Add it to your release notes.
+3. A list of the commits since the last release you entered  will be copied to
+   the clipboard if you have pbcopy (Mac), or output directly otherwise. Add
+   it to your release notes.
 
 4. Make sure the script did the right things:
 

@@ -90,11 +90,7 @@ echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
 git commit -am "Back to dev." --no-verify
 
-if hash drush 2>/dev/null; then
-    notes="$(drush rn $p $v)"
-else
-    notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' ${v}^...${p} ) \n\n</ul>\n\n"
-fi
+notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' ${v}^...${p} ) \n\n</ul>\n\n"
 
 if hash pbcopy 2>/dev/null; then
     echo -e "$notes" | pbcopy
