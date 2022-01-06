@@ -1,7 +1,7 @@
 #!/bin/bash
 
  if [[ -z $1 ]] ; then
-   echo -e "Usage: ./sec.sh 8.5.1 8.4.6 7.58"
+   echo -e "Usage: ./sec.sh 9.3.3 9.2.11 7.84"
    echo -e "(List the releases that will be tagged.)"
    exit 1
  fi
@@ -23,10 +23,7 @@ function portable_sed() {
 #   Version string.
 function validate_version() {
 
-  # We only support D7 through D9 for now.
-  # Kind of a Y2K bug for Drupal versions.
-  re="^[ ]*([7-9])\.([0-9][0-9]*)(\.([1-9][0-9]*))?[ ]*$"
-
+  re="^[ ]*([7-9]|1[0-9])\.([0-9][0-9]*)(\.([1-9][0-9]*))?[ ]*$"
   message="\n$1 can't be tagged automatically. To use $1, tag the release manually."
 
   if [[ ! $1 =~ $re ]] ; then
@@ -46,7 +43,7 @@ function validate_version() {
     # Later branches must have major.minor.patch.
     if [[ -z ${BASH_REMATCH[4]} ]] ; then
       echo -e "$message"
-      echo -e "The Drupal 8 or 9 version must be semver."
+      echo -e "The Drupal 8 or higher version must be semver."
       exit 1
     fi
   fi
