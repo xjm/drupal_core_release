@@ -3,7 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [[ -z $1 ]] ; then
-   echo -e "Usage: ./sec.sh 8.5.1 8.4.6 7.58"
+   echo -e "Usage: ./sec.sh 10.0.1 9.4.1 7.58"
    echo -e "(List the releases that will be tagged.)"
    exit 1
 fi
@@ -24,9 +24,7 @@ function portable_sed() {
 #   Version string.
 function validate_version() {
 
-  # We only support D7 through D9 for now.
-  # Kind of a Y2K bug for Drupal versions.
-  re="^[ ]*([7-9])\.([0-9][0-9]*)(\.([1-9][0-9]*))?[ ]*$"
+  re="^[ ]*([0-9]*)\.([0-9]*)\.([0-9]*))?[ ]*$"
 
   message="\n$1 can't be tagged automatically. To use $1, tag the release manually."
 
@@ -38,16 +36,16 @@ function validate_version() {
 
   # D7 must only have major.patch.
   if [[ ${BASH_REMATCH[1]} = 7 ]] ; then
-    if [[ ! -z ${BASH_REMATCH[4]} ]] ; then
+    if [[ ! -z ${BASH_REMATCH[3]} ]] ; then
         echo -e "$message"
 	echo -e "The Drupal 7 version should not be semver."
       exit 1
     fi
   else
     # Later branches must have major.minor.patch.
-    if [[ -z ${BASH_REMATCH[4]} ]] ; then
+    if [[ -z ${BASH_REMATCH[3]} ]] ; then
       echo -e "$message"
-      echo -e "The Drupal 8 or 9 version must be semver."
+      echo -e "The Drupal 8 or higher version must be semver."
       exit 1
     fi
   fi

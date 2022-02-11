@@ -12,9 +12,9 @@ function portable_sed() {
   fi
 }
 
-echo -e "Enter the new branch name (e.g. 8.3.x):"
+echo -e "Enter the new branch name (e.g. 10.2.x):"
 read b
-echo -e "Enter the original branch name (e.g. 8.2.x):"
+echo -e "Enter the original branch name (e.g. 10.1.x):"
 read pb
 
 n=${b/x/0}

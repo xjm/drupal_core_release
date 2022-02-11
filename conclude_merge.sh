@@ -12,9 +12,7 @@ declare -a all_branches
 IFS=$'\n' read -r -d '' -a all_branches < <( git branch && printf '\0' )
 
 # Scan for z.y.x-security branches.
-# We only support D7 through D9 for now.
-# Kind of a Y2K bug for Drupal versions.
-branch_re="^[ ]*(\* )?([7-9])\.([0-9][0-9]*)(\.([1-9][0-9]*))?(\-security)[ ]*$"
+branch_re="^[ ]*(\* )?([0-9]*)\.([0-9]*)(\.([0-9]*))?(\-security)[ ]*$"
 
 # Create a list of matching security tags and corresponding branches.
 i=0

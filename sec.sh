@@ -23,7 +23,7 @@ function portable_sed() {
 #   Version string.
 function validate_version() {
 
-  re="^[ ]*([7-9]|1[0-9])\.([0-9][0-9]*)(\.([1-9][0-9]*))?[ ]*$"
+  re="^[ ]*([0-9]*)\.([0-9]*)(\.([0-9]*))?[ ]*$"
   message="\n$1 can't be tagged automatically. To use $1, tag the release manually."
 
   if [[ ! $1 =~ $re ]] ; then
