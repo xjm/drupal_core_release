@@ -64,6 +64,7 @@ if [[ $v =~ $re ]] ; then
   fi
 else
   echo -e "Unrecognized version. The release must be tagged manually."
+  exit 1
 fi
 
 echo "Composer installing."
