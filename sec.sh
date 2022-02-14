@@ -142,9 +142,9 @@ function update_constant() {
 function set_version() {
   if [[ $3 -ge 9 && $4 -gt 0 ]] ; then
     echo -e "\n\n Setting version with Composer for 9.1+ \n"
-    php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');"
+    php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');" || ! $? -eq 0
   else
-    update_constant $1 $2 $3
+    update_constant $1 $2 $3 || ! $? -eq 0
   fi
 }
 
