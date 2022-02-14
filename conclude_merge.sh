@@ -12,7 +12,7 @@ declare -a all_branches
 IFS=$'\n' read -r -d '' -a all_branches < <( git branch && printf '\0' )
 
 # Scan for z.y.x-security branches.
-branch_re="^[ ]*(\* )?([0-9]*)\.([0-9]*)(\.([0-9]*))?(\-security)[ ]*$"
+branch_re="^[ ]*(\* )?([0-9]+)\.([0-9]+)(\.([0-9]+))?(\-security)[ ]*$"
 
 # Create a list of matching security tags and corresponding branches.
 i=0

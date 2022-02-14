@@ -38,7 +38,7 @@ function set_version() {
 echo -e "Enter the release version (e.g. 9.3.6 or 9.4.0-beta2):"
 read v
 
-re="^([0-9]*)\.([0-9]*)\.([0-9]*)(-[A-Za-z0-9]*)?$"
+re="^([0-9]+)\.([0-9]+)\.([0-9]+)(-[A-Za-z0-9]+)?$"
 
 if [[ $v =~ $re ]] ; then
   major="${BASH_REMATCH[1]}"
