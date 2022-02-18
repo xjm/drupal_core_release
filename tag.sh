@@ -19,7 +19,7 @@ function portable_sed() {
 # @param $3
 #   The minor version.
 function set_version() {
-  if [[ $2 -ge 9 && $3 -gt 0 ]] ; then
+  if [[ $2 -ge 10 ]] || [[ $2 -eq 9 && $3 -gt 0 ]] ; then
     echo -e "\n\n Setting version with Composer for 9.1+ \n"
     php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');"
   else
