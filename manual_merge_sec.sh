@@ -186,7 +186,7 @@ do
 
     validate_version "$v" || ! $? -eq 0
 
-    if [[ -z ${BASH_REMATCH[4]} ]] ; then
+    if [[ -z ${BASH_REMATCH[3]} ]] ; then
       major[$i]="${BASH_REMATCH[1]}"
       base[$i]="${BASH_REMATCH[1]}"
       previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[2]} - 1 ))"
@@ -195,8 +195,8 @@ do
       major[$i]="${BASH_REMATCH[1]}"
       minor[$i]="${BASH_REMATCH[2]}"
       base[$i]="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
-      previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} - 1 ))"
-      next[$i]="${base[$i]}.$(( ${BASH_REMATCH[4]} + 1 ))"
+      previous[$i]="${base[$i]}.$(( ${BASH_REMATCH[3]} - 1 ))"
+      next[$i]="${base[$i]}.$(( ${BASH_REMATCH[3]} + 1 ))"
     fi
 
     branches[$i]="${base[$i]}.x"
