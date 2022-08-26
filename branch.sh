@@ -28,6 +28,7 @@ rm -rf vendor
 
 echo -e "Composer installing.\n"
 composer install --no-progress --no-suggest -n -q
+(cd core; rm -rf node_modules; yarn install)
 git checkout -b "$b"
 
 # @todo Make it fail if the following don't make changes.
@@ -42,4 +43,5 @@ done
 
 echo -e "\nUpdating metapackages.\n"
 COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core* --no-progress --no-suggest -n -q
+(cd core; rm -rf node_modules; yarn install)
 git commit -am "Drupal $b-dev"
