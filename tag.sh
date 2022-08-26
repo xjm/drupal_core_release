@@ -96,11 +96,8 @@ notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/
 if hash pbcopy 2>/dev/null; then
     echo -e "$notes" | pbcopy
     echo -e "\n** Your releases notes have been copied to the clipboard. **\n"
-elif hash xclip 2>/dev/null; then
-    echo "$notes" | xclip
-    echo -e "\n** Your releases notes have been copied to the clipboard. Use the middle button of your mouse. **\n"
 else
-    echo "$notes"
+    echo -e "$notes"
 fi
 echo -e "To push use:\n"
 echo -e "git push origin $v ${major}.${minor}.x"
