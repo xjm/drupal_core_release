@@ -1,5 +1,29 @@
 #!/bin/bash
 
+#
+# Build the change log in html.
+#
+# @param $1
+#   Release version.
+# @param $2
+#   Next stable release.
+# @param $3
+#   Filename for the changelog.
+#
+function build_changelog() {
+mapfile -t log < <(git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' "$1"^..."$2")
+
+# Output each log entry as an item in an unsorted list.
+echo -e '<ul>\n\n' > "$3"
+for i in "${log[@]}"
+do
+  # Do not interpret backslash escapes in the git log message.
+  echo "$i" >> "$3"
+  echo -e "\n" >> "$3"
+done
+echo -e '</ul>\n\n' >> "$3"
+}
+
 # @param $1
 #   Replacement pattern
 # @param $2
@@ -91,13 +115,17 @@ echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
 git commit -am "Back to dev." --no-verify
 
-notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' ${v}^...${p} ) \n\n</ul>\n\n"
+# Create the 'All changes since' changelog.
+changelog=`mktemp`
+build_changelog ${changelog}
+notes=`cat ${changelog}`
+rm ${changelog}
 
 if hash pbcopy 2>/dev/null; then
-    echo -e "$notes" | pbcopy
+    echo "$notes" | pbcopy
     echo -e "\n** Your releases notes have been copied to the clipboard. **\n"
 else
-    echo -e "$notes"
+    echo "$notes"
 fi
 echo -e "To push use:\n"
 echo -e "git push origin $v ${major}.${minor}.x"
