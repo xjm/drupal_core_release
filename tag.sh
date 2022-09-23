@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Error exit
+#
+function error_exit() {
+  echo -e "${red}FAILURE${reset}"
+  exit 1
+}
+
 # @param $1
 #   Replacement pattern
 # @param $2
@@ -35,8 +42,19 @@ function set_version() {
   fi
 }
 
+# Set up variables to make coloured output simple.
+red=`tput setaf 1 && tput bold`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+# Get the new tag and exit if it exists.
 echo -e "Enter the release version (e.g. 9.3.6 or 9.4.0-beta2):"
 read v
+
+if git rev-parse "$v" >/dev/null 2>&1 ; then
+  echo -e "\nTag '$v' exists."
+  error_exit
+fi
 
 re="^([0-9]+)\.([0-9]+)\.([0-9]+)(-[A-Za-z0-9]+)?$"
 
@@ -57,6 +75,11 @@ if [[ $v =~ $re ]] ; then
   if [ -z "$p" ] ; then
     p=$calc_p
   fi
+  if ! git rev-parse "$p" >/dev/null 2>&1 ; then
+    echo -e "\nPrevious tag '$p' does not exist."
+    error_exit
+  fi
+
   echo -e "Enter the next stable release (blank for $calc_n):"
   read n
   if [ -z "$n" ] ; then
@@ -70,6 +93,9 @@ fi
 echo "Composer installing."
 rm -rf vendor
 composer install --no-progress --no-suggest -n -q
+if [ "$?" -ne "0" ] ; then
+  error_exit
+fi
 
 set_version "$v" "$major" "$minor"
 
@@ -80,16 +106,30 @@ echo "Updating metapackage versions to ${v} and tagging."
 COMPOSER_ROOT_VERSION="$v" composer update drupal/core*
 
 git commit -am "Drupal $v" --no-verify
+if [ "$?" -ne "0" ] ; then
+  error_exit
+fi
+
+
 git tag -a "$v" -m "Drupal $v"
+if [ "$?" -ne "0" ] ; then
+  error_exit
+fi
 
 # Revert the composer.lock change in the last commit
 git revert HEAD --no-commit
+if [ "$?" -ne "0" ] ; then
+  error_exit
+fi
 
 # Put the version back to dev
 set_version "${n}-dev" "$major" "$minor"
 echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
 git commit -am "Back to dev." --no-verify
+if [ "$?" -ne "0" ] ; then
+  error_exit
+fi
 
 notes="<ul>\n\n $( git log --format='<li><a href=%x22https://git.drupalcode.org/project/drupal/commit/%H%x22>%s</a></li>%n' ${v}^...${p} ) \n\n</ul>\n\n"
 
@@ -99,6 +139,9 @@ if hash pbcopy 2>/dev/null; then
 else
     echo -e "$notes"
 fi
+
+echo -e "${green}SUCCESS${reset}"
+
 echo -e "To push use:\n"
 echo -e "git push origin $v ${major}.${minor}.x"
 echo -e "\n"
