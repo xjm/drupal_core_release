@@ -123,10 +123,10 @@ echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 git commit -am "Back to dev." --no-verify
 
 # Create the 'All changes since' changelog.
-changelog=`mktemp`
-build_changelog ${changelog}
-notes=`cat ${changelog}`
-rm ${changelog}
+changelog=$(mktemp)
+build_changelog "$v" "$p" "$changelog"
+notes=$(cat "$changelog")
+rm "$changelog"
 
 if hash pbcopy 2>/dev/null; then
     echo "$notes" | pbcopy
