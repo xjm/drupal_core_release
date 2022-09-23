@@ -32,8 +32,8 @@ function set_version() {
   else
     grep -q "[0-9\.]*-dev" core/lib/Drupal.php
     if [ ! $? -eq 0 ] ; then
-	echo -e "Cannot match version constant. The release must be tagged manually."
-	exit 1
+	    echo -e "\nCannot match version constant. The release must be tagged manually."
+      error_exit
     fi
 
     echo -e "\n\n Setting version with sed for 9.0 and earlier \n"
@@ -86,8 +86,8 @@ if [[ $v =~ $re ]] ; then
     n=$calc_n
   fi
 else
-  echo -e "Unrecognized version. The release must be tagged manually."
-  exit 1
+  echo -e "\nUnrecognized version. The release must be tagged manually."
+  error_exit
 fi
 
 echo "Composer installing."
@@ -109,7 +109,6 @@ git commit -am "Drupal $v" --no-verify
 if [ "$?" -ne "0" ] ; then
   error_exit
 fi
-
 
 git tag -a "$v" -m "Drupal $v"
 if [ "$?" -ne "0" ] ; then
