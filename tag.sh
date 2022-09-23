@@ -139,7 +139,7 @@ else
     echo -e "$notes"
 fi
 
-echo -e "${green}SUCCESS${reset}"
+echo -e "\n\n${green}SUCCESS${reset}"
 
 echo -e "To push use:\n"
 echo -e "git push origin $v ${major}.${minor}.x"
