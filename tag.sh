@@ -90,14 +90,14 @@ else
   error_exit
 fi
 
+set_version "$v" "$major" "$minor"
+
 echo "Composer installing."
 rm -rf vendor
 composer install --no-progress --no-suggest -n -q
 if [ "$?" -ne "0" ] ; then
   error_exit
 fi
-
-set_version "$v" "$major" "$minor"
 
 # Update the version strings in the metapackages
 echo "Updating metapackage versions to ${v} and tagging."
