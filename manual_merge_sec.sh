@@ -284,7 +284,7 @@ for i in "${!versions[@]}"; do
   done
 
   # If we're on D8 or higher, perform a clean Composer install.
-  if [[ "${major[$i]}" > 7 ]] ; then
+  if [[ "${major[$i]}" -gt 7 ]] ; then
     rm -rf vendor
     composer install --no-progress --no-suggest -n -q
   fi
