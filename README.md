@@ -20,7 +20,7 @@ path or by using the full path to the script.
 
 1. Check out the correct branch and ensure you have the latest changes:
 
-   `git checkout 8.1.x; git pull`
+   `git checkout 8.1.x; git pull; git fetch --tags`
 
 2. Run the script:
 
