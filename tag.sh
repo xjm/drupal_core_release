@@ -43,6 +43,13 @@ function portable_sed() {
   fi
 }
 
+# Allow composer and yarn to run inside a container.
+if [ "${DRUPAL_ENVIRONMENT}" == "ddev" ]
+then
+  CONTAINER_CMD='ddev'
+  CONTAINER_EXEC_CMD='ddev exec'
+fi
+
 # @param $1
 #   The Drupal version to set.
 # @param $2
@@ -52,7 +59,7 @@ function portable_sed() {
 function set_version() {
   if [[ $2 -ge 10 ]] || [[ $2 -eq 9 && $3 -gt 0 ]] ; then
     echo -e "\n\n Setting version with Composer for 9.1+ \n"
-    php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');"
+    ${CONTAINER_CMD} php -r "include 'vendor/autoload.php'; \Drupal\Composer\Composer::setDrupalVersion('.', '$1');"
   else
     grep -q "[0-9\.]*-dev" core/lib/Drupal.php
     if [ ! $? -eq 0 ] ; then
@@ -100,7 +107,7 @@ fi
 
 echo "Composer installing."
 rm -rf vendor
-composer install --no-progress --no-suggest -n -q
+${CONTAINER_CMD} composer install --no-progress --no-suggest -n -q
 
 set_version "$v" "$major" "$minor"
 
@@ -108,7 +115,7 @@ set_version "$v" "$major" "$minor"
 echo "Updating metapackage versions to ${v} and tagging."
 
 # Update the path repository versions in the lock file
-COMPOSER_ROOT_VERSION="$v" composer update drupal/core*
+${CONTAINER_EXEC_CMD} COMPOSER_ROOT_VERSION="$v" composer update drupal/core*
 
 git commit -am "Drupal $v" --no-verify
 git tag -a "$v" -m "Drupal $v"
