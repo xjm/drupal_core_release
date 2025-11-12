@@ -239,7 +239,7 @@ do
     fi
   done
 
-  echo -e "\nEnter the list of contributors for ${advisories[$sa]}, separated by commas (blank for none):"
+  echo -e "\nEnter the list of contributors for ${advisories[$sa]}, separated by commas (blank for none), or a commit message beginning with 'Issue':"
   read -e contributors
   advisory_contributors[$sa]=$contributors
 done
@@ -287,10 +287,14 @@ for i in "${!versions[@]}"; do
       exit 1
     fi
 
-    # Prepare the commit message
+    # Prepare the commit message.
     commit_message="${advisories[$sa]}"
     if [ ! -z "${advisory_contributors[$sa]}" ] ; then
-      commit_message="$commit_message by ${advisory_contributors[$sa]}"
+      if [[ "${advisory_contributors[$sa]}" == Issue* ]] ; then
+        commit_message="${advisory_contributors[$sa]}"
+      else  
+        commit_message="$commit_message by ${advisory_contributors[$sa]}"
+      fi  
     fi
 
     git commit -am "$commit_message" --no-verify
