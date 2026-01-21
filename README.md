@@ -6,6 +6,13 @@ Set of scripts for preparing a Drupal core release.
 - `manual_merge.sh` and `conclude_merge.sh`: Create a security release that requires a manual merge (e.g., for dependency updates)
 - `branch.sh`: Creates a new core branch for a new minor version
 
+Setup
+=====
+
+If using DDEV the composer and yarn commands can be executed inside the container. To do this set
+the environment variable `DRUPAL_ENVIRONMENT` to `ddev`. This is currently only available for the
+scripts `branch.sh` and `tag.sh`.
+
 Usage
 =====
 
