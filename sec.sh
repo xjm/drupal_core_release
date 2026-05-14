@@ -239,7 +239,7 @@ do
     fi
   done
 
-  echo -e "\nEnter the list of contributors for ${advisories[$sa]}, separated by commas (blank for none), or a commit message beginning with 'Issue':"
+  echo -e "\nEnter the list of contributors for ${advisories[$sa]}, separated by commas (blank for none), or a commit message beginning with 'Issue' or 'fix':"
   read -e contributors
   advisory_contributors[$sa]=$contributors
 done
@@ -290,10 +290,15 @@ for i in "${!versions[@]}"; do
     # Prepare the commit message.
     commit_message="${advisories[$sa]}"
     if [ ! -z "${advisory_contributors[$sa]}" ] ; then
-      if [[ "${advisory_contributors[$sa]}" == Issue* ]] ; then
+      if [[ "${advisory_contributors[$sa]}" == Issue* ]] || [[ "${advisory_contributors[$sa]}" == fix* ]]; then
         commit_message="${advisory_contributors[$sa]}"
-      else  
-        commit_message="$commit_message by ${advisory_contributors[$sa]}"
+      else
+	  # I hate Bash string manipulation; this is a hack.
+	  delimiter=$'\nBy: '
+	  first_delimiter=$'\n\nBy: '
+	  contributor_list="${advisory_contributors[$sa]}"
+	  contributor_list="${contributor_list//,/$delimiter}"
+          commit_message="fix: $commit_message$first_delimiter$contributor_list"
       fi  
     fi
 
