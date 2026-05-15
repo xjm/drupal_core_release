@@ -157,8 +157,12 @@ if [ -z $remote ] ; then
   remote='origin'
 fi
 
-echo -e "How many advisories will be included in the release?"
+echo -e "How many advisories will be included in the release? (Blank for 1.)"
 read advisory_count
+
+if [ -z $advisory_count ] ; then
+  advisory_count='1'
+fi
 
 echo -e "First SA number in this release (e.g. '3' if SA-CORE-2019-003 is next):"
 read first_advisory
