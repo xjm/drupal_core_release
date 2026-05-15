@@ -239,7 +239,7 @@ do
     fi
   done
 
-  echo -e "\nEnter one of:\n - The list of contributors for ${advisories[$sa]}, separated by commas.\n - Blank for no contributors.\n - A custom commit message beginning with 'Issue', 'fix', or 'task'\nThen, press ctrl+D."
+  echo -e "\nEnter one of:\n - The list of contributors for ${advisories[$sa]}, separated by commas.\n - Blank for no contributors.\n - A custom commit message beginning with 'Issue', 'fix', or 'task'.\nThen, press ctrl+D."
   read -r -d $'\04' contributors
   advisory_contributors[$sa]=$contributors
 done
