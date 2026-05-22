@@ -1,7 +1,7 @@
 #!/bin/bash
 
  if [[ -z $1 ]] ; then
-   echo -e "Usage: ./sec.sh 9.3.3 9.2.11 7.84"
+   echo -e "Usage: ./sec.sh 9.3.3 9.2.11"
    echo -e "(List the releases that will be tagged.)"
    exit 1
  fi
@@ -32,72 +32,18 @@ function validate_version() {
     exit 1
   fi
 
-  # D7 must only have major.patch.
-  if [[ ${BASH_REMATCH[1]} = 7 ]] ; then
-    if [[ ! -z ${BASH_REMATCH[4]} ]] ; then
-        echo -e "$message"
-	echo -e "The Drupal 7 version should not be semver."
-      exit 1
-    fi
-  else
-    # Later branches must have major.minor.patch.
-    if [[ -z ${BASH_REMATCH[4]} ]] ; then
-      echo -e "$message"
-      echo -e "The Drupal 8 or higher version must be semver."
-      exit 1
-    fi
+  # Branches must have major.minor.patch.
+  if [[ -z ${BASH_REMATCH[4]} ]] ; then
+    echo -e "$message"
+    echo -e "The Drupal 8 or higher version must be semver."
+    exit 1
   fi
 }
 
 # @param $1
 #   The major branch.
 function includes_file() {
-
-  includes_file=''
-
-  if [[ $1 = 7 ]] ; then
-    includes_file="includes/bootstrap.inc"
-  else
     includes_file="core/lib/Drupal.php"
-  fi
-}
-
-# @param $1
-#   The Drupal 7 version.
-# @param $2
-#   The old version constant.
-# @param $3
-#   Whether to remove the 'development version' lines.
-function insert_changelog_entry() {
-  # This assumes the D7 changelog location, because D8 does not maintain a
-  # list of releases in a changelog.
-  find="Drupal $2, "
-  date=$(date +"%Y-%m-%d")
-  changelog="Drupal $1, $date\\
------------------------\\
-- Fixed security issues:\\
-"
-  # @todo This is relying on a global.
-  for advisory in "${advisories[@]}" ; do
-    changelog="$changelog   - $advisory\\
-"
-  done
-  changelog="$changelog\\
-$find"
-
-  grep -q "$find" CHANGELOG.txt
-  if [ ! $? -eq 0 ] ; then
-    echo -e "Cannot match version constant $2 in the CHANGELOG. The CHANGELOG must be corrected manually."
-    exit 1
-  fi
-  portable_sed "s/$find/$changelog/1" "CHANGELOG.txt"
-
-  if [ "$3" = true ] ; then
-    dev="Drupal 7.xx, xxxx-xx-xx \(development version\)
------------------------
-\n"
-    perl -i -p0e "s/$dev//g" CHANGELOG.txt
-  fi
 }
 
 # @param $1
@@ -111,16 +57,8 @@ function update_constant() {
 
   includes_file "$3"
 
-  find=''
-  replace=''
-  if [[ "$3" = 7 ]] ; then
-    find="'VERSION', '$2'"
-    replace="'VERSION', '$1'"
-
-  else
-    find="VERSION = '$2'"
-    replace="VERSION = '$1'"
-  fi
+  find="VERSION = '$2'"
+  replace="VERSION = '$1'"
 
   grep -q "$find" "$includes_file"
   if [ ! $? -eq 0 ] ; then
@@ -309,24 +247,15 @@ for i in "${!versions[@]}"; do
     git commit -am "$commit_message" --no-verify
   done
 
-  # If we're on D8 or higher, perform a clean Composer install.
-  if [[ "${major[$i]}" -gt 7 ]] ; then
-    rm -rf vendor
-    composer install --no-progress --no-suggest -n -q
-  fi
+  # Perform a clean Composer install.
+  rm -rf vendor
+  composer install --no-progress --no-suggest -n -q
 
   # Update the version constant.
   set_version "$version" "$p" "${major[$i]}" "${minor[$i]}"
 
-  # Only D7 uses a changelog now.
-  if [[ "${major[$i]}" = 7 ]] ; then
-    insert_changelog_entry "$version" "$p" true
-    git add CHANGELOG.txt
-  # D8 and higher need to have the lock file updated prior to tagging.
-  else
-    echo -e "\nUpdating metapackage versions and lock file to ${version}...\n"
-    COMPOSER_ROOT_VERSION="$version" composer update drupal/core*
-  fi
+  echo -e "\nUpdating metapackage versions and lock file to ${version}...\n"
+  COMPOSER_ROOT_VERSION="$version" composer update drupal/core*
 
   echo -e "\nTagging ${version}...\n"
 
@@ -344,19 +273,11 @@ for i in "${!versions[@]}"; do
   # Fix it by checking out the HEAD version and updating that.
   git checkout HEAD -- "$includes_file"
 
-  # For D7 only, merge the changelog entry into HEAD manually.
-  if [[ "${major[$i]}" = 7 ]] ; then
-    git checkout HEAD -- CHANGELOG.txt
-    insert_changelog_entry "$version" "$p" false
-    git add CHANGELOG.txt
-  # For D8 and higher, fix up the lock file again.
-  else
-    git checkout HEAD -- composer.lock
-    echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
+  git checkout HEAD -- composer.lock
+  echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
 
-    devbranch="$branch""-dev"
-    COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
-  fi
+  devbranch="$branch""-dev"
+  COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
 
   git commit -am "Merged $version." --no-verify
   set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
