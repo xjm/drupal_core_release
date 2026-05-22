@@ -1,11 +1,13 @@
 #!/bin/bash
 
- if [[ -z $1 ]] ; then
-   echo -e "Usage: ./sec.sh 12.3.3 12.2.11 11.6.1 11.5.12"
-   echo -e "(List the releases that will be tagged.)"
-   exit 1
- fi
+# Initialize inputs.
 
+# todo This should also allow being initialized as a global.
+if [[ -z $1 ]] ; then
+  echo -e "Usage: ./sec.sh 12.3.3 12.2.11 11.6.1 11.5.12"
+  echo -e "(List the releases that will be tagged.)"
+  exit 1
+fi
 
 # @param $1
 #   Replacement pattern
@@ -67,7 +69,6 @@ function update_constant() {
   fi
   portable_sed "s/$find/$replace/1" "$includes_file"
 }
-
 
 # @param $1
 #   The Drupal version to set.
