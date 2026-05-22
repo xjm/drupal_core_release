@@ -1,7 +1,7 @@
 #!/bin/bash
 
  if [[ -z $1 ]] ; then
-   echo -e "Usage: ./sec.sh 9.3.3 9.2.11"
+   echo -e "Usage: ./sec.sh 12.3.3 12.2.11 11.6.1 11.5.12"
    echo -e "(List the releases that will be tagged.)"
    exit 1
  fi
