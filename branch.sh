@@ -12,6 +12,12 @@ function portable_sed() {
   fi
 }
 
+# Allow composer and yarn to run inside a container.
+if [ "${DRUPAL_ENVIRONMENT}" == "ddev" ]
+then
+  CONTAINER_CMD='ddev exec'
+fi
+
 echo -e "Enter the new branch name (e.g. 10.2.x):"
 read b
 echo -e "Enter the original branch name (e.g. 10.1.x):"
@@ -27,8 +33,8 @@ git pull
 rm -rf vendor
 
 echo -e "Composer installing.\n"
-composer install --no-progress --no-suggest -n -q
-(cd core; rm -rf node_modules; yarn install)
+${CONTAINER_CMD} composer install --no-progress --no-suggest -n -q
+(cd core; rm -rf node_modules; ${CONTAINER_CMD} yarn install)
 git checkout -b "$b"
 
 # @todo Make it fail if the following don't make changes.
@@ -42,6 +48,6 @@ do
 done
 
 echo -e "\nUpdating metapackages.\n"
-COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core* --no-progress --no-suggest -n -q
-(cd core; rm -rf node_modules; yarn install)
+${CONTAINER_CMD} COMPOSER_ROOT_VERSION="$b-dev" composer update drupal/core* --no-progress --no-suggest -n -q
+(cd core; rm -rf node_modules; ${CONTAINER_CMD} yarn install)
 git commit -am "Drupal $b-dev"
