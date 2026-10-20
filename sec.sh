@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Initialize inputs.
+declare -a advisories
+declare -a advisory_contributors
+remote='origin'
 
 # todo This should also allow being initialized as a global.
 if [[ -z $1 ]] ; then
@@ -8,6 +11,8 @@ if [[ -z $1 ]] ; then
   echo -e "(List the releases that will be tagged.)"
   exit 1
 fi
+
+versions=( "$@" )
 
 # @param $1
 #   Replacement pattern
@@ -87,8 +92,6 @@ function set_version() {
   fi
 }
 
-versions=( "$@" )
-
 echo -e "Enter the remote name (blank for origin):"
 read remote
 
@@ -107,8 +110,6 @@ echo -e "First SA number in this release (e.g. '3' if SA-CORE-2019-003 is next):
 read first_advisory
 
 year=$(date +%Y)
-declare -a advisories
-declare -a advisory_contributors
 
 for i in $( eval echo {1..$advisory_count} )
 do
@@ -119,7 +120,7 @@ done
 
 for sa in "${!advisories[@]}"
 do
-  # @todo soet it so the oldest tag/branch is first.
+  # @todo Sort it so the oldest tag/branch is first.
   declare -a base
   declare -a major
   declare -a minor
@@ -197,31 +198,12 @@ for i in "${!versions[@]}"; do
   branch="${branches[$i]}"
   includes_file "${major[$i]}" || ! $? -eq 0
 
-  git checkout -b "$version"-security "$p"
-  if [ ! $? -eq 0 ] ; then
-    echo -e "Error: Could not create a working branch."
-    exit 1
-  fi
-
-  echo -e "\nWorking branch created.\n"
+  git checkout $branch
   for sa in "${!advisories[@]}"; do
     varname=patches_${sa}_${i}
     f=${!varname}
 
     echo -e "\nAttempting to apply patch $f...\n"
-
-    # Check that the patch doesn't update Drupal.php or bootstrap.inc,
-    # because our strategy for resolving the version constant merge
-    # conflict won't work.
-#    grep_output="$(grep $includes_file $patch)"
-#    echo -e "\nPast the grep call...\n"
-
-#    if [ ! -z "$grep_output" ] ; then
-#      echo -e "The $v patch includes changes to $includes_file. $v must be tagged manually."
-#      exit 1
-#    fi
-
-    echo -e "\nPast the grep exit condition...\n"
 
     git apply --index "$f"
 
@@ -263,29 +245,16 @@ for i in "${!versions[@]}"; do
   git commit -am "Drupal $version" --no-verify
   git tag -a "$version" -m "Drupal $version"
 
-  # Merge the changes back into the main branch.
-  git checkout "$branch"
-
-  # We expect a merge conflict here.
-  # @todo Following https://www.drupal.org/project/drupal/issues/3090906 there
-  #   will be additional merge conflicts to resolve here.
-  git merge --no-ff "$version" 1> /dev/null
-
-  # Fix it by checking out the HEAD version and updating that.
-  git checkout HEAD -- "$includes_file"
-
-  git checkout HEAD -- composer.lock
   echo -e "\nRe-updating metapackage versions and lock file for the dev branch...\n"
 
-  devbranch="$branch""-dev"
-  COMPOSER_ROOT_VERSION="$devbranch" composer update drupal/core*
+  # Revert the composer.lock change in the last commit
+  git revert HEAD --no-commit
 
-  git commit -am "Merged $version." --no-verify
+  # Put the version back to dev.
   set_version "$n-dev" "$version-dev" "${major[$i]}" "${minor[$i]}"
-  git add "$includes_file"
-  git commit -am "Back to dev." --no-verify
+  echo "Restoring metapackage versions back to ${major}.${minor}.x-dev"
 
-  git branch -D "$version"-security
+  git commit -am "Back to dev." --no-verify
 done
 
 branch_list=$(IFS=' ' ; echo ${branches[*]})
